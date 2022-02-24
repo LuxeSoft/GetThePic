@@ -4,6 +4,7 @@ public class Player {
     private String name;
     private int points;
     private int wins;
+    private String password;
 
     public Player(String name, int points, int wins) {
         this.name = name;
@@ -11,12 +12,29 @@ public class Player {
         this.wins = wins;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /** agafar dades dels usuaris
+     * en aquesta pantalla agafarem les dades de l'usuari actual mitjançant
+     * el seu registre a la bbdd
+     * @param name
+     * @param points
+     * @param wins
+     * @param password
+     * @return
+     * @see
+     */
+
     public String getName() {
         return name;
     }
 
-    //@TODO
-    //agafar dades de bbdd de usuaris.
 
     public void setName(String name) {
         this.name = name;
