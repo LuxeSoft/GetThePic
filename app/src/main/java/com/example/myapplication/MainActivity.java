@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,Ajustes.class));
+                startActivity(new Intent(MainActivity.this,WorldsSelection.class));
             }
         });
 

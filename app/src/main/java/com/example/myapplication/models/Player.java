@@ -5,6 +5,24 @@ public class Player {
     private int points;
     private int wins;
     private String password;
+    private int xp;
+    private int PicCoins;
+
+    public int getXp() {
+        return xp;
+    }
+
+    public void setXp(int xp) {
+        this.xp = xp;
+    }
+
+    public int getCoins() {
+        return PicCoins;
+    }
+
+    public void setCoins(int coins) {
+        this.PicCoins = coins;
+    }
 
     public Player(String name, int points, int wins) {
         this.name = name;
@@ -27,6 +45,8 @@ public class Player {
      * @param points
      * @param wins
      * @param password
+     * @param PicCoins
+     * @param xp
      * @return
      * @see
      */

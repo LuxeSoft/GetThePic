@@ -9,6 +9,6 @@ public class PrimerMundo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_primer_mundo);
+        setContentView(R.layout.activity_worlds_selection);
     }
 }

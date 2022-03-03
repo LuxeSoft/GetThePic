@@ -40,7 +40,6 @@
         android:id="@+id/button"
         android:layout_width="183dp"
         android:layout_height="101dp"
-        android:onClick="alerta"
         android:text="mode clàssic"
         android:textSize="50px"
         app:layout_constraintBottom_toBottomOf="parent"
