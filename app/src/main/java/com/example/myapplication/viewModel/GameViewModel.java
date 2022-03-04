@@ -1,27 +1,37 @@
 package com.example.myapplication.viewModel;
 
+import static com.example.myapplication.models.CardEnum.ct;
+import static com.example.myapplication.models.CardEnum.g;
+import static com.example.myapplication.models.CardEnum.m;
+import static com.example.myapplication.models.CardEnum.n;
 import static com.example.myapplication.models.CardEnum.r;
 import static com.example.myapplication.models.CardEnum.a;
 import static com.example.myapplication.models.CardEnum.b;
 import static com.example.myapplication.models.CardEnum.e;
+import static com.example.myapplication.models.CardEnum.x;
 
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.example.myapplication.FirstLevel;
 import com.example.myapplication.R;
 import com.example.myapplication.models.Card;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
+import com.example.myapplication.views.FirstLevelView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class GameViewModel {
 
     private Game game;
-    private View view;
-
+    private FirstLevelView view;
 
     public MutableLiveData<CardEnum> lletra1;
     public MutableLiveData<CardEnum> lletra2;
@@ -48,23 +58,36 @@ public class GameViewModel {
         lletra2.setValue(r);
         lletra3.setValue(b);
         lletra4.setValue(e);
-        lletra5.setValue(a);
-        lletra6.setValue(CardEnum.getRandomCard());
-        lletra7.setValue(b);
-        lletra8.setValue(r);
+        lletra5.setValue(ct);
+        lletra6.setValue(n);
+        lletra7.setValue(x);
+        lletra8.setValue(m);
     }
 
-    public void onClickedAt(CardEnum c){
-        Log.d("onclickedat", CardEnum.getMessageResource(c));
+    public void setGame(Game game){
+        this.game = game;
     }
 
-    public GameViewModel(View view){
-        game = new Game();
+    public void bind(FirstLevelView view){
         this.view = view;
     }
 
-    public void completarParaula(String letter){
-       String paraula = game.concatenarLletres(letter);
+    public void comprovarParaula(){
+        Log.d("viewmodel", "comprovarparaula:");
+        Log.d("viewmodel", this.game.getParaulaModel());
 
+        boolean semafor = this.view.getParaula().equalsIgnoreCase(this.game.getParaulaModel());
+        Log.d("viewmodel", this.view.getParaula());
+
+        Log.d("semafor", String.valueOf(semafor));
+         this.view.showMessage(semafor);
     }
+    public void onClickedAt(CardEnum c){
+        Log.d("onclickedat", CardEnum.getMessageResource(c));
+        //FirstLevel fl = new FirstLevel();
+        //fl.mostrarLletra(c);
+        this.view.mostrarLletra(c);
+    }
+
+
 }

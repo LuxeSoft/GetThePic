@@ -6,7 +6,7 @@ import com.example.myapplication.R.drawable;
 import java.util.Random;
 
 public enum CardEnum {
-    a,b,c,ct,d,e,f,g,h,i,j,k,l,m,n,enye,o,p,q,r,s,t,u,v,w,x,y,z;
+    a,b,c,ct,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
     //TOT ABECEDARI
 
     public static CardEnum getRandomCard() {
@@ -49,8 +49,6 @@ public enum CardEnum {
                 return "m";
             case n:
                 return "n";
-            case enye:
-                return "ñ";
             case o:
                 return "o";
             case p:
@@ -113,8 +111,6 @@ public enum CardEnum {
                 return drawable.m;
             case n:
                 return drawable.n;
-            case enye:
-                return drawable.enye;
             case o:
                 return drawable.o;
             case p:

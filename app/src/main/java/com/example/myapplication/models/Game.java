@@ -9,6 +9,10 @@ public class Game {
     private String paraulaUsuari;
     private String paraulaModel;
 
+    public Game() {
+        this.paraulaUsuari = "";
+    }
+
     /** public void partida()
      * Aquest metode ens permetra iniciar a la partida i poder jugar
      * @param
