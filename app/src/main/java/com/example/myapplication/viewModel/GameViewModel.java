@@ -73,6 +73,10 @@ public class GameViewModel {
     }
 
     public void comprovarParaula(){
+
+        //FER TESTING DE LES 2 PARAULES:
+
+
         Log.d("viewmodel", "comprovarparaula:");
         Log.d("viewmodel", this.game.getParaulaModel());
 
