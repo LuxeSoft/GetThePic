@@ -24,3 +24,8 @@
 - Tenda: a la tenda el jugador podrà comprar amb diners reals monedes del joc.
 - Configuració: per treure/activar els efectes de so i música, per canviar l'idioma i altres configuracions.
 
+posar no ia 
+posar nivells o millorar partida 
+testing
+testing al comprovar paraula, si son iguals o no
+
