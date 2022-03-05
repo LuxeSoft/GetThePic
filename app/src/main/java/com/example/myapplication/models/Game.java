@@ -23,8 +23,6 @@ public class Game {
 
     public void partida(){
         //@TODO
-        //funcio de recorrer lletra x lletra un string
-        //relacionar string a corresponent enum
     }
 
     public String concatenarLletres(String lletra){

@@ -28,6 +28,9 @@ import com.google.android.material.snackbar.Snackbar;
 public class FirstLevel extends AppCompatActivity implements FirstLevelView {
 
     private TextView tv; //textview on posem la paraula q va escrivint l'usuari
+    private TextView user_tv; //textview on posem nomusuari
+    private TextView xp_tv; //textview on posem xp usuari
+
     private GameViewModel viewModel;
     Game game;
     Player p1;
@@ -40,13 +43,17 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
 
         viewModel = new GameViewModel();
         game = new Game();
-        p1 = new Player("user", 100, 0);
         tv = (TextView) findViewById(R.id.paraulaEscrita);
+        user_tv = (TextView)findViewById(R.id.user_tv);
+        xp_tv = (TextView) findViewById(R.id.xp_tv);
+        p1 = new Player("user", 0, 0);
 
         viewModel.bind(this);
         viewModel.initPartida(); //inicialitzar lletres
         game.setParaulaModel("arbre");
         tv.setText("");
+        user_tv.setText(p1.getName());
+        xp_tv.setText(String.valueOf(p1.getXp()));
 
         firstLevelBinding.setGameViewModel(viewModel);
 
@@ -98,23 +105,23 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
         /*Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();*/
 
-        int duration = Toast.LENGTH_SHORT;
-        Context context = getApplicationContext();
-
+        int duration = Toast.LENGTH_SHORT; // toast
+        Context context = getApplicationContext();// toast
+        AlertDialog.Builder builder = new AlertDialog.Builder(this); //alerta de quan guanya o perd
 
         if (semafor == true){
             Toast toast = Toast.makeText(context, "ENHORABONA! :)", duration);
             toast.show();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
             builder.setTitle("Paraules iguals!");
             builder.setMessage("Has obtingut +100 punts de xp");
             p1.sumarXP();
-
+            xp_tv.setText(String.valueOf(p1.getXp()));
 
             builder.setPositiveButton("continuar jugant", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                   //
+                   //començar nova activitat amb següent nivell
                 }
             });
 
@@ -122,7 +129,6 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     startActivity(new Intent(FirstLevel.this,MainActivity.class));
-                    //
                 }
             });
             AlertDialog dialog = builder.create();
@@ -131,7 +137,6 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
         } else {
             Toast toast = Toast.makeText(context, "LLASTIMA! :(", duration);
             toast.show();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setTitle("No has endevinat la foto :(");
             builder.setMessage("Que vols fer?");
 
@@ -146,7 +151,6 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
             builder.setNegativeButton("tornar al menú principal", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-
                     startActivity(new Intent(FirstLevel.this,MainActivity.class));
                 }
             });

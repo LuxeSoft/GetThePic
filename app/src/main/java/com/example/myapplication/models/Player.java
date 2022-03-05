@@ -26,7 +26,7 @@ public class Player {
 
     public Player(String name, int xp, int wins) {
         this.name = name;
-        this.points = points;
+        this.xp = xp;
         this.wins = wins;
     }
 

@@ -10,18 +10,19 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.myapplication.models.Game;
+import com.example.myapplication.models.Player;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 //test ok
     Game game = new Game();
+    Player p1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
