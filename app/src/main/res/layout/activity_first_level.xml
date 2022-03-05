@@ -81,8 +81,8 @@
 
     <ImageView
         android:id="@+id/a"
-        android:layout_width="132dp"
-        android:layout_height="341dp"
+        android:layout_width="163dp"
+        android:layout_height="540dp"
         android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra1)}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

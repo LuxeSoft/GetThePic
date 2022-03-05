@@ -25,45 +25,37 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class FirstLevel extends AppCompatActivity implements FirstLevelView {
 
+    private TextView tv; //textview on posem la paraula q va escrivint l'usuari
     private GameViewModel viewModel;
-    private String paraula = "";
     Game game;
-    private TextView tv;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         ActivityFirstLevelBinding firstLevelBinding = DataBindingUtil.setContentView(this, R.layout.activity_first_level);
+
         viewModel = new GameViewModel();
+        game = new Game();
+        tv = (TextView) findViewById(R.id.paraulaEscrita);
+
         viewModel.bind(this);
         viewModel.initPartida(); //inicialitzar lletres
-        firstLevelBinding.setGameViewModel(viewModel);
-
-
-        tv = (TextView) findViewById(R.id.paraulaEscrita);
+        game.setParaulaModel("arbre");
         tv.setText("");
 
-        game = new Game();
-        game.setParaulaModel("arbre");
+        firstLevelBinding.setGameViewModel(viewModel);
+
         viewModel.setGame(game);
-        //ImageView imageView = findViewById(R.id.a);
 
-        /*imageView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                tv.setText("A");
-            }
-        });*/
-
-        /*/*Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
     }
 
-
-    private void setUpOnGameEndListener() {
-      //viewModel.getWinner().observe(this, this::onGameWinnerChanged);
-    }
+    /**
+     * mostrarLLetra ens defineix, al textview, la paraula q va introduint l'usuari. la
+     * paraula es va concatenant lletra x lletra
+     * @param  CardEnum c  la carta q apreta el usuari
+     * @return  void
+     */
 
     @Override
     public void mostrarLletra(CardEnum c) {
@@ -79,23 +71,39 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
 
     }
 
+    /**
+     * getter per obtenir paraula q ha introduit l'usuari
+     * @return  valor del textview q s'ha ant escrivint
+     */
+
     @Override
     public String getParaula(){
         return tv.getText().toString();
     }
 
+    /**
+     * showMessage ens mostrara si l'usuari ha encertat o no la paraula q ha escrit
+     * @param  semafor  la paraula introduida x lusuari coincideix amb la paraula model? true/false
+     * @param  name the location of the image, relative to the url argument
+     * @return      void
+     */
+
     @Override
     public void showMessage(boolean semafor){
 
+        /*Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();*/
+
+        int duration = Toast.LENGTH_SHORT;
+        Context context = getApplicationContext();
+
+
         if (semafor == true){
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, "ok", duration);
+            Toast toast = Toast.makeText(context, "Paraules iguals!", duration);
             toast.show();
+
         } else {
-            Context context = getApplicationContext();
-            int duration = Toast.LENGTH_SHORT;
-            Toast toast = Toast.makeText(context, "no igual", duration);
+            Toast toast = Toast.makeText(context, "Paraules no iguals :(", duration);
             toast.show();
         }
 
