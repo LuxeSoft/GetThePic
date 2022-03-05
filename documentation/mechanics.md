@@ -30,4 +30,4 @@
 - Degut a que no tindria cap sentit la seva incorporació, hem optat per no posar IA ni possiblitat de jugar vs la màquina (acordat amb els professors de l'assignatura)
 - Tampoc disposarem de jugabilitat per torns, ja que no es la dinamica que ha d'adoptar el nostre joc. L'usuari ha de anar jugant fins que completi el nivell o vulgui sortir. 
 - Hem fet testing per comprovar que la funció de `comprovarParaula` funcioni correctament
-
+- la condició de victoria sera que l'usuari completi el nivell i, per tant, se li sumi XP
