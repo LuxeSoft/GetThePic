@@ -84,17 +84,6 @@ public class GameViewModel {
 
         //FER TESTING DE LES 2 PARAULES:
 
-        @TestOnly
-        public void test1(){
-            // Context of the app under test.
-            //Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-            //assertEquals("com.example.myapplication.viewModel", appContext.getPackageName());
-        }
-        @TestOnly
-        public void test2(){
-
-        }
-
         Log.d("viewmodel", "comprovarparaula:");
         Log.d("viewmodel", this.game.getParaulaModel());
 
@@ -102,7 +91,8 @@ public class GameViewModel {
         Log.d("viewmodel", this.view.getParaula());
 
         Log.d("semafor", String.valueOf(semafor));
-         this.view.showMessage(semafor);
+
+        this.view.showMessage(semafor);
     }
 
     /** public void onClickedAt()
