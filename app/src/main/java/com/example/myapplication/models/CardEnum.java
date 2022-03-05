@@ -9,14 +9,24 @@ public enum CardEnum {
     a,b,c,ct,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z;
     //TOT ABECEDARI
 
+    /** public static CardEnum getRandomCard()
+     * Aquest metode ens permetra obtenir una carta de forma aleatoria.
+     * @param
+     * @return Una carta.
+     * @see
+     */
     public static CardEnum getRandomCard() {
         Random random = new Random();
         return values()[random.nextInt(values().length)];
     }
 
+    /** public static String getMessageResource()
+     * Aquest metode asigna una lletra (string) a cada carta.
+     * @param e, la carta.
+     * @return Un String, corresponent a la carta.
+     * @see
+     */
     public static String getMessageResource(CardEnum e){
-
-
         switch(e){
 
             case a:
@@ -78,6 +88,12 @@ public enum CardEnum {
         }
     }
 
+    /** public static int getCardResource()
+     * Aquest metode ens permetra obtenir la imatge de la carta.
+     * @param e, la carta.
+     * @return la imatge de la carta.
+     * @see
+     */
     public static int getCardResource(CardEnum e){
 
         switch(e){

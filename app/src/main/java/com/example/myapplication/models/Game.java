@@ -19,16 +19,26 @@ public class Game {
      * @return
      * @see
      */
-
-
     public void partida(){
         //@TODO
     }
 
+    /** public String concatenarLletres()
+     * Aquest metode ens permetra concatenar les lletres que el jugador esta polsant per formar una paraula.
+     * @param lletra, la lletra seleccionada.
+     * @return un String, la paraula que l'usuari esta formant.
+     * @see
+     */
     public String concatenarLletres(String lletra){
         return this.paraulaUsuari += lletra;
     }
 
+    /** public void borrarParaulaUsuari()
+     * Aquest metode ens permetra esborrar la paraula que el jugador estaba creant.
+     * @param
+     * @return un String buit.
+     * @see
+     */
     public void borrarParaulaUsuari(){
         this.paraulaUsuari = "";
     }

@@ -35,6 +35,11 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
     Game game;
     Player p1;
 
+    /** public void onCreate()
+     * Aquest metode restableix els valors de la partida.
+     * @param savedInstanceState
+     * @return void
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,7 +72,6 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
      * @param  CardEnum c  la carta q apreta el usuari
      * @return  void
      */
-
     @Override
     public void mostrarLletra(CardEnum c) {
 

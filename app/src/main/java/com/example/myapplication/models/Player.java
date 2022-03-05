@@ -30,6 +30,12 @@ public class Player {
         this.wins = wins;
     }
 
+    /** public void sumarXP()
+     * Aquest metode suma 100 d'experiencia a l'experiencia de l'usuari.
+     * @param
+     * @return l'experiencia.
+     * @see
+     */
     public void sumarXP(){
         this.xp += 100;
     }

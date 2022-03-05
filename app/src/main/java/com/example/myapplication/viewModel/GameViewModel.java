@@ -10,7 +10,7 @@ import static com.example.myapplication.models.CardEnum.b;
 import static com.example.myapplication.models.CardEnum.e;
 import static com.example.myapplication.models.CardEnum.x;
 
-
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -27,6 +27,8 @@ import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
 import com.example.myapplication.views.FirstLevelView;
 import com.google.android.material.snackbar.Snackbar;
+
+import org.jetbrains.annotations.TestOnly;
 
 public class GameViewModel {
 
@@ -53,6 +55,12 @@ public class GameViewModel {
         lletra8 = new MutableLiveData<CardEnum>();
     }
 
+    /** public void initPartida()
+     * Aquest metode inicialitza una lletra a cadascuna de les 8 cartes posicionades al joc.
+     * @param
+     * @return
+     * @see
+     */
     public void initPartida(){
         lletra1.setValue(a);
         lletra2.setValue(r);
@@ -76,6 +84,16 @@ public class GameViewModel {
 
         //FER TESTING DE LES 2 PARAULES:
 
+        @TestOnly
+        public void test1(){
+            // Context of the app under test.
+            //Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+            //assertEquals("com.example.myapplication.viewModel", appContext.getPackageName());
+        }
+        @TestOnly
+        public void test2(){
+
+        }
 
         Log.d("viewmodel", "comprovarparaula:");
         Log.d("viewmodel", this.game.getParaulaModel());
@@ -86,6 +104,13 @@ public class GameViewModel {
         Log.d("semafor", String.valueOf(semafor));
          this.view.showMessage(semafor);
     }
+
+    /** public void onClickedAt()
+     * Aquest metode mostra la lletra polsada.
+     * @param c, la carta seleccionada.
+     * @return
+     * @see
+     */
     public void onClickedAt(CardEnum c){
         Log.d("onclickedat", CardEnum.getMessageResource(c));
         //FirstLevel fl = new FirstLevel();
