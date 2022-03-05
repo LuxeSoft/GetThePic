@@ -10,3 +10,4 @@
 - Jugabilitat primer nivell
 - Seleccio de mode classic -> seleccio de mon
 - Disseny de fotos i distribucio 
+- testing
