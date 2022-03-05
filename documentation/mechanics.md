@@ -1,6 +1,6 @@
 # MECHANICS
 
-- Hi ha 3 modes: normal, multijugador i contrarellotge.
+- Hi ha 3 modes: **normal, multijugador i contrarellotge**.
 
 ## Mode normal:
 - Surt una pantalla amb tots els mons, on es van desbloquejant a mesura que superem els nivells.
@@ -13,19 +13,21 @@
 - Si el jugador arriba a completar la paraula completa guanya el nivell, i com a recompensa guanya unes monedes.
 
 ## Mode multijugador:
-- La mecànica del joc és com el mode normal només que pots jugar amb una altra persona i competir per a veure qui pot completar la paraula primer.
-- El guanyador de la partida se li recompensarà amb unes monedes, i al perdedor, li restaran monedes.
+- La mecànica del joc és com el mode normal només que pots jugar amb una altra persona i competir per a veure qui pot completar la paraula primer. Els usuaris podran veure, en temps real, el seu progres vs el del rival
+- El guanyador de la partida se li recompensarà amb unes monedes (o XP), i al perdedor, li restaran monedes (o XP).
+- No haura comodins
 
 ## Mode contrarellotge:
 - La mecànica del joc és com el mode normal només que el jugador té un temps limitat per a completar el nivell.
 - Si aconsegueix completar el nivell abans que s'acabi el temps guanya unes monedes.
+- No haura comodins
 
 ## Altres funcions:
 - Tenda: a la tenda el jugador podrà comprar amb diners reals monedes del joc.
 - Configuració: per treure/activar els efectes de so i música, per canviar l'idioma i altres configuracions.
 
-posar no ia 
-posar nivells o millorar partida 
-testing
-testing al comprovar paraula, si son iguals o no
+## Aclaració de mecàniques:
+- Degut a que no tindria cap sentit la seva incorporació, hem optat per no posar IA ni possiblitat de jugar vs la màquina (acordat amb els professors de l'assignatura)
+- Tampoc disposarem de jugabilitat per torns, ja que no es la dinamica que ha d'adoptar el nostre joc. L'usuari ha de anar jugant fins que completi el nivell o vulgui sortir. 
+- Hem fet testing per comprovar que la funció de `comprovarParaula` funcioni correctament
 
