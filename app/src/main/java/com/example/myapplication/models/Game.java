@@ -31,6 +31,10 @@ public class Game {
         return this.paraulaUsuari += lletra;
     }
 
+    public void borrarParaulaUsuari(){
+        this.paraulaUsuari = "";
+    }
+
     public String getParaulaUsuari() {
         return paraulaUsuari;
     }

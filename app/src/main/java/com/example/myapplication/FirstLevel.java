@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.sax.TextElementListener;
@@ -19,6 +20,7 @@ import com.example.myapplication.databinding.ActivityFirstLevelBinding;
 import com.example.myapplication.models.Card;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
+import com.example.myapplication.models.Player;
 import com.example.myapplication.viewModel.GameViewModel;
 import com.example.myapplication.views.FirstLevelView;
 import com.google.android.material.snackbar.Snackbar;
@@ -28,6 +30,7 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
     private TextView tv; //textview on posem la paraula q va escrivint l'usuari
     private GameViewModel viewModel;
     Game game;
+    Player p1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
 
         viewModel = new GameViewModel();
         game = new Game();
+        p1 = new Player("user", 100, 0);
         tv = (TextView) findViewById(R.id.paraulaEscrita);
 
         viewModel.bind(this);
@@ -99,12 +103,56 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
 
 
         if (semafor == true){
-            Toast toast = Toast.makeText(context, "Paraules iguals!", duration);
+            Toast toast = Toast.makeText(context, "ENHORABONA! :)", duration);
             toast.show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Paraules iguals!");
+            builder.setMessage("Has obtingut +100 punts de xp");
+            p1.sumarXP();
+
+
+            builder.setPositiveButton("continuar jugant", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                   //
+                }
+            });
+
+            builder.setNegativeButton("tornar al menú principal", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(FirstLevel.this,MainActivity.class));
+                    //
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
 
         } else {
-            Toast toast = Toast.makeText(context, "Paraules no iguals :(", duration);
+            Toast toast = Toast.makeText(context, "LLASTIMA! :(", duration);
             toast.show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("No has endevinat la foto :(");
+            builder.setMessage("Que vols fer?");
+
+            builder.setPositiveButton("tornar a intentar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    tv.setText("");
+                    game.borrarParaulaUsuari();
+                }
+            });
+
+            builder.setNegativeButton("tornar al menú principal", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    startActivity(new Intent(FirstLevel.this,MainActivity.class));
+                }
+            });
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
         }
 
     }

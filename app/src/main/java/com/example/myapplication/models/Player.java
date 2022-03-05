@@ -24,10 +24,14 @@ public class Player {
         this.PicCoins = coins;
     }
 
-    public Player(String name, int points, int wins) {
+    public Player(String name, int xp, int wins) {
         this.name = name;
         this.points = points;
         this.wins = wins;
+    }
+
+    public void sumarXP(){
+        this.xp += 100;
     }
 
     public String getPassword() {
@@ -54,7 +58,6 @@ public class Player {
     public String getName() {
         return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
