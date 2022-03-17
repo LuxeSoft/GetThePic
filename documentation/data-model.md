@@ -1,5 +1,6 @@
 # E-R Relationship in Data Base structure
 
+![taulesBBDD](https://user-images.githubusercontent.com/83337658/158844526-e0bba45a-b645-4461-8b6b-1a663727be37.png)
 
 
 # Pas a taules:
