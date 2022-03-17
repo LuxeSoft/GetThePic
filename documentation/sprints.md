@@ -13,4 +13,11 @@
 - posat fragment login
 - testing
 - no torns
-- no ia
+- no IA
+
+## Sprint 3
+
+- backend: edició models.py, app.py, reset-database.py
+- esquema ER de la bbdd
+- docker 
+
