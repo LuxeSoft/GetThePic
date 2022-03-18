@@ -6,6 +6,8 @@
 
 ***App name:***: GetThePic
 
+<h1>test</h1>
+
 ***Authors***:
 
 - *[Alex Ramon](https://www.linkedin.com/in/alex-ramon-13b580131/)*: Perfil tècnic, dedicat a la part de desenvolupament d'apps, web i disseny de UX.
