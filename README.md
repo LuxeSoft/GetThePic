@@ -1,13 +1,21 @@
-![luxesoftLOGO-min](https://user-images.githubusercontent.com/38278207/159091563-59295dc3-438f-45bf-85ec-36c83c77f760.png)
-*Business Name*
-*App name:*
-*Authors:*
-*Idea:*
+<img align="left" src="https://user-images.githubusercontent.com/38278207/159091563-59295dc3-438f-45bf-85ec-36c83c77f760.png" height=500px>
 
-- **Game idea:** Consistirà en un joc de cartes (semblant al memory) combinat amb la resolució i interpretació d’imatges. L’usuari haurà d'endevinar la paraula de la imatge i seguidament seleccionar les lletres formant la paraula corresponent, la dificultat està en que aquestes lletres s'anirán girant i l'usuari haurà d'enrecordarse on estaben les lletres per tal de completar correctament el nivell.
+***Business Name***: LuxeSoft S.L
 
-- **Authors information:**
-    - Alex: Perfil téncic, dedicat a la part de desenvolupament d'apps.
-    - Paula: Disseny de prototips, esbossos i part visual de l'aplicació.
-    - Joan Jaume: Perfil musical i d'analisi i especificació d'elements interactius.
-    - David: Dedicat a la part de l'analisi de viabilitat empresarial.
+***website***: [luxesoft.online](https://luxesoft.online)
+
+***App name:***: GetThePic
+
+***Authors***:
+
+- *[Alex Ramon](https://www.linkedin.com/in/alex-ramon-13b580131/)*: Perfil tècnic, dedicat a la part de desenvolupament d'apps, web i disseny de UX.
+    
+- *Paula Uber*: Elaboració de prototips, esbossos i disseny de la UI.
+    
+- *Joan Jaume Moll*: Perfil musical i d'analisi i centrat en l'especificació d'elements interactius.
+    
+- *David Melgares*: Dedicat a la part de l'analisi de viabilitat empresarial.
+    
+***Game Idea***: Consistirà en un joc de cartes combinant interpretació d’imatges amb la memòria. L’usuari haurà d'endevinar la paraula de la imatge i seguidament seleccionar les lletres  (cartes) per formar la paraula un cop aquestes ja no estiguin visibles.
+
+  
