@@ -19,7 +19,7 @@
         tools:layout_editor_absoluteY="0dp">
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imgParaula"
             android:layout_width="180dp"
             android:layout_height="232dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -31,10 +31,10 @@
             app:srcCompat="@drawable/tree" />
 
         <ImageView
-            android:id="@+id/x"
+            android:id="@+id/l3"
             android:layout_width="68dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra7)}"
+            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra3)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.626"
@@ -44,10 +44,10 @@
             app:srcCompat="@drawable/x" />
 
         <ImageView
-            android:id="@+id/m"
+            android:id="@+id/l7"
             android:layout_width="68dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra8)}"
+            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra7)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.626"
@@ -57,10 +57,10 @@
             app:srcCompat="@drawable/m" />
 
         <ImageView
-            android:id="@+id/n"
+            android:id="@+id/l8"
             android:layout_width="68dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra6)}"
+            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra8)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.886"
@@ -70,7 +70,7 @@
             app:srcCompat="@drawable/n" />
 
         <ImageView
-            android:id="@+id/e"
+            android:id="@+id/l4"
             android:layout_width="68dp"
             android:layout_height="117dp"
             android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra4)}"
@@ -83,23 +83,23 @@
             app:srcCompat="@drawable/e" />
 
         <ImageView
-            android:id="@+id/r"
+            android:id="@+id/l6"
             android:layout_width="68dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra2)}"
+            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra6)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.361"
+            app:layout_constraintHorizontal_bias="0.37"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="@+id/imgParaula"
             app:layout_constraintVertical_bias="0.783"
             app:srcCompat="@drawable/r" />
 
         <ImageView
-            android:id="@+id/b"
+            android:id="@+id/l5"
             android:layout_width="68dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra3)}"
+            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra5)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
@@ -109,10 +109,10 @@
             app:srcCompat="@drawable/b" />
 
         <ImageView
-            android:id="@+id/ct"
+            android:id="@+id/l1"
             android:layout_width="68dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra5)}"
+            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra1)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
@@ -122,10 +122,10 @@
             app:srcCompat="@drawable/c_trencada" />
 
         <ImageView
-            android:id="@+id/a"
+            android:id="@+id/l2"
             android:layout_width="71dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra1)}"
+            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra2)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.364"
@@ -152,20 +152,22 @@
 
         <TextView
             android:id="@+id/paraulaEscrita"
-            android:layout_width="291dp"
-            android:layout_height="105dp"
+            android:layout_width="344dp"
+            android:layout_height="65dp"
+            android:layout_marginBottom="424dp"
             android:gravity="center"
             android:hint="escriure paraula..."
             android:text=""
             android:textAlignment="textStart"
             android:textColor="@color/black"
-            android:textSize="96sp"
+            android:textSize="48sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.675"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imageView4"
-            app:layout_constraintVertical_bias="0.278" />
+            app:layout_constraintTop_toTopOf="@+id/imgParaula"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/button8"
@@ -175,10 +177,10 @@
             android:text="Comprovar paraula"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.959" />
+            app:layout_constraintVertical_bias="0.928" />
 
         <TextView
             android:id="@+id/user_tv"
@@ -207,19 +209,19 @@
             app:layout_constraintVertical_bias="0.146" />
 
         <TextView
-            android:id="@+id/textView6"
-            android:layout_width="334dp"
-            android:layout_height="115dp"
+            android:id="@+id/ratlles"
+            android:layout_width="240dp"
+            android:layout_height="86dp"
             android:text="_ _ _ _ _"
             android:textAlignment="center"
             android:textColor="#000000"
-            android:textSize="96sp"
+            android:textSize="48sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.093"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35" />
+            app:layout_constraintVertical_bias="0.41" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

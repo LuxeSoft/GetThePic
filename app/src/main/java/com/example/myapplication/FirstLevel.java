@@ -30,6 +30,20 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
     private TextView tv; //textview on posem la paraula q va escrivint l'usuari
     private TextView user_tv; //textview on posem nomusuari
     private TextView xp_tv; //textview on posem xp usuari
+    private ImageView imgParaula; //imageView de la paraula de la imatge en endivinar
+
+    public static ImageView l1;
+    public static ImageView l2;
+    public static ImageView l3;
+    public static ImageView l4;
+    public static ImageView l5;
+    public static ImageView l6;
+    public static ImageView l7;
+    public static ImageView l8;
+
+
+    //-----------------------
+    public static int nivell = 1;
 
     private GameViewModel viewModel;
     Game game;
@@ -51,6 +65,15 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
         tv = (TextView) findViewById(R.id.paraulaEscrita);
         user_tv = (TextView)findViewById(R.id.user_tv);
         xp_tv = (TextView) findViewById(R.id.xp_tv);
+        imgParaula = (ImageView)findViewById(R.id.imgParaula);
+        l1 = (ImageView)findViewById(R.id.l1);
+        l2 = (ImageView)findViewById(R.id.l2);
+        l3 = (ImageView)findViewById(R.id.l3);
+        l4 = (ImageView)findViewById(R.id.l4);
+        l5 = (ImageView)findViewById(R.id.l5);
+        l6 = (ImageView)findViewById(R.id.l6);
+        l7 = (ImageView)findViewById(R.id.l7);
+        l8 = (ImageView)findViewById(R.id.l8);
         p1 = new Player("user", 0, 0);
 
         viewModel.bind(this);
@@ -125,7 +148,18 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
             builder.setPositiveButton("continuar jugant", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                   //començar nova activitat amb següent nivell
+                   //començar nova activitat amb següent nivell------------------------
+                    nivell = nivell+1;
+                    if (nivell == 2) {
+                        tv.setText("");
+                        game.borrarParaulaUsuari();
+                        viewModel.initPartida(); //inicialitzar lletres
+                        imgParaula.setImageResource(R.drawable.taula);
+                        game.setParaulaModel("taula");
+                        user_tv.setText(p1.getName());
+                        xp_tv.setText(String.valueOf(p1.getXp()));
+                        viewModel.setGame(game);
+                    }
                 }
             });
 

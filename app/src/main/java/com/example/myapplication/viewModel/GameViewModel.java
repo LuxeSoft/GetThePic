@@ -1,13 +1,20 @@
 package com.example.myapplication.viewModel;
 
+import static com.example.myapplication.models.CardEnum.c;
 import static com.example.myapplication.models.CardEnum.ct;
+import static com.example.myapplication.models.CardEnum.d;
 import static com.example.myapplication.models.CardEnum.g;
+import static com.example.myapplication.models.CardEnum.i;
+import static com.example.myapplication.models.CardEnum.l;
 import static com.example.myapplication.models.CardEnum.m;
 import static com.example.myapplication.models.CardEnum.n;
+import static com.example.myapplication.models.CardEnum.p;
 import static com.example.myapplication.models.CardEnum.r;
 import static com.example.myapplication.models.CardEnum.a;
 import static com.example.myapplication.models.CardEnum.b;
 import static com.example.myapplication.models.CardEnum.e;
+import static com.example.myapplication.models.CardEnum.t;
+import static com.example.myapplication.models.CardEnum.u;
 import static com.example.myapplication.models.CardEnum.x;
 
 import android.content.Context;
@@ -44,6 +51,9 @@ public class GameViewModel {
     public MutableLiveData<CardEnum> lletra7;
     public MutableLiveData<CardEnum> lletra8;
 
+    //private ImageView l1;
+
+
     public GameViewModel() {
         lletra1 = new MutableLiveData<CardEnum>();
         lletra2 = new MutableLiveData<CardEnum>();
@@ -62,14 +72,34 @@ public class GameViewModel {
      * @see
      */
     public void initPartida(){
-        lletra1.setValue(a);
-        lletra2.setValue(r);
-        lletra3.setValue(b);
-        lletra4.setValue(e);
-        lletra5.setValue(ct);
-        lletra6.setValue(n);
-        lletra7.setValue(x);
-        lletra8.setValue(m);
+        if (FirstLevel.nivell == 1){
+            lletra1.setValue(ct);
+            lletra2.setValue(a);
+            lletra3.setValue(x);
+            lletra4.setValue(e);
+            lletra5.setValue(b);
+            lletra6.setValue(r);
+            lletra7.setValue(m);
+            lletra8.setValue(n);
+        } else if (FirstLevel.nivell == 2){
+            lletra1.setValue(l);
+            FirstLevel.l1.setImageResource(R.drawable.l);
+            lletra2.setValue(p);
+            FirstLevel.l2.setImageResource(R.drawable.p);
+            lletra3.setValue(a);
+            FirstLevel.l3.setImageResource(R.drawable.a);
+            lletra4.setValue(c);
+            FirstLevel.l4.setImageResource(R.drawable.c);
+            lletra5.setValue(t);
+            FirstLevel.l5.setImageResource(R.drawable.t);
+            lletra6.setValue(u);
+            FirstLevel.l6.setImageResource(R.drawable.u);
+            lletra7.setValue(d);
+            FirstLevel.l7.setImageResource(R.drawable.d);
+            lletra8.setValue(i);
+            FirstLevel.l8.setImageResource(R.drawable.i);
+        }
+
     }
 
     public void setGame(Game game){
