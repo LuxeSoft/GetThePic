@@ -70,13 +70,13 @@ public class Levels extends AppCompatActivity implements FirstLevelView {
         l6 = (ImageView)findViewById(R.id.l6);
         l7 = (ImageView)findViewById(R.id.l7);
         l8 = (ImageView)findViewById(R.id.l8);
-        p1 = new Player("user", 0, 0);
+        p1 = new Player("user1", "1234",0,0,0);
 
         viewModel.bind(this);
         viewModel.initPartida(); //inicialitzar lletres
         game.setParaulaModel("arbre");
         tv.setText("");
-        user_tv.setText(p1.getName());
+        user_tv.setText(p1.getUsername());
         xp_tv.setText(String.valueOf(p1.getXp()));
 
         firstLevelBinding.setGameViewModel(viewModel);
@@ -152,7 +152,7 @@ public class Levels extends AppCompatActivity implements FirstLevelView {
                         viewModel.initPartida(); //inicialitzar lletres
                         imgParaula.setImageResource(R.drawable.taula);
                         game.setParaulaModel("taula");
-                        user_tv.setText(p1.getName());
+                        user_tv.setText(p1.getUsername());
                         xp_tv.setText(String.valueOf(p1.getXp()));
                         viewModel.setGame(game);
                     }

@@ -1,12 +1,64 @@
 package com.example.myapplication.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Player {
-    private String name;
-    private int points;
-    private int wins;
+
+    @SerializedName("username")
+    private String username;
+
+    @SerializedName("password")
     private String password;
+
+    @SerializedName("pic_coins")
+    private int pic_coins;
+
+    @SerializedName("wins")
+    private int wins;
+
+    @SerializedName("xp")
     private int xp;
-    private int PicCoins;
+
+
+    public Player(String username, String password, int pic_coins, int wins, int xp) {
+        this.username = username;
+        this.password = password;
+        this.pic_coins = pic_coins;
+        this.wins = wins;
+        this.xp = xp;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getPic_coins() {
+        return pic_coins;
+    }
+
+    public void setPic_coins(int pic_coins) {
+        this.pic_coins = pic_coins;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
 
     public int getXp() {
         return xp;
@@ -14,20 +66,6 @@ public class Player {
 
     public void setXp(int xp) {
         this.xp = xp;
-    }
-
-    public int getCoins() {
-        return PicCoins;
-    }
-
-    public void setCoins(int coins) {
-        this.PicCoins = coins;
-    }
-
-    public Player(String name, int xp, int wins) {
-        this.name = name;
-        this.xp = xp;
-        this.wins = wins;
     }
 
     /** public void sumarXP()
@@ -40,48 +78,5 @@ public class Player {
         this.xp += 100;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /** agafar dades dels usuaris
-     * en aquesta pantalla agafarem les dades de l'usuari actual mitjançant
-     * el seu registre a la bbdd
-     * @param name
-     * @param points
-     * @param wins
-     * @param password
-     * @param PicCoins
-     * @param xp
-     * @return
-     * @see
-     */
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPoints() {
-        return points;
-    }
-
-    public void setPoints(int points) {
-        this.points = points;
-    }
-
-    public int getWins() {
-        return wins;
-    }
-
-    public void setWins(int wins) {
-        this.wins = wins;
-    }
 }

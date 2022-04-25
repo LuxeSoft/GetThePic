@@ -10,11 +10,13 @@ import android.widget.Button;
 
 import com.example.myapplication.models.Game;
 import com.example.myapplication.models.Player;
+import com.example.myapplication.repositories.CardRepo;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 //test ok
     Game game = new Game();
+    private CardRepo cardRepo;
     Player p1;
 
     @Override
@@ -22,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FloatingActionButton fab = findViewById(R.id.fab);
+
+        cardRepo = new CardRepo();
+        cardRepo.getCard();
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
