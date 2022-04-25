@@ -3,7 +3,6 @@ package com.example.myapplication.viewModel;
 import static com.example.myapplication.models.CardEnum.c;
 import static com.example.myapplication.models.CardEnum.ct;
 import static com.example.myapplication.models.CardEnum.d;
-import static com.example.myapplication.models.CardEnum.g;
 import static com.example.myapplication.models.CardEnum.i;
 import static com.example.myapplication.models.CardEnum.l;
 import static com.example.myapplication.models.CardEnum.m;
@@ -17,25 +16,15 @@ import static com.example.myapplication.models.CardEnum.t;
 import static com.example.myapplication.models.CardEnum.u;
 import static com.example.myapplication.models.CardEnum.x;
 
-import android.content.Context;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.example.myapplication.FirstLevel;
+import com.example.myapplication.Levels;
 import com.example.myapplication.R;
-import com.example.myapplication.models.Card;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
 import com.example.myapplication.views.FirstLevelView;
-import com.google.android.material.snackbar.Snackbar;
-
-import org.jetbrains.annotations.TestOnly;
 
 public class GameViewModel {
 
@@ -72,7 +61,7 @@ public class GameViewModel {
      * @see
      */
     public void initPartida(){
-        if (FirstLevel.nivell == 1){
+        if (Levels.nivell == 1){
             lletra1.setValue(ct);
             lletra2.setValue(a);
             lletra3.setValue(x);
@@ -81,23 +70,23 @@ public class GameViewModel {
             lletra6.setValue(r);
             lletra7.setValue(m);
             lletra8.setValue(n);
-        } else if (FirstLevel.nivell == 2){
+        } else if (Levels.nivell == 2){
             lletra1.setValue(l);
-            FirstLevel.l1.setImageResource(R.drawable.l);
+            Levels.l1.setImageResource(R.drawable.l);
             lletra2.setValue(p);
-            FirstLevel.l2.setImageResource(R.drawable.p);
+            Levels.l2.setImageResource(R.drawable.p);
             lletra3.setValue(a);
-            FirstLevel.l3.setImageResource(R.drawable.a);
+            Levels.l3.setImageResource(R.drawable.a);
             lletra4.setValue(c);
-            FirstLevel.l4.setImageResource(R.drawable.c);
+            Levels.l4.setImageResource(R.drawable.c);
             lletra5.setValue(t);
-            FirstLevel.l5.setImageResource(R.drawable.t);
+            Levels.l5.setImageResource(R.drawable.t);
             lletra6.setValue(u);
-            FirstLevel.l6.setImageResource(R.drawable.u);
+            Levels.l6.setImageResource(R.drawable.u);
             lletra7.setValue(d);
-            FirstLevel.l7.setImageResource(R.drawable.d);
+            Levels.l7.setImageResource(R.drawable.d);
             lletra8.setValue(i);
-            FirstLevel.l8.setImageResource(R.drawable.i);
+            Levels.l8.setImageResource(R.drawable.i);
         }
 
     }

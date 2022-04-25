@@ -9,23 +9,19 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.sax.TextElementListener;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myapplication.databinding.ActivityFirstLevelBinding;
-import com.example.myapplication.models.Card;
+import com.example.myapplication.databinding.ActivityLevelsBinding;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
 import com.example.myapplication.models.Player;
 import com.example.myapplication.viewModel.GameViewModel;
 import com.example.myapplication.views.FirstLevelView;
-import com.google.android.material.snackbar.Snackbar;
 
-public class FirstLevel extends AppCompatActivity implements FirstLevelView {
+public class Levels extends AppCompatActivity implements FirstLevelView {
 
     private TextView tv; //textview on posem la paraula q va escrivint l'usuari
     private TextView user_tv; //textview on posem nomusuari
@@ -58,7 +54,7 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityFirstLevelBinding firstLevelBinding = DataBindingUtil.setContentView(this, R.layout.activity_first_level);
+        ActivityLevelsBinding firstLevelBinding = DataBindingUtil.setContentView(this, R.layout.activity_levels);
 
         viewModel = new GameViewModel();
         game = new Game();
@@ -166,7 +162,7 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
             builder.setNegativeButton("tornar al menú principal", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    startActivity(new Intent(FirstLevel.this,MainActivity.class));
+                    startActivity(new Intent(Levels.this,MainActivity.class));
                 }
             });
             AlertDialog dialog = builder.create();
@@ -189,7 +185,7 @@ public class FirstLevel extends AppCompatActivity implements FirstLevelView {
             builder.setNegativeButton("tornar al menú principal", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    startActivity(new Intent(FirstLevel.this,MainActivity.class));
+                    startActivity(new Intent(Levels.this,MainActivity.class));
                 }
             });
             AlertDialog dialog = builder.create();

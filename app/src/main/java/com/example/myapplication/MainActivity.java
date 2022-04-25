@@ -3,7 +3,6 @@ package com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import com.example.myapplication.models.Game;
 import com.example.myapplication.models.Player;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
 //test ok
@@ -36,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,WorldsSelection.class));
+                startActivity(new Intent(MainActivity.this, Levels.class));
             }
         });
 
