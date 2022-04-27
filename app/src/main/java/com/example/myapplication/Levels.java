@@ -83,6 +83,9 @@ public class Levels extends AppCompatActivity implements FirstLevelView {
 
         viewModel.setGame(game);
 
+        // Get Card from Retrofit
+        viewModel.getCard();
+
     }
 
     /**

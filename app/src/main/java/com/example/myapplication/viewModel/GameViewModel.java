@@ -24,12 +24,14 @@ import com.example.myapplication.Levels;
 import com.example.myapplication.R;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
+import com.example.myapplication.repositories.CardRepo;
 import com.example.myapplication.views.FirstLevelView;
 
 public class GameViewModel {
 
     private Game game;
     private FirstLevelView view;
+    private CardRepo cardRepo;
 
     public MutableLiveData<CardEnum> lletra1;
     public MutableLiveData<CardEnum> lletra2;
@@ -41,7 +43,7 @@ public class GameViewModel {
     public MutableLiveData<CardEnum> lletra8;
 
     //private ImageView l1;
-
+    private String TAG = "GameViewModel";
 
     public GameViewModel() {
         lletra1 = new MutableLiveData<CardEnum>();
@@ -52,6 +54,7 @@ public class GameViewModel {
         lletra6 = new MutableLiveData<CardEnum>();
         lletra7 = new MutableLiveData<CardEnum>();
         lletra8 = new MutableLiveData<CardEnum>();
+        cardRepo = new CardRepo();
     }
 
     /** public void initPartida()
@@ -126,6 +129,13 @@ public class GameViewModel {
         //fl.mostrarLletra(c);
         this.view.mostrarLletra(c);
     }
+
+    public void getCard() {
+        Log.d(TAG, "getCard");
+        //this.cardRepo.getCard();
+        this.cardRepo.showCard("a");
+    }
+
 
 
 }

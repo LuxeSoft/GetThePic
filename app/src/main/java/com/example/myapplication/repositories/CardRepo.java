@@ -12,8 +12,12 @@ import retrofit2.Response;
 
 public class CardRepo {
 
+    private String TAG = "CardRepo";
+
     public CardRepo() {
+        Log.d(TAG, "CArdRepo init");
         this.cardDAO = new CardDAOimpl();
+        Log.d(TAG, "CArdRepo fin");
     }
 
     private CardDAO cardDAO;
@@ -23,7 +27,6 @@ public class CardRepo {
         cardDAO.getCard().enqueue(new Callback<Card>() {
             @Override
             public void onResponse(Call<Card> call, Response<Card> response) {
-
                 int code = response.code();
                 Log.d("codi", String.valueOf(code));
 
@@ -45,5 +48,26 @@ public class CardRepo {
         });
 
 
+    }
+
+
+    public void showCard(String letter) {
+        cardDAO.showCard(letter).enqueue(new Callback<Card>() {
+            @Override
+            public void onResponse(Call<Card> call, Response<Card> response) {
+                int code = response.code();
+                if (code==200) {
+                    Card c = response.body();
+                    Log.d("getcard", c.getCard_url());
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<Card> call, Throwable t) {
+                Log.d("cardrepoerror", t.getMessage());
+            }
+        });
     }
 }

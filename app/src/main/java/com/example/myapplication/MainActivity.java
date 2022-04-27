@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-        cardRepo = new CardRepo();
-        cardRepo.getCard();
+        //cardRepo = new CardRepo();
+        //cardRepo.getCard();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

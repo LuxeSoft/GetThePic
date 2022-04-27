@@ -72,6 +72,18 @@ public class Game {
         paraulaModel = paraula;
     }
 
+    public String getParaulaModel() {
+        return this.paraulaModel;
+    }
+
+    public void setParaulaUsuari(String paraula) {
+        this.paraulaUsuari = paraula;
+    }
+
+    public String getParaulaUsuari() {
+        return this.paraulaUsuari;
+    }
+
 
     /** public String concatenarLletres()
      * Aquest metode ens permetra concatenar les lletres que el jugador esta polsant per formar una paraula.

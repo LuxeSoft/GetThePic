@@ -1,5 +1,7 @@
 package com.example.myapplication.dao;
 
+import android.util.Log;
+
 import com.example.myapplication.models.Card;
 import com.example.myapplication.network.RetrofitClientInstance;
 
@@ -16,12 +18,12 @@ public class CardDAOimpl implements CardDAO {
     }
 
     @Override
-    public Call<Card> addCard(){
-        return retrofit.create(CardDAO.class).addCard();
+    public Call<Card> showCard(String letter) {
+        return retrofit.create(CardDAO.class).showCard(letter);
     }
 
     @Override
-    public Call<Card> showCARD(){
-        return retrofit.create(CardDAO.class).showCARD();
+    public Call<Card> addCard(){
+        return retrofit.create(CardDAO.class).addCard();
     }
 }
