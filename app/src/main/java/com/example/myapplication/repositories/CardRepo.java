@@ -52,6 +52,7 @@ public class CardRepo {
 
 
     public void showCard(String letter) {
+
         cardDAO.showCard(letter).enqueue(new Callback<Card>() {
             @Override
             public void onResponse(Call<Card> call, Response<Card> response) {

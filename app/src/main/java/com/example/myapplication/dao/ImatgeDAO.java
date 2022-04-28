@@ -14,7 +14,4 @@ public interface ImatgeDAO {
     @GET("imatges/show")
     Call<Imatge> showImatgeByName();
 
-    @POST("imatges/add")
-    Call<Imatge> addImatge();
-
 }

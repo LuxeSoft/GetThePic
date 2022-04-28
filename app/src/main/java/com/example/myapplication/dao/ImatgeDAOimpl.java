@@ -19,9 +19,4 @@ public class ImatgeDAOimpl implements ImatgeDAO {
     public Call<Imatge> showImatgeByName() {
         return retrofit.create(ImatgeDAO.class).showImatgeByName();
     }
-
-    @Override
-    public Call<Imatge> addImatge() {
-        return retrofit.create(ImatgeDAO.class).addImatge();
-    }
 }
