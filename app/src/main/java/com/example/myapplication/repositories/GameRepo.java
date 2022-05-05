@@ -28,11 +28,12 @@ public class GameRepo {
                 int code = response.code();
                 Log.d("codi", String.valueOf(code));
 
-                if (code == 200){
+                if (code == 200) {
                     //correcte
                     Game g = response.body();
-                    Log.d("getcard", g.getId_partida());
+                    Log.d("idPartida", g.getId_partida());
                 }
+            }
 
             @Override
             public void onFailure(Call<Game> call, Throwable t) {
