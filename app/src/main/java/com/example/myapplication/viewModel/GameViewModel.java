@@ -25,6 +25,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
 import com.example.myapplication.repositories.CardRepo;
+import com.example.myapplication.repositories.GameRepo;
 import com.example.myapplication.views.FirstLevelView;
 
 public class GameViewModel {
@@ -32,6 +33,7 @@ public class GameViewModel {
     private Game game;
     private FirstLevelView view;
     private CardRepo cardRepo;
+    private GameRepo gameRepo;
 
     public MutableLiveData<CardEnum> lletra1;
     public MutableLiveData<CardEnum> lletra2;
@@ -114,7 +116,13 @@ public class GameViewModel {
 
         Log.d("semafor", String.valueOf(semafor));
 
+        if (semafor == true) { //ha encertat la paraula
+            guardarPartida();
+        }
+
         this.view.showMessage(semafor);
+
+
     }
 
     /** public void onClickedAt()
@@ -136,6 +144,9 @@ public class GameViewModel {
         this.cardRepo.showCard("a");
     }
 
+    public void guardarPartida() {
+        this.gameRepo.guardarPartida();
+    }
 
 
 }

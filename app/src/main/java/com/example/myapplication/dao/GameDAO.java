@@ -14,7 +14,7 @@ public interface GameDAO {
     @GET("partida")
     Call<Game> getPartidaById();
 
-    @GET("partida")
+    @POST("partida")
     Call<Game> savePartida();
 
 }

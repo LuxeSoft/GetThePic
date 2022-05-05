@@ -14,13 +14,13 @@ public class CardRepo {
 
     private String TAG = "CardRepo";
 
+    private CardDAO cardDAO;
+
     public CardRepo() {
         Log.d(TAG, "CArdRepo init");
         this.cardDAO = new CardDAOimpl();
         Log.d(TAG, "CArdRepo fin");
     }
-
-    private CardDAO cardDAO;
 
     public void getCard(){
 
@@ -32,13 +32,9 @@ public class CardRepo {
 
                 if (code == 200){
                     //correcte
-
                     Card c = response.body();
                     Log.d("getcard", c.getCard_url());
-
-
                 }
-
             }
 
             @Override
@@ -46,8 +42,6 @@ public class CardRepo {
                 Log.d("cardrepoerror", t.getMessage());
             }
         });
-
-
     }
 
 
