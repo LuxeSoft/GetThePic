@@ -9,29 +9,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
-import com.example.myapplication.databinding.ActivityAccedirBinding;
+import com.example.myapplication.databinding.ActivityRegistreBinding;
 import com.example.myapplication.models.Result;
 import com.example.myapplication.utils.PreferencesProvider;
 import com.example.myapplication.utils.UIUtils;
-import com.example.myapplication.viewModel.LoginViewModel;
+import com.example.myapplication.viewModel.SingInViewModel;
 
-public class LoginActivity extends AppCompatActivity {
+public class SingInActivity extends AppCompatActivity {
 
-    private final String TAG = "LoginActivity";
-    private LoginViewModel loginViewModel;
-    private ActivityAccedirBinding activityLoginBinding;
+    private final String TAG = "SingInActivity";
+    private SingInViewModel singInViewModel;
+    private ActivityRegistreBinding activitySinginBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accedir);
-        loginViewModel = new LoginViewModel();
+        setContentView(R.layout.activity_registre);
+        singInViewModel = new SingInViewModel();
         initDataBinding();
 
-        loginViewModel.isUserLogged().observe(this, new Observer<Result<String>>() {
+        singInViewModel.isUserLogged().observe(this, new Observer<Result<String>>() {
             @Override
             public void onChanged(Result<String> tokenResult) {
-                loginViewModel.isLogged.postValue(false);
+                singInViewModel.isLogged.postValue(false);
                 if (tokenResult.getResult() != null){
                     Log.d(TAG,"Login successful, token obtained.");
                     PreferencesProvider.providePreferences().edit().putString("token",
@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     //Display Error
                     Log.d(TAG,"User not logged, token not obtained.");
-                    showLoginError(tokenResult.getError().getMessage());
+                    showSingInError(tokenResult.getError().getMessage());
                 }
             }
         });
@@ -50,10 +50,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void initDataBinding() {
-        activityLoginBinding =
-                DataBindingUtil.setContentView(this,R.layout.activity_accedir);
-        activityLoginBinding.setLoginViewModel(loginViewModel);
-        activityLoginBinding.setLifecycleOwner(this);
+        activitySinginBinding =  DataBindingUtil.setContentView(this,R.layout.activity_registre);
+
+        activitySinginBinding.setSingInViewModel(singInViewModel);
+        activitySinginBinding.setLifecycleOwner(this);
     }
 
     public void goTo(){
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void showLoginError(String errorMessage){
+    private void showSingInError(String errorMessage){
         DialogInterface.OnClickListener positiveAction = (dialogInterface, i) -> dialogInterface.cancel();
         UIUtils.showAlert(this,"Error", errorMessage, "Ok",positiveAction ,null,null, false);
     }
