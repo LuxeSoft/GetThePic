@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class Card {
 
     @SerializedName("letter")
-    private String letter;
+    private int letter;
 
     @SerializedName("image_letter")
     private String image_letter;
@@ -13,16 +13,22 @@ public class Card {
     @SerializedName("card_url")
     private String card_url;
 
-    public String getLetter() {
+    public int getLetter() {
         return letter;
     }
 
-    public void setLetter(String letter) {
+    public void setLetter(int letter) {
         this.letter = letter;
     }
 
     public String getImage_letter() {
         return image_letter;
+    }
+
+    public Card(int letter, String image_letter, String card_url) {
+        this.letter = letter;
+        this.image_letter = image_letter;
+        this.card_url = card_url;
     }
 
     public void setImage_letter(String image_letter) {
@@ -37,9 +43,5 @@ public class Card {
         this.card_url = card_url;
     }
 
-    public Card(String letter, String image_letter, String card_url) {
-        this.letter = letter;
-        this.image_letter = image_letter;
-        this.card_url = card_url;
-    }
+
 }

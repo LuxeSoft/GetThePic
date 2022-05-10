@@ -3,7 +3,9 @@ package com.example.myapplication.dao;
 import com.example.myapplication.models.Player;
 import com.example.myapplication.network.RetrofitClientInstance;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class PlayerDAOimpl implements PlayerDAO {
@@ -20,7 +22,7 @@ public class PlayerDAOimpl implements PlayerDAO {
     }
 
     @Override
-    public Call<Player> addPlayer() {
+    public Call<ResponseBody> addPlayer() {
         return retrofit.create(PlayerDAO.class).addPlayer();
     }
 }

@@ -111,4 +111,8 @@ public class LoginViewModel {
 
         return isValid;
     }
+
+    public void crearUsuari(){
+
+    }
 }

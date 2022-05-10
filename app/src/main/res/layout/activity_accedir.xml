@@ -88,6 +88,16 @@
                 android:text="No account yet create?"
                 android:textSize="16sp" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:id="@+id/bototmp"
+                android:text="registre"
+                android:layout_height="match_parent"
+                android:onClick="goToCreateUser">
+
+
+            </Button>
+
 
             <include
                 android:id="@+id/linearLayoutProgressBar"

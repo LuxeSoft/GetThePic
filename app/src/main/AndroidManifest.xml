@@ -28,6 +28,10 @@
             android:name=".TermsConditionsPage"
             android:exported="false" />
         <activity
+            android:name=".SingInActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".AboutPage"
             android:exported="false"
             android:parentActivityName=".MainActivity" />

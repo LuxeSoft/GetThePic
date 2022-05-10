@@ -22,11 +22,16 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.myapplication.Levels;
 import com.example.myapplication.R;
+import com.example.myapplication.models.Card;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
+import com.example.myapplication.models.Nivell;
 import com.example.myapplication.repositories.CardRepo;
 import com.example.myapplication.repositories.GameRepo;
 import com.example.myapplication.views.FirstLevelView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameViewModel {
 
@@ -34,6 +39,9 @@ public class GameViewModel {
     private FirstLevelView view;
     private CardRepo cardRepo;
     private GameRepo gameRepo;
+    private Nivell nivell;
+    //public MutableLiveData<Nivell> nivell;
+
 
     public MutableLiveData<CardEnum> lletra1;
     public MutableLiveData<CardEnum> lletra2;
@@ -94,6 +102,16 @@ public class GameViewModel {
             Levels.l8.setImageResource(R.drawable.i);
         }
 
+        /***********************/
+
+        List<Card> cartes= new ArrayList();
+        Card c= new Card (1,"c","https://hafnia.es/wp-content/uploads/E2410.jpg");
+        cartes.add(c);
+        Card d= new Card (2,"d","https://hafnia.es/wp-content/uploads/E2410.jpg");
+        cartes.add(d);
+
+        /***********************/
+
     }
 
     public void setGame(Game game){
@@ -148,5 +166,19 @@ public class GameViewModel {
         this.gameRepo.guardarPartida();
     }
 
+    public void initMockLevel(){
+        Nivell nivell = new Nivell();
+        nivell.setImatge("");
+        nivell.lletres = new ArrayList();
+
+        nivell.lletres.add("https://hafnia.es/wp-content/uploads/E2410.jpg");
+
+        nivell.lletres.add("");
+
+    }
+
+    public void nextMockLevel(){
+        nivell = new Nivell();
+    }
 
 }

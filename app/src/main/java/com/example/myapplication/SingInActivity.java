@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -28,25 +30,6 @@ public class SingInActivity extends AppCompatActivity {
         singInViewModel = new SingInViewModel();
         initDataBinding();
 
-        singInViewModel.isUserLogged().observe(this, new Observer<Result<String>>() {
-            @Override
-            public void onChanged(Result<String> tokenResult) {
-                singInViewModel.isLogged.postValue(false);
-                if (tokenResult.getResult() != null){
-                    Log.d(TAG,"Login successful, token obtained.");
-                    PreferencesProvider.providePreferences().edit().putString("token",
-                            tokenResult.getResult()).commit();
-                    Log.d(TAG,"Login successful, add token to SharedPreferences.");
-                    goTo();
-                }
-                else{
-                    //Display Error
-                    Log.d(TAG,"User not logged, token not obtained.");
-                    showSingInError(tokenResult.getError().getMessage());
-                }
-            }
-        });
-
     }
 
     public void initDataBinding() {
@@ -56,15 +39,6 @@ public class SingInActivity extends AppCompatActivity {
         activitySinginBinding.setLifecycleOwner(this);
     }
 
-    public void goTo(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
-
-    private void showSingInError(String errorMessage){
-        DialogInterface.OnClickListener positiveAction = (dialogInterface, i) -> dialogInterface.cancel();
-        UIUtils.showAlert(this,"Error", errorMessage, "Ok",positiveAction ,null,null, false);
-    }
 
 
 }

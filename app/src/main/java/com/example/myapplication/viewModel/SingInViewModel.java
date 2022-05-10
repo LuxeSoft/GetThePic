@@ -1,5 +1,7 @@
 package com.example.myapplication.viewModel;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -10,104 +12,44 @@ import com.example.myapplication.utils.AccountUtils;
 public class SingInViewModel {
     private String TAG = "SingInViewModel";
 
-    private MutableLiveData<String> emailLiveData;
-    private MutableLiveData<String> errorEmailLiveData;
-    private MutableLiveData<String> passwordLiveData;
-    private MutableLiveData<String> errorPasswordLiveData;
-
-    public MutableLiveData<Boolean> isLogged;
-
-    private AccountRepo accountRepo;
+    public MutableLiveData<String> name;
+    public MutableLiveData<String> password;
+    public MutableLiveData<String> correu;
+;
 
 
     public SingInViewModel(){
-        this.emailLiveData = new MutableLiveData<>();
-        this.errorEmailLiveData = new MutableLiveData<>();
-        this.passwordLiveData = new MutableLiveData<>();
-        this.errorPasswordLiveData = new MutableLiveData<>();
+        this.name = new MutableLiveData<>();
+        this.password = new MutableLiveData<>();
+        this.correu = new MutableLiveData<>();
 
-        this.isLogged = new MutableLiveData<>();
-
-        this.accountRepo = new AccountRepo();
-    }
-
-    public MutableLiveData<String> getEmailLiveData() {
-        return emailLiveData;
-    }
-
-    public void setEmailLiveData(MutableLiveData<String> emailLiveData) {
-        this.emailLiveData = emailLiveData;
-    }
-
-    public MutableLiveData<String> getErrorEmailLiveData() {
-        return errorEmailLiveData;
-    }
-
-    public void setErrorEmailLiveData(MutableLiveData<String> errorEmailLiveData) {
-        this.errorEmailLiveData = errorEmailLiveData;
-    }
-
-    public MutableLiveData<String> getPasswordLiveData() {
-        return passwordLiveData;
-    }
-
-    public void setPasswordLiveData(MutableLiveData<String> passwordLiveData) {
-        this.passwordLiveData = passwordLiveData;
-    }
-
-    public MutableLiveData<String> getErrorPasswordLiveData() {
-        return errorPasswordLiveData;
-    }
-
-    public void setErrorPasswordLiveData(MutableLiveData<String> errorPasswordLiveData) {
-        this.errorPasswordLiveData = errorPasswordLiveData;
     }
 
 
-    public void login(){
+    public void singin(){
 
-        // Get the data from fields
-        String email = emailLiveData.getValue();
-        String password = passwordLiveData.getValue();
+        String nom = name.getValue();
+        String password = this.password.getValue();
+        String email = correu.getValue();
 
-        // Form validator
-        if (isFormValid(email,password)) {
-            // Shows the progress bar, telling the user that we are making the communication with the API
-            isLogged.postValue(true);
+        Log.d("nom", nom);
+        Log.d("pwd", password);
+        Log.d("email", email);
 
-            // Call the repo passing the authorization token obtained from email and password
-            this.accountRepo.login(AccountUtils.getAuthorizationToken(email, password));
+        if (isFormValid(email)){
+          //this.accountRepo = new AccountRepo();
         }
-        // Shows the progress bar, telling the user that we are making the communication with the API
-        isLogged.postValue(true);
-
-        // Call the repo passing the authorization token obtained from email and password
-        this.accountRepo.login(AccountUtils.getAuthorizationToken(email, password));
 
     }
 
-    public LiveData<Result<String>> isUserLogged(){
-        if(this.accountRepo.getLoginResult() != null){
-            isLogged.postValue(false);
-        }
-        return this.accountRepo.getLoginResult();
-    }
 
-    private Boolean isFormValid(String email, String password){
+    private Boolean isFormValid(String email){
         boolean isValid = true;
 
         String validEmail= AccountUtils.isEmailValid(email);
         if ( validEmail != null){
             isValid = false;
-            errorEmailLiveData.postValue(validEmail);
         };
-
-        /*
-        String validPassword= AccountUtils.isPasswordValid(password);
-        if ( validPassword != null){
-            isValid = false;
-            errorPasswordLiveData.postValue(validPassword);
-        };*/
 
         return isValid;
     }

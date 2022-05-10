@@ -34,6 +34,7 @@
             android:id="@+id/l3"
             android:layout_width="68dp"
             android:layout_height="117dp"
+            app:imageUrl="@{gameViewModel.nivell.imatge}"
             android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra3)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

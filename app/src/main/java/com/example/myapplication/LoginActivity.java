@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -47,6 +49,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        final Button button = (Button) findViewById(R.id.bototmp);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, SingInActivity.class));
+            }
+        });
+
     }
 
     public void initDataBinding() {
@@ -58,6 +67,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public void goTo(){
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToCreateUser(){
+        Log.d("test", "createuser");
+        Intent intent = new Intent(this, SingInActivity.class);
         startActivity(intent);
     }
 
