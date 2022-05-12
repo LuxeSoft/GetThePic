@@ -2,12 +2,9 @@ package com.example.myapplication.repositories;
 
 import android.util.Log;
 
-import com.example.myapplication.dao.CardDAO;
-import com.example.myapplication.dao.CardDAOimpl;
+
 import com.example.myapplication.dao.PlayerDAO;
 import com.example.myapplication.dao.PlayerDAOimpl;
-import com.example.myapplication.models.Card;
-import com.example.myapplication.models.Player;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -68,5 +65,5 @@ public class PlayerRepo {
                 Log.d("cardrepoerror", t.getMessage());
             }
         });
-    }
+
 }

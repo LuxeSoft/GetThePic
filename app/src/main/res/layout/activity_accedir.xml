@@ -31,6 +31,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="115dp"
+                android:text="ENTRAR AL COMPTE"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="100px"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.145" />
+
             <ImageView
                 android:layout_width="236dp"
                 android:layout_height="195dp"
@@ -39,7 +54,8 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="No logo description"
                 android:scaleType="centerInside"
-                tools:ignore="ImageContrastCheck" />
+                tools:ignore="ImageContrastCheck"
+                tools:srcCompat="@drawable/user" />
 
             <!--  Email Label -->
             <EditText
@@ -48,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="yes"
                 android:ems="10"
-                android:hint="Email"
+                android:hint="email..."
                 android:inputType="textEmailAddress"
                 android:text="@={loginViewModel.emailLiveData}"
                 android:error="@{loginViewModel.errorEmailLiveData}"
@@ -60,7 +76,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="yes"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="contrassenya..."
                 android:inputType="textPassword"
                 android:text="@={loginViewModel.passwordLiveData}"
                 android:error="@{loginViewModel.errorPasswordLiveData}"
@@ -76,22 +92,13 @@
                 android:padding="12dp"
                 android:onClick="@{() -> loginViewModel.login()}"
                 android:enabled="@{!TextUtils.isEmpty(loginViewModel.emailLiveData) &amp;&amp; !TextUtils.isEmpty(loginViewModel.passwordLiveData) }"
-                android:text="Login" />
+                android:text="ENTRAR!" />
 
-
-            <TextView
-                android:id="@+id/link_signup"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                android:gravity="center"
-                android:text="No account yet create?"
-                android:textSize="16sp" />
 
             <Button
                 android:layout_width="match_parent"
                 android:id="@+id/bototmp"
-                android:text="registre"
+                android:text="REGISTRAR-SE"
                 android:layout_height="match_parent"
                 android:onClick="goToCreateUser">
 

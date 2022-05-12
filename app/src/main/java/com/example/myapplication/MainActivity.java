@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-        //cardRepo = new CardRepo();
-        //cardRepo.getCard();
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void obrirAbout(View e){
-        setContentView(R.layout.about);
-    }
 
     public void alerta(View e){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
