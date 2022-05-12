@@ -47,8 +47,8 @@ public class Nivell {
         this.level = level;
     }
 
-    @BindingAdapter({"bind:imageUrl"})
-    public static void loadImage(ImageView view, String imageUrl) {
-        Picasso.with(view.getContext()).load(imageUrl).into(view);
-    }
+//    @BindingAdapter({"bind:imageUrl"})
+//    public static void loadImage(ImageView view, String imageUrl) {
+//        Picasso.with(view.getContext()).load(imageUrl).into(view);
+//    }
 }

@@ -27,8 +27,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accedir);
-        loginViewModel = new LoginViewModel();
         initDataBinding();
+        loginViewModel = new LoginViewModel();
 
         loginViewModel.isUserLogged().observe(this, new Observer<Result<String>>() {
             @Override

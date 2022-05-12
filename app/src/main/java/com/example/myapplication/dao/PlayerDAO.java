@@ -4,6 +4,7 @@ import com.example.myapplication.models.Player;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -16,6 +17,6 @@ public interface PlayerDAO {
     Call<Player> getPlayersByUsername();
 
     @POST("player/add")
-    Call<ResponseBody> addPlayer();
+    Call<ResponseBody> addPlayer(@Body Player player);
 
 }

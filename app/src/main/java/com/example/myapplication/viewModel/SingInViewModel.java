@@ -5,8 +5,10 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.myapplication.models.Player;
 import com.example.myapplication.models.Result;
 import com.example.myapplication.repositories.AccountRepo;
+import com.example.myapplication.repositories.PlayerRepo;
 import com.example.myapplication.utils.AccountUtils;
 
 public class SingInViewModel {
@@ -15,14 +17,15 @@ public class SingInViewModel {
     public MutableLiveData<String> name;
     public MutableLiveData<String> password;
     public MutableLiveData<String> correu;
-;
-
+    private PlayerRepo playerRepo;
+    public MutableLiveData<Boolean> iscreated;
 
     public SingInViewModel(){
         this.name = new MutableLiveData<>();
         this.password = new MutableLiveData<>();
         this.correu = new MutableLiveData<>();
-
+        playerRepo = new PlayerRepo(this);
+        this.iscreated = new MutableLiveData<Boolean>();
     }
 
 
@@ -36,8 +39,10 @@ public class SingInViewModel {
         Log.d("pwd", password);
         Log.d("email", email);
 
+
         if (isFormValid(email)){
-          //this.accountRepo = new AccountRepo();
+            Player newPlyer = new Player(nom,email,password,0,0,0);
+            playerRepo.addPlayer(newPlyer);
         }
 
     }

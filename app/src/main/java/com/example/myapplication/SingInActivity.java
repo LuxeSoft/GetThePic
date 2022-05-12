@@ -1,12 +1,15 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
@@ -16,6 +19,7 @@ import com.example.myapplication.models.Result;
 import com.example.myapplication.utils.PreferencesProvider;
 import com.example.myapplication.utils.UIUtils;
 import com.example.myapplication.viewModel.SingInViewModel;
+import com.google.android.material.snackbar.Snackbar;
 
 public class SingInActivity extends AppCompatActivity {
 
@@ -28,8 +32,34 @@ public class SingInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registre);
         singInViewModel = new SingInViewModel();
+        
         initDataBinding();
 
+
+        ActionBar actionBar =  getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        singInViewModel.iscreated.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+
+                Context context = getApplicationContext();
+                int duration = Toast.LENGTH_SHORT;
+
+
+                if(singInViewModel.iscreated.getValue() == true){
+                    CharSequence text = "registre ok!";
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+
+                } else{
+                    CharSequence text = "registre error!";
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+
+            }
+        });
     }
 
     public void initDataBinding() {

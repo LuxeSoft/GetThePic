@@ -7,6 +7,9 @@ public class Player {
     @SerializedName("username")
     private String username;
 
+    @SerializedName("email")
+    private String email;
+
     @SerializedName("password")
     private String password;
 
@@ -19,13 +22,21 @@ public class Player {
     @SerializedName("xp")
     private int xp;
 
-
-    public Player(String username, String password, int pic_coins, int wins, int xp) {
+    public Player(String username, String email, String password, int pic_coins, int wins, int xp) {
         this.username = username;
+        this.email = email;
         this.password = password;
         this.pic_coins = pic_coins;
         this.wins = wins;
         this.xp = xp;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getUsername() {

@@ -2,9 +2,10 @@ package com.example.myapplication.repositories;
 
 import android.util.Log;
 
-
 import com.example.myapplication.dao.PlayerDAO;
 import com.example.myapplication.dao.PlayerDAOimpl;
+import com.example.myapplication.models.Player;
+import com.example.myapplication.viewModel.SingInViewModel;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -12,58 +13,60 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PlayerRepo {
-
-    private String TAG = "PlayerRepo";
+        private String TAG = "PlayerRepo";
+        private SingInViewModel singInViewModel;
 
     private PlayerDAO playerDAO;
 
-    public PlayerRepo() {
+    public PlayerRepo(SingInViewModel singInViewModel) {
         Log.d(TAG, "PlayerRepo init");
         this.playerDAO = new PlayerDAOimpl();
         Log.d(TAG, "PlayerRepo fin");
+        this.singInViewModel = singInViewModel;
+
     }
 
-    public void getCard(){
+    /*public void getPlayers(){
 
-        playerDAO.getCard().enqueue(new Callback<Card>() {
+        playerDAO.getPlayers().enqueue(new Callback<Player>() {
             @Override
-            public void onResponse(Call<Card> call, Response<Card> response) {
+            public void onResponse(Call<Player> call, Response<Player> response) {
                 int code = response.code();
                 Log.d("codi", String.valueOf(code));
 
                 if (code == 200){
                     //correcte
-                    Card c = response.body();
-                    Log.d("getcard", c.getCard_url());
+                  Player p = response.body();
+                    Log.d("getplayers", p.getUsername());
                 }
             }
 
             @Override
-            public void onFailure(Call<Card> call, Throwable t) {
-                Log.d("cardrepoerror", t.getMessage());
+            public void onFailure(Call<Player> call, Throwable t) {
+                Log.d("playerrepoerror", t.getMessage());
+            }
+        });
+    }*/
+
+    public void addPlayer(Player p){
+
+        playerDAO.addPlayer(p).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.d("tag", "addplayer");
+                Log.d("tag2", response.message());
+                Log.d("codi", String.valueOf(response.code()));
+
+                if(response.code()==200){
+                    singInViewModel.iscreated.setValue(true);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.d("error", t.getMessage());
+
             }
         });
     }
-
-
-    public void showCard(String letter) {
-
-        playerDAO.showCard(letter).enqueue(new Callback<Card>() {
-            @Override
-            public void onResponse(Call<Card> call, Response<Card> response) {
-                int code = response.code();
-                if (code==200) {
-                    Card c = response.body();
-                    Log.d("getcard", c.getCard_url());
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<Card> call, Throwable t) {
-                Log.d("cardrepoerror", t.getMessage());
-            }
-        });
-
 }

@@ -7,6 +7,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.http.Body;
 
 public class PlayerDAOimpl implements PlayerDAO {
     private Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
@@ -22,7 +23,7 @@ public class PlayerDAOimpl implements PlayerDAO {
     }
 
     @Override
-    public Call<ResponseBody> addPlayer() {
-        return retrofit.create(PlayerDAO.class).addPlayer();
+    public Call<ResponseBody> addPlayer(Player player) {
+        return retrofit.create(PlayerDAO.class).addPlayer(player);
     }
 }

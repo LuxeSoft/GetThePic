@@ -59,19 +59,6 @@ public class AccountRepo {
         });
     }
 
-    public void login2(String authorizationToken) {
-        this.accountService.createTokenUser(authorizationToken).enqueue(new Callback<Account>() {
-            @Override
-            public void onResponse(Call<Account> call, Response<Account> response) {
-
-            }
-
-            @Override
-            public void onFailure(Call<Account> call, Throwable t) {
-
-            }
-        });
-    }
 
     // Gets the answer to login query
     public LiveData<Result<String>> getLoginResult(){
