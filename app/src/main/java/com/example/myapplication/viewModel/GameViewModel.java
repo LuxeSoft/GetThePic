@@ -1,48 +1,46 @@
 package com.example.myapplication.viewModel;
 
-import static com.example.myapplication.models.CardEnum.c;
-import static com.example.myapplication.models.CardEnum.ct;
-import static com.example.myapplication.models.CardEnum.d;
-import static com.example.myapplication.models.CardEnum.i;
-import static com.example.myapplication.models.CardEnum.l;
-import static com.example.myapplication.models.CardEnum.m;
-import static com.example.myapplication.models.CardEnum.n;
-import static com.example.myapplication.models.CardEnum.p;
-import static com.example.myapplication.models.CardEnum.r;
-import static com.example.myapplication.models.CardEnum.a;
-import static com.example.myapplication.models.CardEnum.b;
-import static com.example.myapplication.models.CardEnum.e;
-import static com.example.myapplication.models.CardEnum.t;
-import static com.example.myapplication.models.CardEnum.u;
-import static com.example.myapplication.models.CardEnum.x;
-
 import android.util.Log;
+import android.widget.ImageView;
 
+import androidx.databinding.BindingAdapter;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
-import com.example.myapplication.Levels;
-import com.example.myapplication.R;
-import com.example.myapplication.models.Card;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
-import com.example.myapplication.models.Nivell;
+import com.example.myapplication.models.Level;
 import com.example.myapplication.repositories.CardRepo;
-import com.example.myapplication.repositories.GameRepo;
-import com.example.myapplication.views.FirstLevelView;
+import com.example.myapplication.repositories.LevelRepository;
+import com.example.myapplication.repositories.MockLevelRepository;
+import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
+public class GameViewModel extends ViewModel {
 
-public class GameViewModel {
+    private static final String TAG = "GameViewModel";
 
+    // @Jordi: Game hauria de tenir un attribut que representes el nivell.
     private Game game;
-    private FirstLevelView view;
+
+    public MutableLiveData<Level> levelMutableLiveData;
+
+    // @Jordi: El ViewModel mai ha de tenir una dependència de la vista.
+    // private FirstLevelView view;
+
     private CardRepo cardRepo;
-    private GameRepo gameRepo;
-    private Nivell nivell;
+    private LevelRepository levelRepository;
+    //private GameRepo gameRepo;
+    //private Nivell nivell;
     //public MutableLiveData<Nivell> nivell;
 
 
+    // Control UX and UI
+    //[levelImageMutable] -> urlImg
+    //[lletra1]...[lletra8] -> cardEnums
+    public MutableLiveData<String> levelImageMutable;
+
+    //@TODO: Refactor this to use a MutableLiveData<List<CardEnum>>>
     public MutableLiveData<CardEnum> lletra1;
     public MutableLiveData<CardEnum> lletra2;
     public MutableLiveData<CardEnum> lletra3;
@@ -52,95 +50,83 @@ public class GameViewModel {
     public MutableLiveData<CardEnum> lletra7;
     public MutableLiveData<CardEnum> lletra8;
 
-    //private ImageView l1;
-    private String TAG = "GameViewModel";
+    public MutableLiveData<String> currentWordMutableLiveData;
+    public MutableLiveData<Boolean> isLevelSolved;
 
+    // Constructor
     public GameViewModel() {
-        lletra1 = new MutableLiveData<CardEnum>();
-        lletra2 = new MutableLiveData<CardEnum>();
-        lletra3 = new MutableLiveData<CardEnum>();
-        lletra4 = new MutableLiveData<CardEnum>();
-        lletra5 = new MutableLiveData<CardEnum>();
-        lletra6 = new MutableLiveData<CardEnum>();
-        lletra7 = new MutableLiveData<CardEnum>();
-        lletra8 = new MutableLiveData<CardEnum>();
+        // Init all mutable data
+        this.levelImageMutable = new MutableLiveData<>();
+        this.lletra1 = new MutableLiveData<>();
+        this.lletra2 = new MutableLiveData<>();
+        this.lletra3 = new MutableLiveData<>();
+        this.lletra4 = new MutableLiveData<>();
+        this.lletra5 = new MutableLiveData<>();
+        this.lletra6 = new MutableLiveData<>();
+        this.lletra7 = new MutableLiveData<>();
+        this.lletra8 = new MutableLiveData<>();
+        this.levelMutableLiveData = new MutableLiveData<>();
+        this.currentWordMutableLiveData = new MutableLiveData<>();
+        this.isLevelSolved = new MutableLiveData<>();
+
+        // Init repos
         cardRepo = new CardRepo();
+
+        /*@Jordi: Noteu, com hem definit una interficie amb les operacions i levelRepository està
+        associat a la interfície, quan creu una nova classe que implementi la interficie per fer
+        servir la base de dades, únicament caldrà canviar aquesta línia i la resta continuarà
+        funcionant tot.
+         */
+        this.levelRepository = new MockLevelRepository();
     }
 
-    /** public void initPartida()
-     * Aquest metode inicialitza una lletra a cadascuna de les 8 cartes posicionades al joc.
-     * @param
-     * @return
-     * @see
-     */
-    public void initPartida(){
-        if (Levels.nivell == 1){
-            lletra1.setValue(ct);
-            lletra2.setValue(a);
-            lletra3.setValue(x);
-            lletra4.setValue(e);
-            lletra5.setValue(b);
-            lletra6.setValue(r);
-            lletra7.setValue(m);
-            lletra8.setValue(n);
-        } else if (Levels.nivell == 2){
-            lletra1.setValue(l);
-            Levels.l1.setImageResource(R.drawable.l);
-            lletra2.setValue(p);
-            Levels.l2.setImageResource(R.drawable.p);
-            lletra3.setValue(a);
-            Levels.l3.setImageResource(R.drawable.a);
-            lletra4.setValue(c);
-            Levels.l4.setImageResource(R.drawable.c);
-            lletra5.setValue(t);
-            Levels.l5.setImageResource(R.drawable.t);
-            lletra6.setValue(u);
-            Levels.l6.setImageResource(R.drawable.u);
-            lletra7.setValue(d);
-            Levels.l7.setImageResource(R.drawable.d);
-            lletra8.setValue(i);
-            Levels.l8.setImageResource(R.drawable.i);
-        }
+    // Methods
 
-        /***********************/
-
-        List<Card> cartes= new ArrayList();
-        Card c= new Card (1,"c","https://hafnia.es/wp-content/uploads/E2410.jpg");
-        cartes.add(c);
-        Card d= new Card (2,"d","https://hafnia.es/wp-content/uploads/E2410.jpg");
-        cartes.add(d);
-
-        /***********************/
-
+    public void getLevel(){
+        // Get the level from the repo
+        Level level = this.levelRepository.getLevel();
+        // Update the mutable to tell the view that the level is loaded.
+        this.levelMutableLiveData.setValue(level);
     }
+
+    public LiveData<Level> isLevelLoaded(){
+        return this.levelMutableLiveData;
+    }
+
+    public void updateLevel(Level level){
+        Log.d(TAG, "updatingLevel... setting values to mutables.");
+        this.levelImageMutable.setValue(level.getImageUrl());
+        this.lletra1.setValue(level.getLetters().get(0));
+        this.lletra2.setValue(level.getLetters().get(1));
+        this.lletra3.setValue(level.getLetters().get(2));
+        this.lletra4.setValue(level.getLetters().get(3));
+        this.lletra5.setValue(level.getLetters().get(4));
+        this.lletra6.setValue(level.getLetters().get(5));
+        this.lletra7.setValue(level.getLetters().get(6));
+        this.lletra8.setValue(level.getLetters().get(7));
+    }
+
 
     public void setGame(Game game){
         this.game = game;
     }
 
-    public void bind(FirstLevelView view){
-        this.view = view;
+    public void comprovarParaula(){
+        Level level = this.levelMutableLiveData.getValue();
+        String word = this.game.getParaulaUsuari();
+        String expectedWord = level.getSolution();
+
+        Log.d(TAG, "comprovarParaula -> userWord:" + word);
+        Log.d(TAG, "comprovarParaula -> expectedSolution:" + expectedWord);
+
+        boolean solved = word.equalsIgnoreCase(expectedWord);
+        this.isLevelSolved.setValue(solved);
     }
 
-    public void comprovarParaula(){
 
-        //FER TESTING DE LES 2 PARAULES:
-
-        Log.d("viewmodel", "comprovarparaula:");
-        Log.d("viewmodel", this.game.getParaulaModel());
-
-        boolean semafor = this.view.getParaula().equalsIgnoreCase(this.game.getParaulaModel());
-        Log.d("viewmodel", this.view.getParaula());
-
-        Log.d("semafor", String.valueOf(semafor));
-
-        if (semafor == true) { //ha encertat la paraula
-            guardarPartida();
-        }
-
-        this.view.showMessage(semafor);
-
-
+    public void resetLevel(){
+        this.currentWordMutableLiveData.setValue("");
+        this.game.setParaulaUsuari("");
     }
 
     /** public void onClickedAt()
@@ -150,35 +136,29 @@ public class GameViewModel {
      * @see
      */
     public void onClickedAt(CardEnum c){
-        Log.d("onclickedat", CardEnum.getMessageResource(c));
-        //FirstLevel fl = new FirstLevel();
-        //fl.mostrarLletra(c);
-        this.view.mostrarLletra(c);
+        Log.d(TAG, "onClickedAt ->" + CardEnum.getMessageResource(c));
+        // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
+        String word = game.concatenarLletres(c.toString());
+        // @Jordi: Actualitzem el mutable per actualitzar la vista
+        this.currentWordMutableLiveData.setValue(word);
     }
 
-    public void getCard() {
+    /*public void getCard() {
         Log.d(TAG, "getCard");
         //this.cardRepo.getCard();
         this.cardRepo.showCard("a");
-    }
+    }*/
 
+    /*
     public void guardarPartida() {
         this.gameRepo.guardarPartida();
-    }
+    }*/
 
-    public void initMockLevel(){
-        Nivell nivell = new Nivell();
-        nivell.setImatge("");
-        nivell.lletres = new ArrayList();
 
-        nivell.lletres.add("https://hafnia.es/wp-content/uploads/E2410.jpg");
-
-        nivell.lletres.add("");
-
-    }
-
-    public void nextMockLevel(){
-        nivell = new Nivell();
+    @BindingAdapter({"bind:imageUrl"})
+    public static void loadImage(ImageView view, String imageUrl) {
+       // Picasso.with(view.getContext()).setLoggingEnabled(true);
+        Picasso.with(view.getContext()).load(imageUrl).into(view);
     }
 
 }

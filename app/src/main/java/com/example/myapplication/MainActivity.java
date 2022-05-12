@@ -11,6 +11,7 @@ import android.widget.Button;
 import com.example.myapplication.models.Game;
 import com.example.myapplication.models.Player;
 import com.example.myapplication.repositories.CardRepo;
+import com.example.myapplication.views.GameActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         final Button button = (Button) findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Levels.class));
+                startActivity(new Intent(MainActivity.this, GameActivity.class));
             }
         });
 

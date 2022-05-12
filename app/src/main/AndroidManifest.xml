@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Levels"
+            android:name=".views.GameActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
@@ -30,7 +30,6 @@
         <activity
             android:name=".SingInActivity"
             android:exported="false" />
-
         <activity
             android:name=".AboutPage"
             android:exported="false"
@@ -48,11 +47,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

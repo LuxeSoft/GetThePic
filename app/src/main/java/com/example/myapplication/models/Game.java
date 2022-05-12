@@ -21,7 +21,7 @@ public class Game {
     private boolean guanyat;
 
     public Game() {
-
+        this.paraulaUsuari="";
     }
 
     public Player getActualUser() {

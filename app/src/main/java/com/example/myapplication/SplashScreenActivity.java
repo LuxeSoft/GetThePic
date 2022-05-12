@@ -39,7 +39,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         PreferencesProvider.init(this);
     }
 
-    private void data(){
+    /*private void data(){
         String token = PreferencesProvider.providePreferences().getString("token", "");
         Log.d(TAG, "token: " + token);
         if (token.equals("")) {
@@ -51,6 +51,10 @@ public class SplashScreenActivity extends AppCompatActivity {
             startActivity(new Intent(this, MainActivity.class));
         }
         // Close the activity, the user don't need to enter again with back functionality
+        finish();
+    }*/
+    private void data(){
+        startActivity(new Intent(this, MainActivity.class));
         finish();
     }
 
