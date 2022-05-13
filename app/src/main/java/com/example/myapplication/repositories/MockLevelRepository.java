@@ -57,4 +57,19 @@ public class MockLevelRepository implements LevelRepository{
         // Retornem la instancia del nivell generat
         return selectedLevel;
     }
+
+    @Override
+    public Level getLevel(int levelPosition) {
+
+        // Generem un nombre aleatori per seleccionar el nivell
+
+        // Instanciem el nivell a partir de les dades simulades
+        Level selectedLevel = new Level();
+        selectedLevel.setLetters( Arrays.asList(mockLevelLetters[levelPosition]));
+        selectedLevel.setSolution(mockLevelSolutions[levelPosition]);
+        selectedLevel.setImageUrl(mockLevelImages[levelPosition]);
+
+        // Retornem la instancia del nivell generat
+        return selectedLevel;
+    }
 }

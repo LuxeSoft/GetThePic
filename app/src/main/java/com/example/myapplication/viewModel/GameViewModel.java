@@ -59,6 +59,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> username;
     public MutableLiveData<String> xp;
 
+    public MutableLiveData<Boolean> faceUpCard;
 
 
 
@@ -78,6 +79,9 @@ public class GameViewModel extends ViewModel {
         this.currentWordMutableLiveData = new MutableLiveData<>();
         this.isLevelSolved = new MutableLiveData<>();
 
+        this.faceUpCard = new MutableLiveData<>();
+        this.faceUpCard.setValue(false);
+
         this.username = new MutableLiveData<>();
         this.xp = new MutableLiveData<>();
 
@@ -85,6 +89,9 @@ public class GameViewModel extends ViewModel {
         this.xp.setValue(String.valueOf(0));
 
         int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
+        //FER AMB EL NIVELL, IGUAL QUE XP
+
+
 
         if(xp!=0){
             this.xp.setValue(String.valueOf(xp));
@@ -106,7 +113,7 @@ public class GameViewModel extends ViewModel {
 
     public void getLevel(){
         // Get the level from the repo
-        Level level = this.levelRepository.getLevel();
+        Level level = this.levelRepository.getLevel(0);
         // Update the mutable to tell the view that the level is loaded.
         this.levelMutableLiveData.setValue(level);
     }
@@ -171,12 +178,15 @@ public class GameViewModel extends ViewModel {
      * @see
      */
     public void onClickedAt(CardEnum c){
-        Log.d(TAG, "onClickedAt ->" + CardEnum.getMessageResource(c));
-        // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
-        String word = game.concatenarLletres(c.toString());
-        // @Jordi: Actualitzem el mutable per actualitzar la vista
-        this.currentWordMutableLiveData.setValue(word);
 
+        if(this.faceUpCard.getValue()) {
+
+            Log.d(TAG, "onClickedAt ->" + CardEnum.getMessageResource(c));
+            // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
+            String word = game.concatenarLletres(c.toString());
+            // @Jordi: Actualitzem el mutable per actualitzar la vista
+            this.currentWordMutableLiveData.setValue(word);
+        }
     }
 
 
