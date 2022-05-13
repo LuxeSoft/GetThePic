@@ -48,12 +48,14 @@ public class SingInActivity extends AppCompatActivity {
 
 
                 if(singInViewModel.iscreated.getValue() == true){
-                    CharSequence text = "registre ok!";
+                    CharSequence text = "BENVINGUT! :)";
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
 
+                    goTo();
+
                 } else{
-                    CharSequence text = "registre error!";
+                    CharSequence text = "ALGUNA COSA NO HA ANAT BE :(";
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }
@@ -67,6 +69,11 @@ public class SingInActivity extends AppCompatActivity {
 
         activitySinginBinding.setSingInViewModel(singInViewModel);
         activitySinginBinding.setLifecycleOwner(this);
+    }
+
+    public void goTo(){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
 

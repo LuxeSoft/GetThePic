@@ -142,20 +142,8 @@ public class GameViewModel extends ViewModel {
         // @Jordi: Actualitzem el mutable per actualitzar la vista
         this.currentWordMutableLiveData.setValue(word);
 
-
-        //this.currentWordMutableLiveData.setValue("");
     }
 
-    /*public void getCard() {
-        Log.d(TAG, "getCard");
-        //this.cardRepo.getCard();
-        this.cardRepo.showCard("a");
-    }*/
-
-    /*
-    public void guardarPartida() {
-        this.gameRepo.guardarPartida();
-    }*/
 
 
     @BindingAdapter({"bind:imageUrl"})

@@ -1,9 +1,11 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +19,11 @@ public class SplashScreenActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
+
+        String urlGif = "https://domain.com/myanimatedgif.gif";
+        //Agregar implementacion Glide dentro de archivo build.gradle.
+        ImageView imageView = (ImageView)findViewById(R.id.imageView3);
+
 
 
         new Handler().postDelayed(new Runnable() {
@@ -53,11 +60,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         // Close the activity, the user don't need to enter again with back functionality
         finish();
     }
-
-   /* private void data(){
-        startActivity(new Intent(this, MainActivity.class));
-        finish();
-    }*/
 
     private void showLogin(){
         startActivity(new Intent(this, LoginActivity.class));

@@ -9,23 +9,43 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="259dp"
-        android:layout_height="565dp"
+        android:layout_width="377dp"
+        android:layout_height="697dp"
         android:src="@drawable/luxe"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="111dp"
-        android:layout_height="162dp"
-        android:src="@drawable/loading"
+    <include
+        android:id="@+id/linearLayoutProgressBar"
+        layout="@layout/loading"
+        android:layout_width="108dp"
+        android:layout_height="74dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.843" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="286dp"
+        android:layout_height="41dp"
+        android:text="Powered by:"
+        android:textAlignment="center"
+        android:textColor="@color/blau"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.146" />
+
+    />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -59,6 +59,9 @@ public class PlayerRepo {
 
                 if(response.code()==200){
                     singInViewModel.iscreated.setValue(true);
+                } else {
+                    singInViewModel.iscreated.setValue(false);
+
                 }
             }
 
