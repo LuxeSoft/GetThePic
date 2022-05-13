@@ -103,17 +103,7 @@ public class LoginViewModel extends ViewModel {
             errorEmailLiveData.postValue(validEmail);
         };
 
-        /*
-        String validPassword= AccountUtils.isPasswordValid(password);
-        if ( validPassword != null){
-            isValid = false;
-            errorPasswordLiveData.postValue(validPassword);
-        };*/
-
         return isValid;
     }
 
-    public void crearUsuari(){
-
-    }
 }

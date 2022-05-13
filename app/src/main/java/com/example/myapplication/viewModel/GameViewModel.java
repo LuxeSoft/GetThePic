@@ -1,5 +1,7 @@
 package com.example.myapplication.viewModel;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -14,6 +16,7 @@ import com.example.myapplication.models.Level;
 import com.example.myapplication.repositories.CardRepo;
 import com.example.myapplication.repositories.LevelRepository;
 import com.example.myapplication.repositories.MockLevelRepository;
+import com.example.myapplication.utils.PreferencesProvider;
 import com.squareup.picasso.Picasso;
 
 public class GameViewModel extends ViewModel {
@@ -53,6 +56,12 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> currentWordMutableLiveData;
     public MutableLiveData<Boolean> isLevelSolved;
 
+    public MutableLiveData<String> username;
+    public MutableLiveData<String> xp;
+
+
+
+
     // Constructor
     public GameViewModel() {
         // Init all mutable data
@@ -68,6 +77,19 @@ public class GameViewModel extends ViewModel {
         this.levelMutableLiveData = new MutableLiveData<>();
         this.currentWordMutableLiveData = new MutableLiveData<>();
         this.isLevelSolved = new MutableLiveData<>();
+
+        this.username = new MutableLiveData<>();
+        this.xp = new MutableLiveData<>();
+
+        this.username.setValue("alex");
+        this.xp.setValue(String.valueOf(0));
+
+        int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
+
+        if(xp!=0){
+            this.xp.setValue(String.valueOf(xp));
+        }
+
 
         // Init repos
         cardRepo = new CardRepo();
@@ -94,6 +116,8 @@ public class GameViewModel extends ViewModel {
     }
 
     public void updateLevel(Level level){
+        //this.username.setValue("PAULA");
+
         Log.d(TAG, "updatingLevel... setting values to mutables.");
         this.levelImageMutable.setValue(level.getImageUrl());
         this.lletra1.setValue(level.getLetters().get(0));
@@ -121,6 +145,16 @@ public class GameViewModel extends ViewModel {
 
         boolean solved = word.equalsIgnoreCase(expectedWord);
         this.isLevelSolved.setValue(solved);
+
+        if(solved){
+            Log.d("test", "ARRIBATTT");
+            int currentxp = Integer.parseInt(this.xp.getValue())+100;
+
+            Log.d("xp", String.valueOf(currentxp));
+
+            PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
+
+        }
     }
 
 
@@ -128,6 +162,7 @@ public class GameViewModel extends ViewModel {
         this.currentWordMutableLiveData.setValue("");
         this.game.setParaulaUsuari("");
     }
+
 
     /** public void onClickedAt()
      * Aquest metode mostra la lletra polsada.

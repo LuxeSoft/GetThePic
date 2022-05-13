@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.databinding.ActivityLevelsBinding;
@@ -39,6 +42,8 @@ public class GameActivity extends AppCompatActivity {
         data();
 
     }
+
+
 
 
     // Private methods
@@ -76,5 +81,54 @@ public class GameActivity extends AppCompatActivity {
         });
 
     }
+
+    public void pause(View view){
+
+        Log.d("test","TEST");
+
+        // this.username.setValue("alex");
+
+
+        // this.isLevelSolved = new MutableLiveData<>();
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Morfeo dice:");
+
+        builder.setMessage("¿Qué píldora quieres Neo?\n\nLa azul te hará olvidar lo ocurrido y volverás a Matrix, mientras que la roja te llevará al mundo real.");
+
+        builder.setPositiveButton("Menú principal", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+               goTo();
+            }
+        });
+
+        builder.setNeutralButton("Continuar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Resart", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+
+    }
+
+    public void goTo(){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
 
 }
