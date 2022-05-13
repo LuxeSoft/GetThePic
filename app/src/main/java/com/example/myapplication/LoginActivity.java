@@ -10,6 +10,8 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.myapplication.databinding.ActivityAccedirBinding;
 import com.example.myapplication.models.Result;
@@ -27,8 +29,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accedir);
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         initDataBinding();
-        loginViewModel = new LoginViewModel();
+        //loginViewModel = new LoginViewModel();
 
         loginViewModel.isUserLogged().observe(this, new Observer<Result<String>>() {
             @Override

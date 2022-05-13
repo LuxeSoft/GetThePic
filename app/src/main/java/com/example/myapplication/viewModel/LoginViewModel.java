@@ -2,12 +2,13 @@ package com.example.myapplication.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.models.Result;
 import com.example.myapplication.repositories.AccountRepo;
 import com.example.myapplication.utils.AccountUtils;
 
-public class LoginViewModel {
+public class LoginViewModel extends ViewModel {
     private String TAG = "LoginViewModel";
 
     private MutableLiveData<String> emailLiveData;
