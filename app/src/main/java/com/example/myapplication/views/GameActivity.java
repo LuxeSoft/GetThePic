@@ -43,9 +43,6 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-
-
-
     // Private methods
 
     private void setup(){
@@ -86,11 +83,6 @@ public class GameActivity extends AppCompatActivity {
 
         Log.d("test","TEST");
 
-        // this.username.setValue("alex");
-
-
-        // this.isLevelSolved = new MutableLiveData<>();
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -121,7 +113,6 @@ public class GameActivity extends AppCompatActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-
 
 
     }

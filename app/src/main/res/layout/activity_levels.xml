@@ -44,7 +44,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra3 != null ? CardEnum.getCardResource(gameViewModel.lletra3) : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra3 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra3) : R.drawable.dorso  : R.drawable.x}"/>
 
         <ImageView
             android:id="@+id/l7"
@@ -57,7 +57,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.799"
-            app:imageResource="@{gameViewModel.lletra7 != null ? CardEnum.getCardResource(gameViewModel.lletra7) : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra7 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra7) : R.drawable.dorso  : R.drawable.x}"/>
 
         <ImageView
             android:id="@+id/l8"
@@ -70,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView5"
             app:layout_constraintVertical_bias="0.794"
-            app:imageResource="@{gameViewModel.lletra8 != null ? CardEnum.getCardResource(gameViewModel.lletra8) : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra8 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra8) : R.drawable.dorso  : R.drawable.x}"/>
 
         <ImageView
             android:id="@+id/l4"
@@ -83,7 +83,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra4 != null ? CardEnum.getCardResource(gameViewModel.lletra4) : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra4 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra4) : R.drawable.dorso  : R.drawable.x}"/>
 
         <ImageView
             android:id="@+id/l6"
@@ -96,7 +96,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imgParaula"
             app:layout_constraintVertical_bias="0.783"
-            app:imageResource="@{gameViewModel.lletra6 != null ? CardEnum.getCardResource(gameViewModel.lletra6) : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra6 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra6) : R.drawable.dorso  : R.drawable.x}"/>
 
         <ImageView
             android:id="@+id/l5"
@@ -109,7 +109,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.799"
-            app:imageResource="@{gameViewModel.lletra5 != null ? CardEnum.getCardResource(gameViewModel.lletra5) : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra5 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra5) : R.drawable.dorso  : R.drawable.x}"/>
 
         <ImageView
             android:id="@+id/l1"
@@ -135,7 +135,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra2 != null ? CardEnum.getCardResource(gameViewModel.lletra2) : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra2 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra2) : R.drawable.dorso  : R.drawable.x}"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -190,23 +190,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text='@={gameViewModel.username}'
+            android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintHorizontal_bias="0.929"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.096" />
+            app:layout_constraintVertical_bias="0.095" />
 
         <TextView
             android:id="@+id/xp_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text='@={gameViewModel.xp}'
+            android:textColor="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintHorizontal_bias="0.929"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.146" />
@@ -238,6 +240,34 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.2"
             app:srcCompat="@drawable/pausa" />
+
+        <TextView
+            android:id="@+id/contador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@={gameViewModel.contador}'
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/xp_tv"
+            app:layout_constraintHorizontal_bias="0.047"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.146" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="XP"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.989"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.146" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
