@@ -93,9 +93,10 @@ public class GameActivity extends AppCompatActivity {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Morfeo dice:");
 
-        builder.setMessage("¿Qué píldora quieres Neo?\n\nLa azul te hará olvidar lo ocurrido y volverás a Matrix, mientras que la roja te llevará al mundo real.");
+        builder.setTitle("Menú de pausa");
+
+        builder.setMessage("Que vols fer? :)");
 
         builder.setPositiveButton("Menú principal", new DialogInterface.OnClickListener() {
             @Override
@@ -114,7 +115,7 @@ public class GameActivity extends AppCompatActivity {
         builder.setNegativeButton("Resart", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
+                reStart();
             }
         });
 
@@ -129,6 +130,12 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+
+    public void reStart(){
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
+
 
 
 }
