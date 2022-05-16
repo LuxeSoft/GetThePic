@@ -47,6 +47,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void setup(){
         binding.setGameViewModel(viewModel);
+        binding.setLifecycleOwner(this);
     }
 
 
@@ -54,6 +55,7 @@ public class GameActivity extends AppCompatActivity {
 
         Game game  = new Game();
         viewModel.setGame(game);
+        viewModel.username.setValue("Paula");
 
         // @Jordi: Iniciem l'operació per obtenir el nivell
         Log.d(TAG, "data() -> loading the level...");

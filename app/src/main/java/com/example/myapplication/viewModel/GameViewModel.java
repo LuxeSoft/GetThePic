@@ -99,7 +99,6 @@ public class GameViewModel extends ViewModel {
 
         int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
 
-
         if(xp!=0){
             this.xp.setValue(String.valueOf(xp));
 

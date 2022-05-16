@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginViewModel loginViewModel;
     private ActivityAccedirBinding activityLoginBinding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         initDataBinding();
         //loginViewModel = new LoginViewModel();
+        //goTo();
 
         loginViewModel.isUserLogged().observe(this, new Observer<Result<String>>() {
             @Override
@@ -51,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         final Button button = (Button) findViewById(R.id.bototmp);
         button.setOnClickListener(new View.OnClickListener() {
