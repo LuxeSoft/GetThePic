@@ -71,6 +71,12 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<Boolean> faceUpCard;
     public MutableLiveData<Boolean> faceUpCardLletra1;
     public MutableLiveData<Boolean> faceUpCardLletra2;
+    public MutableLiveData<Boolean> faceUpCardLletra3;
+    public MutableLiveData<Boolean> faceUpCardLletra4;
+    public MutableLiveData<Boolean> faceUpCardLletra5;
+    public MutableLiveData<Boolean> faceUpCardLletra6;
+    public MutableLiveData<Boolean> faceUpCardLletra7;
+    public MutableLiveData<Boolean> faceUpCardLletra8;
 
 
 
@@ -104,6 +110,25 @@ public class GameViewModel extends ViewModel {
         //TODO: Testing @Didac Comentem la proposta dijous. En el XML també us he afegit canvis en la carta 1 i 2 per a que es mostrin quan es cliqui.
         this.faceUpCardLletra2 = new MutableLiveData<>();
         this.faceUpCardLletra2.setValue(true);
+
+        this.faceUpCardLletra3 = new MutableLiveData<>();
+        this.faceUpCardLletra3.setValue(true);
+
+        this.faceUpCardLletra4 = new MutableLiveData<>();
+        this.faceUpCardLletra4.setValue(true);
+
+        this.faceUpCardLletra5 = new MutableLiveData<>();
+        this.faceUpCardLletra5.setValue(true);
+
+        this.faceUpCardLletra6 = new MutableLiveData<>();
+        this.faceUpCardLletra6.setValue(true);
+
+
+        this.faceUpCardLletra7 = new MutableLiveData<>();
+        this.faceUpCardLletra7.setValue(true);
+
+        this.faceUpCardLletra8 = new MutableLiveData<>();
+        this.faceUpCardLletra8.setValue(true);
 
         //TODO: Fins aqui @Didac
 
@@ -186,6 +211,12 @@ public class GameViewModel extends ViewModel {
                 faceUpCard.setValue(false);
                 faceUpCardLletra1.setValue(false);
                 faceUpCardLletra2.setValue(false);
+                faceUpCardLletra3.setValue(false);
+                faceUpCardLletra4.setValue(false);
+                faceUpCardLletra5.setValue(false);
+                faceUpCardLletra6.setValue(false);
+                faceUpCardLletra7.setValue(false);
+                faceUpCardLletra8.setValue(false);
             }
         }, 4000);
 
@@ -258,14 +289,17 @@ public class GameViewModel extends ViewModel {
         this.showCard(id);
 
 
-
-
-
     }
 
     private void showCard(int id) {
         if (id==1) faceUpCardLletra1.setValue(true);
         else if (id==2) faceUpCardLletra2.setValue(true);
+        else if (id==3) faceUpCardLletra3.setValue(true);
+        else if (id==4) faceUpCardLletra4.setValue(true);
+        else if (id==5) faceUpCardLletra5.setValue(true);
+        else if (id==6) faceUpCardLletra6.setValue(true);
+        else if (id==7) faceUpCardLletra7.setValue(true);
+        else if (id==8) faceUpCardLletra8.setValue(true);
         else faceUpCard.setValue(true);
     }
 
