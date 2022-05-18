@@ -21,121 +21,108 @@
         tools:layout_editor_absoluteY="0dp">
 
         <ImageView
-            android:id="@+id/imgParaula"
-            android:layout_width="180dp"
-            android:layout_height="232dp"
-            app:imageUrl='@{gameViewModel.levelMutableLiveData != null ? gameViewModel.levelMutableLiveData.imageUrl : "https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png"}'
+            android:id="@+id/l4"
+            android:layout_width="68dp"
+            android:layout_height="117dp"
+            android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra4, 4)}"
+            app:imageResource="@{gameViewModel.lletra4 != null ? gameViewModel.faceUpCardLletra4 ? CardEnum.getCardResource(gameViewModel.lletra4) : R.drawable.dorso  : R.drawable.x}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.886"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.094"
-            />
+            app:layout_constraintVertical_bias="0.728" />
 
         <ImageView
             android:id="@+id/l3"
             android:layout_width="68dp"
             android:layout_height="117dp"
             android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra3, 3)}"
+            app:imageResource="@{gameViewModel.lletra3 != null ? gameViewModel.faceUpCardLletra3 ? CardEnum.getCardResource(gameViewModel.lletra3) : R.drawable.dorso  : R.drawable.x}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.626"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra3 != null ? gameViewModel.faceUpCardLletra3 ? CardEnum.getCardResource(gameViewModel.lletra3) : R.drawable.dorso  : R.drawable.x}"/>
-
-        <ImageView
-            android:id="@+id/l7"
-            android:layout_width="68dp"
-            android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra7, 7)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.626"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.799"
-            app:imageResource="@{gameViewModel.lletra7 != null ? gameViewModel.faceUpCardLletra7 ? CardEnum.getCardResource(gameViewModel.lletra7) : R.drawable.dorso  : R.drawable.x}"/>
+            app:layout_constraintVertical_bias="0.728" />
 
         <ImageView
             android:id="@+id/l8"
             android:layout_width="68dp"
             android:layout_height="117dp"
             android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra8, 8)}"
+            app:imageResource="@{gameViewModel.lletra8 != null ? gameViewModel.faceUpCardLletra8 ? CardEnum.getCardResource(gameViewModel.lletra8) : R.drawable.dorso  : R.drawable.x}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.886"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.794"
-            app:imageResource="@{gameViewModel.lletra8 != null ? gameViewModel.faceUpCardLletra8 ? CardEnum.getCardResource(gameViewModel.lletra8) : R.drawable.dorso  : R.drawable.x}"/>
-
-        <ImageView
-            android:id="@+id/l4"
-            android:layout_width="68dp"
-            android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra4, 4)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.886"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra4 != null ? gameViewModel.faceUpCardLletra4 ? CardEnum.getCardResource(gameViewModel.lletra4) : R.drawable.dorso  : R.drawable.x}"/>
-
-        <ImageView
-            android:id="@+id/l6"
-            android:layout_width="68dp"
-            android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra6, 6)}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.37"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/imgParaula"
-            app:layout_constraintVertical_bias="0.783"
-            app:imageResource="@{gameViewModel.lletra6 != null ? gameViewModel.faceUpCardLletra6 ? CardEnum.getCardResource(gameViewModel.lletra6) : R.drawable.dorso  : R.drawable.x}"/>
+            app:layout_constraintVertical_bias="0.934" />
 
         <ImageView
             android:id="@+id/l5"
             android:layout_width="68dp"
             android:layout_height="117dp"
             android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra5, 5)}"
+            app:imageResource="@{gameViewModel.lletra5 != null ? gameViewModel.faceUpCardLletra5 ? CardEnum.getCardResource(gameViewModel.lletra5) : R.drawable.dorso  : R.drawable.x}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.799"
-            app:imageResource="@{gameViewModel.lletra5 != null ? gameViewModel.faceUpCardLletra5 ? CardEnum.getCardResource(gameViewModel.lletra5) : R.drawable.dorso  : R.drawable.x}"/>
+            app:layout_constraintVertical_bias="0.936" />
 
         <ImageView
             android:id="@+id/l1"
             android:layout_width="68dp"
             android:layout_height="117dp"
             android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra1, 1)}"
+            app:imageResource="@{gameViewModel.lletra1 != null ? gameViewModel.faceUpCardLletra1 ? CardEnum.getCardResource(gameViewModel.lletra1) : R.drawable.dorso  : R.drawable.x}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra1 != null ? gameViewModel.faceUpCardLletra1 ? CardEnum.getCardResource(gameViewModel.lletra1) : R.drawable.dorso  : R.drawable.x}"/>
+            app:layout_constraintVertical_bias="0.728" />
 
         <ImageView
             android:id="@+id/l2"
             android:layout_width="71dp"
             android:layout_height="117dp"
             android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra2, 2)}"
+            app:imageResource="@{gameViewModel.lletra2 != null ? gameViewModel.faceUpCardLletra2 ? CardEnum.getCardResource(gameViewModel.lletra2) : R.drawable.dorso  : R.drawable.x}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.364"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra2 != null ? gameViewModel.faceUpCardLletra2 ? CardEnum.getCardResource(gameViewModel.lletra2) : R.drawable.dorso  : R.drawable.x}"/>
+            app:layout_constraintVertical_bias="0.728" />
+
+        <ImageView
+            android:id="@+id/l7"
+            android:layout_width="68dp"
+            android:layout_height="117dp"
+            android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra7, 7)}"
+            app:imageResource="@{gameViewModel.lletra7 != null ? gameViewModel.faceUpCardLletra7 ? CardEnum.getCardResource(gameViewModel.lletra7) : R.drawable.dorso  : R.drawable.x}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.626"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.936" />
+
+        <ImageView
+            android:id="@+id/l6"
+            android:layout_width="68dp"
+            android:layout_height="117dp"
+            android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra6, 6)}"
+            app:imageResource="@{gameViewModel.lletra6 != null ? gameViewModel.faceUpCardLletra6 ? CardEnum.getCardResource(gameViewModel.lletra6) : R.drawable.dorso  : R.drawable.x}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.37"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imgParaula"
+            app:layout_constraintVertical_bias="0.931" />
 
         <TextView
             android:id="@+id/textView5"
@@ -155,35 +142,47 @@
 
         <TextView
             android:id="@+id/paraulaEscrita"
-            android:layout_width="344dp"
-            android:layout_height="65dp"
+            android:layout_width="313dp"
+            android:layout_height="61dp"
             android:layout_marginBottom="424dp"
-            android:gravity="center"
             android:hint="escriure paraula..."
             android:text='@{gameViewModel.currentWordMutableLiveData ?? ""}'
-            android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="48sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.675"
+            app:layout_constraintHorizontal_bias="0.285"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imgParaula"
             app:layout_constraintVertical_bias="1.0" />
 
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> gameViewModel.comprovarParaula()}"
-            android:text="Comprovar paraula"
+        <TextView
+            android:id="@+id/ratlles"
+            android:layout_width="240dp"
+            android:layout_height="86dp"
+            android:text='@{ gameViewModel.levelMutableLiveData.maskSolution ?? "_ _ _ _ _"}'
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="48sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.928" />
+            app:layout_constraintVertical_bias="0.444" />
+
+        <ImageView
+            android:id="@+id/imgParaula"
+            android:layout_width="154dp"
+            android:layout_height="171dp"
+            app:imageUrl='@{gameViewModel.levelMutableLiveData != null ? gameViewModel.levelMutableLiveData.imageUrl : "https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png"}'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.105" />
 
         <TextView
             android:id="@+id/user_tv"
@@ -212,21 +211,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.146" />
-
-        <TextView
-            android:id="@+id/ratlles"
-            android:layout_width="240dp"
-            android:layout_height="86dp"
-            android:text='@{ gameViewModel.levelMutableLiveData.maskSolution ?? "_ _ _ _ _"}'
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="48sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.093"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.41" />
 
         <ImageView
             android:id="@+id/imageView2"
