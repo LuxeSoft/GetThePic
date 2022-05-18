@@ -71,14 +71,19 @@ public class GameActivity extends AppCompatActivity {
             viewModel.updateLevel(level);
         });
 
+
+        //@Didac: Aqui tens un mutable que s'observa quan comproves la paraula. Per tant, aqui pots activar la funció de mostrar TOAST.
         viewModel.isLevelSolved.observe(this, solved -> {
             Log.d(TAG, "data() -> is level solved? -> " + solved.toString());
             if (solved){
                 // Mostrareu el dialog i carregarem un nou nivell
+                Log.d(TAG, "Encertat");
                 startActivity(new Intent(GameActivity.this, GameActivity.class));
                 finish();
             } else {
                 // Mostrareu el dialog i si l'usuari vol continuar jugant reset el nivell
+                Log.d(TAG, "No encertat");
+                alertaError();
                 viewModel.resetLevel();
             }
         });
