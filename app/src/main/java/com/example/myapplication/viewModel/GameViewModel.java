@@ -19,6 +19,7 @@ import com.example.myapplication.repositories.CardRepo;
 import com.example.myapplication.repositories.LevelRepository;
 import com.example.myapplication.repositories.MockLevelRepository;
 import com.example.myapplication.utils.PreferencesProvider;
+import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
@@ -176,6 +177,7 @@ public class GameViewModel extends ViewModel {
 
         Log.d(TAG, "updatingLevel... setting values to mutables.");
         this.levelImageMutable.setValue(level.getImageUrl());
+
         this.lletra1.setValue(level.getLetters().get(0));
         this.lletra2.setValue(level.getLetters().get(1));
         this.lletra3.setValue(level.getLetters().get(2));
@@ -223,6 +225,26 @@ public class GameViewModel extends ViewModel {
     }
 
 
+    public void temporitzadorObrir(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                faceUpCard.setValue(true);
+                faceUpCardLletra1.setValue(true);
+                faceUpCardLletra2.setValue(true);
+                faceUpCardLletra3.setValue(true);
+                faceUpCardLletra4.setValue(true);
+                faceUpCardLletra5.setValue(true);
+                faceUpCardLletra6.setValue(true);
+                faceUpCardLletra7.setValue(true);
+                faceUpCardLletra8.setValue(true);
+
+                temporitzador();
+
+            }
+        }, 1000);
+
+    }
 
     public void comprovarParaula(){
 
@@ -292,15 +314,36 @@ public class GameViewModel extends ViewModel {
     }
 
     private void showCard(int id) {
-        if (id==1) faceUpCardLletra1.setValue(true);
-        else if (id==2) faceUpCardLletra2.setValue(true);
-        else if (id==3) faceUpCardLletra3.setValue(true);
-        else if (id==4) faceUpCardLletra4.setValue(true);
-        else if (id==5) faceUpCardLletra5.setValue(true);
-        else if (id==6) faceUpCardLletra6.setValue(true);
-        else if (id==7) faceUpCardLletra7.setValue(true);
-        else if (id==8) faceUpCardLletra8.setValue(true);
-        else faceUpCard.setValue(true);
+
+        if(game.getParaulaUsuari().length() < 6) {
+
+            if (id == 1) faceUpCardLletra1.setValue(true);
+            else if (id == 2) faceUpCardLletra2.setValue(true);
+            else if (id == 3) faceUpCardLletra3.setValue(true);
+            else if (id == 4) faceUpCardLletra4.setValue(true);
+            else if (id == 5) faceUpCardLletra5.setValue(true);
+            else if (id == 6) faceUpCardLletra6.setValue(true);
+            else if (id == 7) faceUpCardLletra7.setValue(true);
+            else if (id == 8) faceUpCardLletra8.setValue(true);
+
+            else faceUpCard.setValue(true);
+        } else {
+            game.setParaulaUsuari("");
+            this.currentWordMutableLiveData.setValue("");
+
+            faceUpCardLletra1.setValue(false);
+            faceUpCardLletra2.setValue(false);
+            faceUpCardLletra3.setValue(false);
+            faceUpCardLletra4.setValue(false);
+            faceUpCardLletra5.setValue(false);
+            faceUpCardLletra6.setValue(false);
+            faceUpCardLletra7.setValue(false);
+            faceUpCardLletra8.setValue(false);
+
+            temporitzadorObrir();
+
+
+        }
     }
 
     @BindingAdapter({"bind:imageUrl"})
@@ -310,6 +353,7 @@ public class GameViewModel extends ViewModel {
     }
 
     private Enum CardIdEnum; {
+
 
     }
 
