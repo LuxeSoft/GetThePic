@@ -48,6 +48,7 @@ public class PlayerRepo {
         });
     }*/
 
+    //TODO: @Didac Per a que us quedi més net, podeu anar borrant missatges de Log un cop ja vegueu que funciona bé.
     public void addPlayer(Player p){
 
         playerDAO.addPlayer(p).enqueue(new Callback<ResponseBody>() {

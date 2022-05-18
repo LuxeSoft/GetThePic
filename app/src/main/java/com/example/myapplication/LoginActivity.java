@@ -43,7 +43,10 @@ public class LoginActivity extends AppCompatActivity {
                     Log.d(TAG,"Login successful, token obtained.");
                     PreferencesProvider.providePreferences().edit().putString("token",
                             tokenResult.getResult()).commit();
+                    PreferencesProvider.providePreferences().edit().putString("username",
+                            loginViewModel.getEmailLiveData().getValue()).commit();
                     Log.d(TAG,"Login successful, add token to SharedPreferences.");
+
                     goTo();
                 }
                 else{

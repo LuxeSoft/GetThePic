@@ -15,6 +15,7 @@ import com.example.myapplication.MainActivity;
 import com.example.myapplication.databinding.ActivityLevelsBinding;
 import com.example.myapplication.models.Game;
 import com.example.myapplication.models.Level;
+import com.example.myapplication.utils.PreferencesProvider;
 import com.example.myapplication.viewModel.GameViewModel;
 
 public class GameActivity extends AppCompatActivity {
@@ -55,7 +56,8 @@ public class GameActivity extends AppCompatActivity {
 
         Game game  = new Game();
         viewModel.setGame(game);
-        viewModel.username.setValue("Paula");
+
+        viewModel.temporitzador();
 
         // @Jordi: Iniciem l'operació per obtenir el nivell
         Log.d(TAG, "data() -> loading the level...");

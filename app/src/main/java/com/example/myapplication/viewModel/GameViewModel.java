@@ -3,6 +3,7 @@ package com.example.myapplication.viewModel;
 import android.app.AlertDialog;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import android.content.DialogInterface;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -20,6 +21,7 @@ import com.example.myapplication.repositories.MockLevelRepository;
 import com.example.myapplication.utils.PreferencesProvider;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -67,6 +69,9 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> contador;
 
     public MutableLiveData<Boolean> faceUpCard;
+    public MutableLiveData<Boolean> faceUpCardLletra1;
+    public MutableLiveData<Boolean> faceUpCardLletra2;
+
 
 
 
@@ -89,8 +94,18 @@ public class GameViewModel extends ViewModel {
 
         this.contador.setValue("0");
 
-        this.faceUpCard = new MutableLiveData<>();
+        this.faceUpCard = new MutableLiveData<>(); //TODO: @Didac Tal com teniu ara, aquest Mutable us els controla tots, per tal de que nomes es giri la carta que apreteu, en necessiteu un per cada carta.
         this.faceUpCard.setValue(true);
+
+        //TODO: Testing @Didac Comentem la proposta dijous
+        this.faceUpCardLletra1 = new MutableLiveData<>();
+        this.faceUpCardLletra1.setValue(true);
+
+        //TODO: Testing @Didac Comentem la proposta dijous. En el XML també us he afegit canvis en la carta 1 i 2 per a que es mostrin quan es cliqui.
+        this.faceUpCardLletra2 = new MutableLiveData<>();
+        this.faceUpCardLletra2.setValue(true);
+
+        //TODO: Fins aqui @Didac
 
         this.username = new MutableLiveData<>();
         this.xp = new MutableLiveData<>();
@@ -99,14 +114,13 @@ public class GameViewModel extends ViewModel {
 
         int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
 
+        //TODO: @Didac en la part de login he guardat el nom que l'usuari entra per fer el login en el sharedpreferences. Aqui puc recuperar aquest nom.
+        //TODO: @Didac amb la següent linia podreu obtenir aquest nom des d'on vulgueu.
+        String currentUsername = PreferencesProvider.providePreferences().getString("username", "");
+        username.setValue(currentUsername.toUpperCase(Locale.ROOT));
+
         if(xp!=0){
             this.xp.setValue(String.valueOf(xp));
-
-            //TODO: ACTUALITZAR TEXTVIEW AMB VALOR DE L'USUARI ACTUAL, SEMBLANT A:
-
-            //PreferencesProvider.providePreferences().edit().putString("username", posar get de usuari).commit();
-            //String username = PreferencesProvider.providePreferences().getString("username", "-");
-            //this.username.setValue(username.toUpperCase());
         }
 
         // Init repos
@@ -164,7 +178,16 @@ public class GameViewModel extends ViewModel {
     }
 
     //TODO: POSAR TEMPORITZADOR 3 SEGONS. QUAN ACABA = GIRAR LLETRES
+    //TODO: @Didac, podeu aprofitar el pause que teniu en el splashScreen
     public void temporitzador(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                faceUpCard.setValue(false);
+                faceUpCardLletra1.setValue(false);
+                faceUpCardLletra2.setValue(false);
+            }
+        }, 4000);
 
     }
 
@@ -206,15 +229,44 @@ public class GameViewModel extends ViewModel {
     }
 
     public void onClickedAt(CardEnum c){
+        Log.d(TAG, c.name());
+        Log.d(TAG, "onClickedAt ->" + CardEnum.getMessageResource(c));
+        // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
+        String word = game.concatenarLletres(c.toString());
+        // @Jordi: Actualitzem el mutable per actualitzar la vista
+        this.currentWordMutableLiveData.setValue(word);
 
-        if(this.faceUpCard.getValue()) {
+        /*if(this.faceUpCard.getValue()) {
 
             Log.d(TAG, "onClickedAt ->" + CardEnum.getMessageResource(c));
             // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
             String word = game.concatenarLletres(c.toString());
             // @Jordi: Actualitzem el mutable per actualitzar la vista
             this.currentWordMutableLiveData.setValue(word);
-        }
+        } */
+    }
+
+    public void onClickedAtCard(CardEnum c, int id){
+        Log.d(TAG, "onClickedAtCard ->" + CardEnum.getMessageResource(c));
+        Log.d(TAG, "onClickedAtCard ->" + String.valueOf(id));
+        // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
+        String word = game.concatenarLletres(c.toString());
+        // @Jordi: Actualitzem el mutable per actualitzar la vista
+        this.currentWordMutableLiveData.setValue(word);
+
+        //TODO: @Didac segons el id d'on es cliqui, es mostrara o no
+        this.showCard(id);
+
+
+
+
+
+    }
+
+    private void showCard(int id) {
+        if (id==1) faceUpCardLletra1.setValue(true);
+        else if (id==2) faceUpCardLletra2.setValue(true);
+        else faceUpCard.setValue(true);
     }
 
     @BindingAdapter({"bind:imageUrl"})
@@ -223,4 +275,9 @@ public class GameViewModel extends ViewModel {
         Picasso.with(view.getContext()).load(imageUrl).into(view);
     }
 
+    private Enum CardIdEnum; {
+
+    }
+
 }
+

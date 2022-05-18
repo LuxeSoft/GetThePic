@@ -115,27 +115,27 @@
             android:id="@+id/l1"
             android:layout_width="68dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra1)}"
+            android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra1, 1)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra1 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra1) : R.drawable.dorso  : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra1 != null ? gameViewModel.faceUpCardLletra1 ? CardEnum.getCardResource(gameViewModel.lletra1) : R.drawable.dorso  : R.drawable.x}"/>
 
         <ImageView
             android:id="@+id/l2"
             android:layout_width="71dp"
             android:layout_height="117dp"
-            android:onClick="@{() -> gameViewModel.onClickedAt(gameViewModel.lletra2)}"
+            android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra2, 2)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.364"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.591"
-            app:imageResource="@{gameViewModel.lletra2 != null ? gameViewModel.faceUpCard ? CardEnum.getCardResource(gameViewModel.lletra2) : R.drawable.dorso  : R.drawable.x}"/>
+            app:imageResource="@{gameViewModel.lletra2 != null ? gameViewModel.faceUpCardLletra2 ? CardEnum.getCardResource(gameViewModel.lletra2) : R.drawable.dorso  : R.drawable.x}"/>
 
         <TextView
             android:id="@+id/textView5"
