@@ -5,11 +5,13 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.databinding.ActivityLevelsBinding;
@@ -118,6 +120,15 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
+
+    }
+
+    public void alertaError(){
+
+        Context context = getApplicationContext();
+
+        Toast toast = Toast.makeText(context, "No has encertat :(", Toast.LENGTH_SHORT);
+        toast.show();
 
     }
 

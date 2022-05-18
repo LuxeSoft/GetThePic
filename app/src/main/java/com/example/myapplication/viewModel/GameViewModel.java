@@ -12,6 +12,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.myapplication.views.GameActivity;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
 import com.example.myapplication.models.Level;
@@ -19,6 +20,7 @@ import com.example.myapplication.repositories.CardRepo;
 import com.example.myapplication.repositories.LevelRepository;
 import com.example.myapplication.repositories.MockLevelRepository;
 import com.example.myapplication.utils.PreferencesProvider;
+import com.example.myapplication.views.GameActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
@@ -33,6 +35,8 @@ public class GameViewModel extends ViewModel {
 
     // @Jordi: Game hauria de tenir un attribut que representes el nivell.
     private Game game;
+    private GameActivity gameActivity;
+
 
     public MutableLiveData<Level> levelMutableLiveData;
 
@@ -98,6 +102,8 @@ public class GameViewModel extends ViewModel {
         this.currentWordMutableLiveData = new MutableLiveData<>();
         this.isLevelSolved = new MutableLiveData<>();
         this.contador = new MutableLiveData<>();
+
+        gameActivity = new GameActivity();
 
         this.contador.setValue("0");
 
@@ -341,6 +347,9 @@ public class GameViewModel extends ViewModel {
             faceUpCardLletra8.setValue(false);
 
             temporitzadorObrir();
+
+            //TODO: MOSTRAR TOAST QUAN L'USUARI NO ENCERTA PARAULA
+            //gameActivity.alertaError();
 
 
         }
