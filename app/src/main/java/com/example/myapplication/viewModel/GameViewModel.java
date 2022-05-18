@@ -348,6 +348,9 @@ public class GameViewModel extends ViewModel {
 
             temporitzadorObrir();
 
+            //TODO: MOSTRAR TOAST QUAN L'USUARI NO ENCERTA PARAULA
+            //gameActivity.alertaError();
+
 
         }
     }
