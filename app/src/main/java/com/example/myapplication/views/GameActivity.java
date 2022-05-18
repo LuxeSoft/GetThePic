@@ -78,12 +78,13 @@ public class GameActivity extends AppCompatActivity {
             if (solved){
                 // Mostrareu el dialog i carregarem un nou nivell
                 Log.d(TAG, "Encertat");
+                missatgeResposta("Resposta correcta! :)");
                 startActivity(new Intent(GameActivity.this, GameActivity.class));
                 finish();
             } else {
                 // Mostrareu el dialog i si l'usuari vol continuar jugant reset el nivell
                 Log.d(TAG, "No encertat");
-                alertaError();
+                missatgeResposta("No has encertat :(");
                 viewModel.resetLevel();
             }
         });
@@ -128,11 +129,11 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    public void alertaError(){
+    public void missatgeResposta(String msj){
 
         Context context = getApplicationContext();
 
-        Toast toast = Toast.makeText(context, "No has encertat :(", Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(context, msj, Toast.LENGTH_SHORT);
         toast.show();
 
     }

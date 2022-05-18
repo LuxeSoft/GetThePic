@@ -252,7 +252,7 @@ public class GameViewModel extends ViewModel {
 
     }
 
-    public void comprovarParaula(){
+    public boolean comprovarParaula(){
 
         Level level = this.levelMutableLiveData.getValue();
         String word = this.game.getParaulaUsuari();
@@ -265,19 +265,7 @@ public class GameViewModel extends ViewModel {
         boolean solved = word.equalsIgnoreCase(expectedWord);
         this.isLevelSolved.setValue(solved);
 
-        if(solved){
-
-            int currentxp = Integer.parseInt(this.xp.getValue())+100;
-
-            Log.d("xp", String.valueOf(currentxp));
-
-            PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
-
-            //TODO: QUAN COMPLETA NIVELL, REFRESCAR PANTALA AMB SEGUENT NIVELL:
-            //Level level = this.levelRepository.getLevel(0);
-
-
-        }
+        return  solved;
     }
 
 
@@ -321,7 +309,42 @@ public class GameViewModel extends ViewModel {
 
     private void showCard(int id) {
 
-        if(game.getParaulaUsuari().length() < 6) {
+        if(game.getParaulaUsuari().length() == 5) {
+
+            if(comprovarParaula()){
+
+                int currentxp = Integer.parseInt(this.xp.getValue())+100;
+
+                Log.d("xp", String.valueOf(currentxp));
+
+                PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
+
+                //TODO: QUAN COMPLETA NIVELL, REFRESCAR PANTALA AMB SEGUENT NIVELL:
+                //Level level = this.levelRepository.getLevel(0);
+
+
+            }  else {
+
+                //TODO: MOSTRAR TOAST QUAN L'USUARI NO ENCERTA PARAULA
+                //gameActivity.alertaError();
+
+                game.setParaulaUsuari("");
+                this.currentWordMutableLiveData.setValue("");
+
+                faceUpCardLletra1.setValue(false);
+                faceUpCardLletra2.setValue(false);
+                faceUpCardLletra3.setValue(false);
+                faceUpCardLletra4.setValue(false);
+                faceUpCardLletra5.setValue(false);
+                faceUpCardLletra6.setValue(false);
+                faceUpCardLletra7.setValue(false);
+                faceUpCardLletra8.setValue(false);
+
+                temporitzadorObrir();
+
+            }
+
+        } else {
 
             if (id == 1) faceUpCardLletra1.setValue(true);
             else if (id == 2) faceUpCardLletra2.setValue(true);
@@ -332,26 +355,7 @@ public class GameViewModel extends ViewModel {
             else if (id == 7) faceUpCardLletra7.setValue(true);
             else if (id == 8) faceUpCardLletra8.setValue(true);
 
-            else faceUpCard.setValue(true);
-        } else {
-            game.setParaulaUsuari("");
-            this.currentWordMutableLiveData.setValue("");
-
-            faceUpCardLletra1.setValue(false);
-            faceUpCardLletra2.setValue(false);
-            faceUpCardLletra3.setValue(false);
-            faceUpCardLletra4.setValue(false);
-            faceUpCardLletra5.setValue(false);
-            faceUpCardLletra6.setValue(false);
-            faceUpCardLletra7.setValue(false);
-            faceUpCardLletra8.setValue(false);
-
-            temporitzadorObrir();
-
-            //TODO: MOSTRAR TOAST QUAN L'USUARI NO ENCERTA PARAULA
-            //gameActivity.alertaError();
-
-
+            faceUpCard.setValue(true);
         }
     }
 
@@ -367,4 +371,3 @@ public class GameViewModel extends ViewModel {
     }
 
 }
-
