@@ -41,6 +41,10 @@ public class MockLevelRepository implements LevelRepository{
     final String[] mockLevelSolutions ={"arbre","casa","lleo"};
 
 
+    public String getMockLevelSolutions(int num) {
+        return mockLevelSolutions[num];
+    }
+
     @Override
     public Level getLevel() {
 

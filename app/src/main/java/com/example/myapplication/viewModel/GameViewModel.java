@@ -341,7 +341,9 @@ public class GameViewModel extends ViewModel {
 
     private void showCard(int id) {
 
-        if(game.getParaulaUsuari().length() == 5) {
+        MockLevelRepository mockLevelRepository = new MockLevelRepository();
+
+        if(game.getParaulaUsuari().length() == mockLevelRepository.getMockLevelSolutions(numNivell).length()) {
 
             if(comprovarParaula()){
 
