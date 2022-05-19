@@ -56,6 +56,8 @@ public class GameActivity extends AppCompatActivity {
 
     private void data(){
 
+        Log.d("init data", "init data");
+
         Game game  = new Game();
         viewModel.setGame(game);
 
@@ -63,7 +65,8 @@ public class GameActivity extends AppCompatActivity {
 
         // @Jordi: Iniciem l'operació per obtenir el nivell
         Log.d(TAG, "data() -> loading the level...");
-        viewModel.getLevel(0);
+        int levelShared = PreferencesProvider.providePreferences().getInt("nivell",0);
+        viewModel.getLevel(levelShared);
 
         // @Jordi: Observem quan el nivell ha estat carregat
         viewModel.isLevelLoaded().observe(this, level -> {

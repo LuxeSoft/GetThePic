@@ -157,9 +157,6 @@ public class GameViewModel extends ViewModel {
         int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
 
 
-        Log.d("num", String.valueOf(numNivell));
-
-
         //TODO: @Didac en la part de login he guardat el nom que l'usuari entra per fer el login en el sharedpreferences. Aqui puc recuperar aquest nom.
         //TODO: @Didac amb la següent linia podreu obtenir aquest nom des d'on vulgueu.
         String currentUsername = PreferencesProvider.providePreferences().getString("username", "");
@@ -169,9 +166,7 @@ public class GameViewModel extends ViewModel {
             this.xp.setValue(String.valueOf(xp));
         }
 
-        if(!String.valueOf(PreferencesProvider.providePreferences().getInt("num", 0)).isEmpty()){
-           numNivell = PreferencesProvider.providePreferences().getInt("num", 0);
-        } else numNivell = 0;
+        numNivell = PreferencesProvider.providePreferences().getInt("nivell", 0);
 
         // Init repos
         cardRepo = new CardRepo();
@@ -356,15 +351,13 @@ public class GameViewModel extends ViewModel {
 
                 PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
 
-                numNivell = numNivell +1;
+                PreferencesProvider.providePreferences().edit().putInt("nivell", numNivell+1).commit();
 
-                PreferencesProvider.providePreferences().edit().putInt("num", numNivell).commit();
-
-                Log.d("nivell", String.valueOf(numNivell));
+                Log.d("nivell", String.valueOf(this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell))));
 
                 //TODO: QUAN COMPLETA NIVELL, REFRESCAR PANTALA AMB SEGUENT NIVELL:
-                //Level levelNew = this.levelRepository.getLevel(numNivell);
-                //updateLevel(levelNew);
+                Level levelNew = this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell));
+                updateLevel(levelNew);
 
 
 
