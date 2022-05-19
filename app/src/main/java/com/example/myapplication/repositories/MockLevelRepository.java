@@ -65,6 +65,7 @@ public class MockLevelRepository implements LevelRepository{
 
         // Instanciem el nivell a partir de les dades simulades
         Level selectedLevel = new Level();
+
         selectedLevel.setLetters( Arrays.asList(mockLevelLetters[levelPosition]));
         selectedLevel.setSolution(mockLevelSolutions[levelPosition]);
         selectedLevel.setImageUrl(mockLevelImages[levelPosition]);

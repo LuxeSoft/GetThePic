@@ -3,6 +3,7 @@ package com.example.myapplication.viewModel;
 import android.app.AlertDialog;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import android.content.DialogInterface;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.ImageView;
@@ -27,6 +28,8 @@ import com.squareup.picasso.Picasso;
 import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class GameViewModel extends ViewModel {
@@ -65,6 +68,8 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<CardEnum> lletra7;
     public MutableLiveData<CardEnum> lletra8;
 
+    int numNivell;
+
     public MutableLiveData<String> currentWordMutableLiveData;
     public MutableLiveData<Boolean> isLevelSolved;
 
@@ -101,11 +106,16 @@ public class GameViewModel extends ViewModel {
         this.levelMutableLiveData = new MutableLiveData<>();
         this.currentWordMutableLiveData = new MutableLiveData<>();
         this.isLevelSolved = new MutableLiveData<>();
+
+        this.numNivell = 0;
+
+
         this.contador = new MutableLiveData<>();
+
 
         gameActivity = new GameActivity();
 
-        this.contador.setValue("0");
+        this.contador.setValue("5");
 
         this.faceUpCard = new MutableLiveData<>(); //TODO: @Didac Tal com teniu ara, aquest Mutable us els controla tots, per tal de que nomes es giri la carta que apreteu, en necessiteu un per cada carta.
         this.faceUpCard.setValue(true);
@@ -146,6 +156,10 @@ public class GameViewModel extends ViewModel {
 
         int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
 
+
+        Log.d("num", String.valueOf(numNivell));
+
+
         //TODO: @Didac en la part de login he guardat el nom que l'usuari entra per fer el login en el sharedpreferences. Aqui puc recuperar aquest nom.
         //TODO: @Didac amb la següent linia podreu obtenir aquest nom des d'on vulgueu.
         String currentUsername = PreferencesProvider.providePreferences().getString("username", "");
@@ -154,6 +168,10 @@ public class GameViewModel extends ViewModel {
         if(xp!=0){
             this.xp.setValue(String.valueOf(xp));
         }
+
+        if(!String.valueOf(PreferencesProvider.providePreferences().getInt("num", 0)).isEmpty()){
+           numNivell = PreferencesProvider.providePreferences().getInt("num", 0);
+        } else numNivell = 0;
 
         // Init repos
         cardRepo = new CardRepo();
@@ -166,11 +184,18 @@ public class GameViewModel extends ViewModel {
         this.levelRepository = new MockLevelRepository();
     }
 
-    // Methods
+    public MutableLiveData<String> getContador() {
+        return contador;
+    }
 
-    public void getLevel(){
+    public void setContador(String contador) {
+        this.contador.setValue(contador);
+    }
+// Methods
+
+    public void getLevel(int num){
         // Get the level from the repo
-        Level level = this.levelRepository.getLevel(0);
+        Level level = this.levelRepository.getLevel(num);
         // Update the mutable to tell the view that the level is loaded.
         this.levelMutableLiveData.setValue(level);
     }
@@ -197,9 +222,6 @@ public class GameViewModel extends ViewModel {
 
         Log.d("currentUser",currentUser);
 
-        //consultar nom del player i posar a:
-        //PreferencesProvider.providePreferences().edit().putString("username", currentUser).commit();
-
 
 
     }
@@ -210,40 +232,55 @@ public class GameViewModel extends ViewModel {
         this.game = game;
     }
 
+
+    public void amagarCartes(boolean controlador){
+        faceUpCard.setValue(controlador);
+        faceUpCardLletra1.setValue(controlador);
+        faceUpCardLletra2.setValue(controlador);
+        faceUpCardLletra3.setValue(controlador);
+        faceUpCardLletra4.setValue(controlador);
+        faceUpCardLletra5.setValue(controlador);
+        faceUpCardLletra6.setValue(controlador);
+        faceUpCardLletra7.setValue(controlador);
+        faceUpCardLletra8.setValue(controlador);
+    }
     //TODO: POSAR TEMPORITZADOR 3 SEGONS. QUAN ACABA = GIRAR LLETRES
     //TODO: @Didac, podeu aprofitar el pause que teniu en el splashScreen
     public void temporitzador(){
+
+        temporitzadorMostrarSegons();
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                faceUpCard.setValue(false);
-                faceUpCardLletra1.setValue(false);
-                faceUpCardLletra2.setValue(false);
-                faceUpCardLletra3.setValue(false);
-                faceUpCardLletra4.setValue(false);
-                faceUpCardLletra5.setValue(false);
-                faceUpCardLletra6.setValue(false);
-                faceUpCardLletra7.setValue(false);
-                faceUpCardLletra8.setValue(false);
+                amagarCartes(false);
+
+
             }
         }, 4000);
-
+        //this.contador.setValue();
     }
+
+    public void temporitzadorMostrarSegons(){
+        CountDownTimer timer = new CountDownTimer(5000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                contador.setValue(String.valueOf(millisUntilFinished/1000));
+            }
+
+            @Override
+            public void onFinish() {
+                Log.d("temps", "acabat!!!");
+            }
+        }.start();
+    }
+
 
 
     public void temporitzadorObrir(){
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                faceUpCard.setValue(true);
-                faceUpCardLletra1.setValue(true);
-                faceUpCardLletra2.setValue(true);
-                faceUpCardLletra3.setValue(true);
-                faceUpCardLletra4.setValue(true);
-                faceUpCardLletra5.setValue(true);
-                faceUpCardLletra6.setValue(true);
-                faceUpCardLletra7.setValue(true);
-                faceUpCardLletra8.setValue(true);
+                amagarCartes(true);
 
                 temporitzador();
 
@@ -319,8 +356,18 @@ public class GameViewModel extends ViewModel {
 
                 PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
 
+                numNivell = numNivell +1;
+
+                PreferencesProvider.providePreferences().edit().putInt("num", numNivell).commit();
+
+                Log.d("nivell", String.valueOf(numNivell));
+
                 //TODO: QUAN COMPLETA NIVELL, REFRESCAR PANTALA AMB SEGUENT NIVELL:
-                //Level level = this.levelRepository.getLevel(0);
+                //Level levelNew = this.levelRepository.getLevel(numNivell);
+                //updateLevel(levelNew);
+
+
+
 
 
             }  else {

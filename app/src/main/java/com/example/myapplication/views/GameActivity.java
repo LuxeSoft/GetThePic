@@ -63,7 +63,7 @@ public class GameActivity extends AppCompatActivity {
 
         // @Jordi: Iniciem l'operació per obtenir el nivell
         Log.d(TAG, "data() -> loading the level...");
-        viewModel.getLevel();
+        viewModel.getLevel(0);
 
         // @Jordi: Observem quan el nivell ha estat carregat
         viewModel.isLevelLoaded().observe(this, level -> {
