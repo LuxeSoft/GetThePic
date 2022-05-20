@@ -30,6 +30,9 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //TODO COMPROVAR MODE JOC
+
         super.onCreate(savedInstanceState);
 
         // @Jordi: Bind the xml with the activity (ActivityLevelsBinding is auto generated).

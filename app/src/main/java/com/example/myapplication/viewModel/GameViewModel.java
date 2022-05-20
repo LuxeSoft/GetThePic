@@ -53,7 +53,7 @@ public class GameViewModel extends ViewModel {
     //private GameRepo gameRepo;
     //private Nivell nivell;
     //public MutableLiveData<Nivell> nivell;
-
+    private boolean modeJoc;
 
     // Control UX and UI
     //[levelImageMutable] -> urlImg
@@ -186,7 +186,10 @@ public class GameViewModel extends ViewModel {
     public void setContador(String contador) {
         this.contador.setValue(contador);
     }
-// Methods
+
+    //TODO SETTER VARIABLE MODEJOC
+
+    // Methods
 
     public void getLevel(int num){
         // Get the level from the repo
@@ -255,6 +258,11 @@ public class GameViewModel extends ViewModel {
             }
         }, 4000);
         //this.contador.setValue();
+    }
+
+    //TODO FER CONTADOR CONTRARELOK
+    public void temporitzadorContrareloj(){
+        //
     }
 
     public void temporitzadorMostrarSegons(){
