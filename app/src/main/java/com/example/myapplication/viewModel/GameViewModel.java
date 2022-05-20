@@ -202,6 +202,7 @@ public class GameViewModel extends ViewModel {
     public void updateLevel(Level level){
 
         Log.d(TAG, "updatingLevel... setting values to mutables.");
+
         this.levelImageMutable.setValue(level.getImageUrl());
 
         this.lletra1.setValue(level.getLetters().get(0));
