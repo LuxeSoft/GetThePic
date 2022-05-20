@@ -11,6 +11,8 @@ import static com.example.myapplication.models.CardEnum.n;
 import static com.example.myapplication.models.CardEnum.o;
 import static com.example.myapplication.models.CardEnum.r;
 import static com.example.myapplication.models.CardEnum.s;
+import static com.example.myapplication.models.CardEnum.t;
+import static com.example.myapplication.models.CardEnum.w;
 import static com.example.myapplication.models.CardEnum.x;
 
 import com.example.myapplication.models.CardEnum;
@@ -30,16 +32,18 @@ public class MockLevelRepository implements LevelRepository{
     final String[] mockLevelImages = {
             "https://image.shutterstock.com/image-illustration/treejpg-eps-vector-version-id-260nw-122687560.jpg",
             "https://cdn.pixabay.com/photo/2019/10/13/20/07/house-4547140_1280.jpg",
-            "https://dictionary.cambridge.org/es/images/thumb/lion_noun_002_21358.jpg?version=5.0.239"
+            "https://dictionary.cambridge.org/es/images/thumb/lion_noun_002_21358.jpg?version=5.0.239",
+            "https://img.freepik.com/vector-gratis/icono-coche-rojo-vista-lateral-auto-dibujos-animados-lindo-aislado-sobre-fondo-blanco_176411-3164.jpg"
     };
     // Lletres que es fan servir per solucionar el nivell
     final CardEnum[][] mockLevelLetters = {
             {a,x,e,b,r,m,n,r},
             {a,c,e,b,r,s,n,a},
-            {a,l,e,b,r,l,n,o}
+            {a,l,e,b,r,l,n,o},
+            {c,e,o,t,r,x,w,e}
     };
     // Solució esperada de cada nivell
-    final String[] mockLevelSolutions ={"arbre","casa","lleo"};
+    final String[] mockLevelSolutions ={"arbre","casa","lleo","cotxe"};
 
 
     public String getMockLevelSolutions(int num) {
