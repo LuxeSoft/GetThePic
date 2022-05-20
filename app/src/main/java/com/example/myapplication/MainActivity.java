@@ -16,10 +16,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    Game game = new Game();
-    private CardRepo cardRepo;
-    Player p1;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,28 +27,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this,AboutPage.class));
-                /*Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();*/
-            }
-        });
-
-        final Button button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, GameActivity.class));
             }
         });
 
     }
 
-    public void alerta(View e){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Alert exemple");
-        builder.setMessage("Hello world!");
-        builder.setPositiveButton("OK",null);
-        builder.create();
-        builder.show();
 
+    public void obrir1rModo(View view){
+        startActivity(new Intent(MainActivity.this, GameActivity.class));
+    }
+
+    public void obrir2nModo(View view){
+        //startActivity(new Intent(MainActivity.this, GameActivity.class));
     }
 
 
