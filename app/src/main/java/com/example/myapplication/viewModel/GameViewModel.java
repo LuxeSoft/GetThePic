@@ -326,16 +326,106 @@ public class GameViewModel extends ViewModel {
     }
 
     public void onClickedAtCard(CardEnum c, int id){
-        Log.d(TAG, "onClickedAtCard ->" + CardEnum.getMessageResource(c));
-        Log.d(TAG, "onClickedAtCard ->" + String.valueOf(id));
-        // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
-        String word = game.concatenarLletres(c.toString());
-        // @Jordi: Actualitzem el mutable per actualitzar la vista
-        this.currentWordMutableLiveData.setValue(word);
 
-        //TODO: @Didac segons el id d'on es cliqui, es mostrara o no
-        this.showCard(id);
+        if(!estaOberta(id)){
 
+            Log.d(TAG, "onClickedAtCard ->" + CardEnum.getMessageResource(c));
+            Log.d(TAG, "onClickedAtCard ->" + String.valueOf(id));
+            // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
+            String word = game.concatenarLletres(c.toString());
+            // @Jordi: Actualitzem el mutable per actualitzar la vista
+            this.currentWordMutableLiveData.setValue(word);
+
+            //TODO: @Didac segons el id d'on es cliqui, es mostrara o no
+            this.showCard(id);
+        }
+
+    }
+
+    private boolean estaOberta(int id){
+
+        boolean controlador = false;
+
+        switch (id){
+            case 1:
+
+                if(faceUpCardLletra1.getValue() == true){
+                    controlador = true;
+                } else controlador = false;
+
+                break;
+
+            case 2:
+
+
+                if(faceUpCardLletra2.getValue() == true){
+                    controlador = true;
+                } else controlador = false;
+                break;
+
+            case 3:
+
+
+                if(faceUpCardLletra3.getValue() == true){
+                    controlador = true;
+
+                } else controlador = false;
+
+                break;
+
+            case 4:
+
+
+                if(faceUpCardLletra4.getValue() == true){
+                    controlador = true;
+
+                } else controlador = false;
+
+                break;
+
+            case 5:
+
+
+                if(faceUpCardLletra5.getValue() == true){
+                    controlador = true;
+
+                } else controlador = false;
+
+                break;
+
+            case 6:
+
+
+                if(faceUpCardLletra6.getValue() == true){
+                    controlador = true;
+
+                } else controlador = false;
+
+                break;
+
+            case 7:
+
+
+                if(faceUpCardLletra7.getValue() == true){
+                    controlador = true;
+
+                } else controlador = false;
+
+                break;
+
+            case 8:
+
+
+                if(faceUpCardLletra8.getValue() == true){
+                    controlador = true;
+
+                } else controlador = false;
+
+                break;
+
+        }
+
+        return controlador;
 
     }
 

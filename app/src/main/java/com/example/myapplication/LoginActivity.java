@@ -33,7 +33,11 @@ public class LoginActivity extends AppCompatActivity {
         loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         initDataBinding();
         //loginViewModel = new LoginViewModel();
-        goTo();
+
+        //COMENTAR = LOGIN
+        //NO COMENTAR = NO LOGIN
+
+        //goTo();
 
         loginViewModel.isUserLogged().observe(this, new Observer<Result<String>>() {
             @Override

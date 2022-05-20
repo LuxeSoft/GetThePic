@@ -24,17 +24,18 @@
         android:layout_height="195dp"
         android:layout_gravity="center_horizontal"
         android:adjustViewBounds="true"
-        android:src="@drawable/signup"
         android:contentDescription="No logo description"
         android:scaleType="centerInside"
+        android:src="@drawable/signup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.242"
+        app:layout_constraintVertical_bias="0.274"
         tools:ignore="ImageContrastCheck"
         tools:src="@drawable/signup" />
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
@@ -53,6 +54,48 @@
         />
 
     <EditText
+        android:id="@+id/correuedittext"
+        android:layout_width="339dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="escriure email..."
+        android:text="@={singInViewModel.correu}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.568" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="367dp"
+        android:layout_height="56dp"
+        android:onClick="@{() -> singInViewModel.singin()}"
+        android:text="Endevant! :)"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.911" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="339dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:hint="escriure contrassenya..."
+        android:inputType="textPersonName"
+        android:text="@={singInViewModel.password}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.757" />
+
+    <EditText
         android:id="@+id/nom"
         android:layout_width="336dp"
         android:layout_height="45dp"
@@ -62,50 +105,10 @@
         android:text="@={singInViewModel.name}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.612" />
-
-    <EditText
-        android:id="@+id/correuedittext"
-        android:layout_width="339dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="escriure email..."
-        android:text="@={singInViewModel.correu}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.52" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="346dp"
-        android:layout_height="62dp"
-        android:onClick="@{() -> singInViewModel.singin()}"
-        android:text="Endevant! :)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.862" />
-
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="339dp"
-        android:layout_height="35dp"
-        android:ems="10"
-        android:hint="escriure contrassenya..."
-        android:inputType="textPersonName"
-        android:text="@={singInViewModel.password}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.527"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.709" />
+        app:layout_constraintVertical_bias="0.66" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
