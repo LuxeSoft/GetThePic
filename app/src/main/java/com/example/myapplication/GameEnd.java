@@ -19,4 +19,12 @@ public class GameEnd extends AppCompatActivity {
     public void obrirMenuPrincipal(View view){
         startActivity(new Intent(GameEnd.this, MainActivity.class));
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

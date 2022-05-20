@@ -174,6 +174,13 @@ public class GameActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+     goTo();
+     finish();
+    }
+
+
 
 
 }
