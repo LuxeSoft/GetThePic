@@ -113,16 +113,16 @@
 
         <ImageView
             android:id="@+id/l6"
-            android:layout_width="68dp"
-            android:layout_height="117dp"
+            android:layout_width="72dp"
+            android:layout_height="119dp"
             android:onClick="@{() -> gameViewModel.onClickedAtCard(gameViewModel.lletra6, 6)}"
             app:imageResource="@{gameViewModel.lletra6 != null ? gameViewModel.faceUpCardLletra6 ? CardEnum.getCardResource(gameViewModel.lletra6) : R.drawable.dorso  : R.drawable.x}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.37"
+            app:layout_constraintHorizontal_bias="0.362"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imgParaula"
-            app:layout_constraintVertical_bias="0.931" />
+            app:layout_constraintVertical_bias="0.925" />
 
         <TextView
             android:id="@+id/paraulaEscrita"
@@ -130,6 +130,7 @@
             android:layout_height="61dp"
             android:hint="escriure paraula..."
             android:text='@{gameViewModel.currentWordMutableLiveData ?? ""}'
+            android:textAlignment="gravity"
             android:textColor="@color/black"
             android:textSize="48sp"
             android:textStyle="bold"
@@ -138,14 +139,14 @@
             app:layout_constraintHorizontal_bias="0.316"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imgParaula"
-            app:layout_constraintVertical_bias="0.472" />
+            app:layout_constraintVertical_bias="0.429" />
 
         <TextView
             android:id="@+id/ratlles"
             android:layout_width="240dp"
             android:layout_height="86dp"
-            android:text='@{ gameViewModel.levelMutableLiveData.maskSolution ?? "_ _ _ _ _"}'
-            android:textAlignment="center"
+            android:text='@{ gameViewModel.levelMutableLiveData.maskSolution ?? "_   _   _   _   _"}'
+            android:textAlignment="gravity"
             android:textColor="#000000"
             android:textSize="48sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -176,10 +177,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.257"
+            app:layout_constraintHorizontal_bias="0.284"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.036" />
+            app:layout_constraintVertical_bias="0.022" />
 
         <TextView
             android:id="@+id/xp_tv"
@@ -190,10 +191,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.659"
+            app:layout_constraintHorizontal_bias="0.591"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.036" />
+            app:layout_constraintVertical_bias="0.022" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -202,11 +203,11 @@
             android:onClick="pause"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.956"
+            app:layout_constraintHorizontal_bias="0.986"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
-            app:srcCompat="@drawable/pausar" />
+            app:layout_constraintVertical_bias="0.187"
+            app:srcCompat="@drawable/pause" />
 
         <TextView
             android:id="@+id/contador"
@@ -214,14 +215,14 @@
             android:layout_height="wrap_content"
             android:text='@={gameViewModel.contador}'
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/xp_tv"
-            app:layout_constraintHorizontal_bias="0.682"
+            app:layout_constraintHorizontal_bias="0.802"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.406" />
+            app:layout_constraintVertical_bias="0.423" />
 
         <TextView
             android:id="@+id/textView10"
@@ -231,10 +232,10 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.773"
+            app:layout_constraintHorizontal_bias="0.674"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.036" />
+            app:layout_constraintVertical_bias="0.022" />
 
         <ImageView
             android:id="@+id/imageView13"
@@ -245,8 +246,21 @@
             app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.055"
+            app:layout_constraintVertical_bias="0.074"
             app:srcCompat="@drawable/marco" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temps restant:"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.191"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.423" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

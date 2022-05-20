@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toolbar;
 
 public class AboutPage extends AppCompatActivity {
@@ -18,12 +20,11 @@ public class AboutPage extends AppCompatActivity {
         setContentView(R.layout.about);
         ActionBar actionBar =  getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setTitle("Sobre nosaltres..");
+
+        TextView webtv = (TextView) findViewById(R.id.webtv);
+
+        webtv.setText("https://luxesoft.online");
+        Linkify.addLinks(webtv, Linkify.WEB_URLS);
     }
 
-    public void obrirWeb(View e){
-        Uri uri = Uri.parse("https://luxesoft.online");
-        Intent intent =  new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
-    }
 }
