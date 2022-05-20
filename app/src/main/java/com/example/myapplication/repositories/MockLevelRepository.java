@@ -23,6 +23,7 @@ import java.util.Random;
 public class MockLevelRepository implements LevelRepository{
 
 
+
     // @Jordi Simulem que tenim una base de dades de nivells
 
     // Url de les imatges de cada nivell
@@ -33,7 +34,7 @@ public class MockLevelRepository implements LevelRepository{
     };
     // Lletres que es fan servir per solucionar el nivell
     final CardEnum[][] mockLevelLetters = {
-            {a,x,e,b,r,m,n,ct},
+            {a,x,e,b,r,m,n,r},
             {a,c,e,b,r,s,n,a},
             {a,l,e,b,r,l,n,o}
     };
@@ -52,6 +53,8 @@ public class MockLevelRepository implements LevelRepository{
         Random rand=new Random();
         int levelPosition = rand.nextInt(mockLevelImages.length);
 
+
+
         // Instanciem el nivell a partir de les dades simulades
         Level selectedLevel = new Level();
         selectedLevel.setLetters( Arrays.asList(mockLevelLetters[levelPosition]));
@@ -65,16 +68,22 @@ public class MockLevelRepository implements LevelRepository{
     @Override
     public Level getLevel(int levelPosition) {
 
-        // Generem un nombre aleatori per seleccionar el nivell
-
-        // Instanciem el nivell a partir de les dades simulades
         Level selectedLevel = new Level();
 
-        selectedLevel.setLetters( Arrays.asList(mockLevelLetters[levelPosition]));
-        selectedLevel.setSolution(mockLevelSolutions[levelPosition]);
-        selectedLevel.setImageUrl(mockLevelImages[levelPosition]);
 
-        // Retornem la instancia del nivell generat
+        if(levelPosition < mockLevelSolutions.length){
+
+            // Generem un nombre aleatori per seleccionar el nivell
+
+            // Instanciem el nivell a partir de les dades simulades
+
+            selectedLevel.setLetters(Arrays.asList(mockLevelLetters[levelPosition]));
+            selectedLevel.setSolution(mockLevelSolutions[levelPosition]);
+            selectedLevel.setImageUrl(mockLevelImages[levelPosition]);
+
+            // Retornem la instancia del nivell generat
+        }
         return selectedLevel;
+
     }
 }

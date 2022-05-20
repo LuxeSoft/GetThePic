@@ -3,6 +3,7 @@ package com.example.myapplication.viewModel;
 import android.app.AlertDialog;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
@@ -13,6 +14,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.myapplication.MainActivity;
 import com.example.myapplication.views.GameActivity;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
@@ -87,8 +89,6 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<Boolean> faceUpCardLletra6;
     public MutableLiveData<Boolean> faceUpCardLletra7;
     public MutableLiveData<Boolean> faceUpCardLletra8;
-
-
 
 
     // Constructor
@@ -315,15 +315,6 @@ public class GameViewModel extends ViewModel {
         String word = game.concatenarLletres(c.toString());
         // @Jordi: Actualitzem el mutable per actualitzar la vista
         this.currentWordMutableLiveData.setValue(word);
-
-        /*if(this.faceUpCard.getValue()) {
-
-            Log.d(TAG, "onClickedAt ->" + CardEnum.getMessageResource(c));
-            // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
-            String word = game.concatenarLletres(c.toString());
-            // @Jordi: Actualitzem el mutable per actualitzar la vista
-            this.currentWordMutableLiveData.setValue(word);
-        } */
     }
 
     public void onClickedAtCard(CardEnum c, int id){
@@ -448,18 +439,7 @@ public class GameViewModel extends ViewModel {
 
                 Log.d("nivell", String.valueOf(this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell))));
 
-                //TODO: QUAN COMPLETA NIVELL, REFRESCAR PANTALA AMB SEGUENT NIVELL:
-                Level levelNew = this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell));
-                updateLevel(levelNew);
-
-
-
-
-
             }  else {
-
-                //TODO: MOSTRAR TOAST QUAN L'USUARI NO ENCERTA PARAULA
-                //gameActivity.alertaError();
 
                 game.setParaulaUsuari("");
                 this.currentWordMutableLiveData.setValue("");
@@ -492,15 +472,24 @@ public class GameViewModel extends ViewModel {
         }
     }
 
+
+    public boolean hiHaMesNivells(){
+
+        Level levelNew = this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell));
+
+        Log.d("LEVELS", String.valueOf(levelNew));
+
+        Log.d("mes nivells", String.valueOf(!levelNew.getLetters().isEmpty()));
+
+        return !levelNew.getLetters().isEmpty();
+
+    }
+
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
         // Picasso.with(view.getContext()).setLoggingEnabled(true);
         Picasso.with(view.getContext()).load(imageUrl).into(view);
     }
 
-    private Enum CardIdEnum; {
-
-
-    }
 
 }

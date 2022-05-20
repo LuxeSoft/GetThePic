@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.myapplication.GameEnd;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.databinding.ActivityLevelsBinding;
 import com.example.myapplication.models.Game;
@@ -71,7 +72,12 @@ public class GameActivity extends AppCompatActivity {
         // @Jordi: Observem quan el nivell ha estat carregat
         viewModel.isLevelLoaded().observe(this, level -> {
             Log.d(TAG, "data() -> level is loaded -> " + level.toString());
-            viewModel.updateLevel(level);
+
+            if(viewModel.hiHaMesNivells()){
+                viewModel.updateLevel(level);
+            } else {
+                showEndPage();
+            }
         });
 
 
@@ -82,8 +88,20 @@ public class GameActivity extends AppCompatActivity {
                 // Mostrareu el dialog i carregarem un nou nivell
                 Log.d(TAG, "Encertat");
                 missatgeResposta("Resposta correcta! :)");
-                startActivity(new Intent(GameActivity.this, GameActivity.class));
-                finish();
+
+                if(viewModel.hiHaMesNivells()){
+
+                    Log.d("hihames nivells", "hi ha mes nivells");
+
+                    startActivity(new Intent(GameActivity.this, GameActivity.class));
+
+                    finish();
+
+                } else{
+                    Log.d("no nivells", "no nivellss nivells");
+
+                    showEndPage();
+                }
             } else {
                 // Mostrareu el dialog i si l'usuari vol continuar jugant reset el nivell
                 Log.d(TAG, "No encertat");
@@ -148,6 +166,11 @@ public class GameActivity extends AppCompatActivity {
 
     public void reStart(){
         Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
+
+    public void showEndPage(){
+        Intent intent = new Intent(this, GameEnd.class);
         startActivity(intent);
     }
 
