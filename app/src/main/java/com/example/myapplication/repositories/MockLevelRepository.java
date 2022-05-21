@@ -4,14 +4,24 @@ import static com.example.myapplication.models.CardEnum.a;
 import static com.example.myapplication.models.CardEnum.b;
 import static com.example.myapplication.models.CardEnum.c;
 import static com.example.myapplication.models.CardEnum.ct;
+import static com.example.myapplication.models.CardEnum.d;
 import static com.example.myapplication.models.CardEnum.e;
+import static com.example.myapplication.models.CardEnum.f;
+import static com.example.myapplication.models.CardEnum.g;
+import static com.example.myapplication.models.CardEnum.h;
+import static com.example.myapplication.models.CardEnum.i;
+import static com.example.myapplication.models.CardEnum.j;
+import static com.example.myapplication.models.CardEnum.k;
 import static com.example.myapplication.models.CardEnum.l;
 import static com.example.myapplication.models.CardEnum.m;
 import static com.example.myapplication.models.CardEnum.n;
 import static com.example.myapplication.models.CardEnum.o;
+import static com.example.myapplication.models.CardEnum.p;
+import static com.example.myapplication.models.CardEnum.q;
 import static com.example.myapplication.models.CardEnum.r;
 import static com.example.myapplication.models.CardEnum.s;
 import static com.example.myapplication.models.CardEnum.t;
+import static com.example.myapplication.models.CardEnum.v;
 import static com.example.myapplication.models.CardEnum.w;
 import static com.example.myapplication.models.CardEnum.x;
 
@@ -30,20 +40,36 @@ public class MockLevelRepository implements LevelRepository{
 
     // Url de les imatges de cada nivell
     final String[] mockLevelImages = {
+            "https://cdn.pixabay.com/photo/2014/12/22/00/05/bread-576777_960_720.png",
+            "https://cdn.pixabay.com/photo/2014/03/14/20/07/painting-287403_960_720.jpg",
+            "https://cdn.pixabay.com/photo/2014/04/03/09/59/airplane-309503_960_720.png",
             "https://image.shutterstock.com/image-illustration/treejpg-eps-vector-version-id-260nw-122687560.jpg",
             "https://cdn.pixabay.com/photo/2019/10/13/20/07/house-4547140_1280.jpg",
             "https://dictionary.cambridge.org/es/images/thumb/lion_noun_002_21358.jpg?version=5.0.239",
-            "https://img.freepik.com/vector-gratis/icono-coche-rojo-vista-lateral-auto-dibujos-animados-lindo-aislado-sobre-fondo-blanco_176411-3164.jpg"
+            "https://img.freepik.com/vector-gratis/icono-coche-rojo-vista-lateral-auto-dibujos-animados-lindo-aislado-sobre-fondo-blanco_176411-3164.jpg",
+            "https://cdn.pixabay.com/photo/2016/05/26/14/39/parrot-1417286_960_720.png",
+            "https://cdn.pixabay.com/photo/2013/07/13/13/34/football-161132_960_720.png",
+            "https://cdn.pixabay.com/photo/2014/07/10/06/51/phone-388838_960_720.png",
+            "https://img.freepik.com/free-photo/peach-table_144627-17512.jpg?t=st=1653148737~exp=1653149337~hmac=7e2746b46281dc1cf3fcaa28974e33d9616ac35dad46b5b3a0b468a46bfeaa82&w=740",
+            "https://cdn.pixabay.com/photo/2013/07/12/15/34/shirt-150087_960_720.png"
     };
     // Lletres que es fan servir per solucionar el nivell
     final CardEnum[][] mockLevelLetters = {
+            {n,e,a,b,p,r,d,c},
+            {r,p,s,h,j,g,r,o},
+            {i,n,l,a,o,k,v,q},
             {a,x,e,b,r,m,n,r},
             {a,c,e,b,r,s,n,a},
             {a,l,e,b,r,l,n,o},
-            {c,e,o,t,r,x,w,e}
+            {c,e,o,t,r,x,w,e},
+            {i,r,l,b,o,o,l,c},
+            {l,t,f,a,i,e,p,o},
+            {f,e,t,l,n,l,o,e},
+            {e,s,c,p,s,r,e,m},
+            {t,i,a,s,e,m,c,a}
     };
     // Solució esperada de cada nivell
-    final String[] mockLevelSolutions ={"arbre","casa","lleo","cotxe"};
+    final String[] mockLevelSolutions ={"pa","gos","avio","arbre","casa","lleo","cotxe","lloro","pilota","telefon","pressec","camiseta"};
 
 
     public String getMockLevelSolutions(int num) {
