@@ -16,9 +16,11 @@ public class GameEnd extends AppCompatActivity {
         setContentView(R.layout.activity_game_end);
     }
 
+
     public void obrirMenuPrincipal(View view){
         startActivity(new Intent(GameEnd.this, MainActivity.class));
     }
+
 
     @Override
     public void onBackPressed() {
