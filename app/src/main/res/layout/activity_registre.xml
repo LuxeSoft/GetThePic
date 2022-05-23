@@ -100,7 +100,7 @@
         android:layout_width="336dp"
         android:layout_height="45dp"
         android:ems="10"
-        android:hint="esciure nom..."
+        android:hint="esciure username..."
         android:inputType="textPersonName"
         android:text="@={singInViewModel.name}"
         app:layout_constraintBottom_toBottomOf="parent"

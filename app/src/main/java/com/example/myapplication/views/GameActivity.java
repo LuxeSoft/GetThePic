@@ -65,6 +65,10 @@ public class GameActivity extends AppCompatActivity {
         Game game  = new Game();
         viewModel.setGame(game);
 
+        Log.d("mode",PreferencesProvider.providePreferences().getString("mode", ""));
+
+        viewModel.setMode(PreferencesProvider.providePreferences().getString("mode",""));
+
         viewModel.temporitzador();
 
         // @Jordi: Iniciem l'operació per obtenir el nivell
@@ -173,6 +177,8 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void showEndPage(){
+        //TODO PASSAR XP A GAMEEND CLASSE
+
         Intent intent = new Intent(this, GameEnd.class);
         startActivity(intent);
     }

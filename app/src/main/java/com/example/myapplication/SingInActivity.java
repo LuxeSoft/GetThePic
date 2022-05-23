@@ -55,7 +55,7 @@ public class SingInActivity extends AppCompatActivity {
                     goTo();
 
                 } else{
-                    CharSequence text = "ALGUNA COSA NO HA ANAT BE :(";
+                    CharSequence text = "Aquest username ja existeix :(";
                     Toast toast = Toast.makeText(context, text, duration);
                     toast.show();
                 }

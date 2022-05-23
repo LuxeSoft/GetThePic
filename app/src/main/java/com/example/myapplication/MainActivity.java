@@ -3,14 +3,17 @@ package com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.ShareActionProvider;
 
 import com.example.myapplication.models.Game;
 import com.example.myapplication.models.Player;
 import com.example.myapplication.repositories.CardRepo;
+import com.example.myapplication.utils.PreferencesProvider;
 import com.example.myapplication.views.GameActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -34,11 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void obrir1rModo(View view){
-        startActivity(new Intent(MainActivity.this, GameActivity.class));
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        PreferencesProvider.providePreferences().edit().putString("mode", "explorar").commit();
+
+        startActivity(intent);
     }
 
     public void obrir2nModo(View view){
-        //startActivity(new Intent(MainActivity.this, GameActivity.class));
+        Intent intent = new Intent(MainActivity.this, GameActivity.class);
+        PreferencesProvider.providePreferences().edit().putString("mode", "contrarellotge").commit();
+        startActivity(intent);
     }
 
 

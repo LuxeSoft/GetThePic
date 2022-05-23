@@ -50,6 +50,7 @@ public class GameViewModel extends ViewModel {
 
     private CardRepo cardRepo;
     private LevelRepository levelRepository;
+    private int mode;
     //private GameRepo gameRepo;
     //private Nivell nivell;
     //public MutableLiveData<Nivell> nivell;
@@ -70,6 +71,8 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<CardEnum> lletra7;
     public MutableLiveData<CardEnum> lletra8;
 
+    public MutableLiveData<String> tempsContrarellotge;
+
     int numNivell;
 
     public MutableLiveData<String> currentWordMutableLiveData;
@@ -79,6 +82,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> xp;
 
     public MutableLiveData<String> contador;
+    public int eleccioNivell = 0;
 
     public MutableLiveData<Boolean> faceUpCard;
     public MutableLiveData<Boolean> faceUpCardLletra1;
@@ -107,7 +111,13 @@ public class GameViewModel extends ViewModel {
         this.currentWordMutableLiveData = new MutableLiveData<>();
         this.isLevelSolved = new MutableLiveData<>();
 
+
+        this.mode = 0;
+
         this.numNivell = 0;
+
+        this.tempsContrarellotge = new MutableLiveData<>();
+        this.tempsContrarellotge.setValue("");
 
 
         this.contador = new MutableLiveData<>();
@@ -154,6 +164,7 @@ public class GameViewModel extends ViewModel {
 
         this.xp.setValue(String.valueOf(0));
 
+
         int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
 
 
@@ -179,6 +190,22 @@ public class GameViewModel extends ViewModel {
         this.levelRepository = new MockLevelRepository();
     }
 
+    public void setMode(String mode){
+
+
+        switch (mode) {
+            case "explorar":
+                   this.eleccioNivell = 1;
+                break;
+
+            case "contrarellotge":
+                    this.eleccioNivell = 2;
+                break;
+        }
+
+
+
+    }
     public MutableLiveData<String> getContador() {
         return contador;
     }
@@ -193,13 +220,52 @@ public class GameViewModel extends ViewModel {
 
     public void getLevel(int num){
         // Get the level from the repo
-        Level level = this.levelRepository.getLevel(num);
-        // Update the mutable to tell the view that the level is loaded.
-        this.levelMutableLiveData.setValue(level);
+
+        switch (eleccioNivell){
+
+            case 1:
+
+                Level level = this.levelRepository.getLevel(num);
+                this.levelMutableLiveData.setValue(level);
+
+                break;
+
+            case 2:
+                Level level2 = this.levelRepository.getLevel();
+                this.levelMutableLiveData.setValue(level2);
+                break;
+        }
+
+
     }
 
     public LiveData<Level> isLevelLoaded(){
+
+        if(this.eleccioNivell == 2){
+            temporitzadorContrarellotge();
+        }
+
         return this.levelMutableLiveData;
+
+    }
+
+    public void temporitzadorContrarellotge(){
+
+        //Log.d("temps", PreferencesProvider.providePreferences().getInt("tempsContrarellotge",30000));
+
+        //Integer.parseInt(tempsContrarellotge.getValue()
+
+        CountDownTimer timer = new CountDownTimer(30000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                tempsContrarellotge.setValue(String.valueOf(millisUntilFinished/1000));
+            }
+
+            @Override
+            public void onFinish() {
+                Log.d("temps", "acabat!!!");
+            }
+        }.start();
+
     }
 
     public void updateLevel(Level level){
@@ -260,10 +326,6 @@ public class GameViewModel extends ViewModel {
         //this.contador.setValue();
     }
 
-    //TODO FER CONTADOR CONTRARELOK
-    public void temporitzadorContrareloj(){
-        //
-    }
 
     public void temporitzadorMostrarSegons(){
         CountDownTimer timer = new CountDownTimer(5000, 1000) {
@@ -442,6 +504,8 @@ public class GameViewModel extends ViewModel {
                 Log.d("xp", String.valueOf(currentxp));
 
                 PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
+
+                //PreferencesProvider.providePreferences().edit().putInt("tempsContrarellotge", Integer.parseInt(tempsContrarellotge.getValue())).commit();
 
                 PreferencesProvider.providePreferences().edit().putInt("nivell", numNivell+1).commit();
 
