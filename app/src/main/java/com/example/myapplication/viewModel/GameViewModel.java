@@ -211,7 +211,7 @@ public class GameViewModel extends ViewModel {
     }
 
     public int getMode(){
-        return this.mode;
+        return this.eleccioNivell;
     }
     public MutableLiveData<String> getContador() {
         return contador;
@@ -505,7 +505,7 @@ public class GameViewModel extends ViewModel {
 
         MockLevelRepository mockLevelRepository = new MockLevelRepository();
 
-        if(this.mode == 1) {
+        if(this.eleccioNivell == 1) {
 
             if (game.getParaulaUsuari().length() == mockLevelRepository.getMockLevelSolutions(numNivell).length()) {
 

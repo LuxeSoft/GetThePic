@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //COMENTAR =  SI LOGIN
         //NO COMENTAR =  NO LOGIN
-        //goTo();
+        goTo();
 
         loginViewModel.isUserLogged().observe(this, new Observer<Result<String>>() {
             @Override
