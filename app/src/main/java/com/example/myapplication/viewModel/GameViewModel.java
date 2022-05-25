@@ -273,6 +273,7 @@ public class GameViewModel extends ViewModel {
                 Log.d("temps", "acabat!!!");
                 //TODO @Didac que ha de fer quan acabi el temps. Guardar punts, finalitzar activity? Preguntar qque vol fer l'usuari.
                 //TODO PASSAR QUANTES PARAULES HA RESOLT
+                PreferencesProvider.providePreferences().edit().putBoolean("tempsAcabat", true).commit();
                 isLevelSolved.setValue(true);
             }
 
@@ -566,8 +567,6 @@ public class GameViewModel extends ViewModel {
                     resoltes = resoltes + 1;
 
                     int currentxp = Integer.parseInt(this.xp.getValue()) + 100;
-
-                    PreferencesProvider.providePreferences().edit().putBoolean("tempsAcabat", true).commit();
 
                     PreferencesProvider.providePreferences().edit().putInt("resoltesContra", resoltes).commit();
 

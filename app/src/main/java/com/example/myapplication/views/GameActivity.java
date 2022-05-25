@@ -108,8 +108,6 @@ public class GameActivity extends AppCompatActivity {
                     finish();
 
                 } else {
-                    Log.d("no nivells", "no nivellss nivells");
-
                     showEndPage();
                 }
             } else {
@@ -121,9 +119,21 @@ public class GameActivity extends AppCompatActivity {
         } else {
 
             if(solved){
+                Log.d(TAG, "Encertat");
+                missatgeResposta("Resposta correcta! :)");
+
                 startActivity(new Intent(GameActivity.this, GameActivity.class));
                 finish();
-            } else clockEnd();
+            } else {
+                Log.d(TAG, "No encertat");
+                missatgeResposta("No has encertat :(");
+
+                viewModel.resetLevel();
+
+                if(PreferencesProvider.providePreferences().getBoolean("tempsAcabat",false) == true){
+                    clockEnd();
+                }
+            }
         }
         });
 

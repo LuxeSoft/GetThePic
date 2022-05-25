@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,16 +12,19 @@ import com.example.myapplication.utils.PreferencesProvider;
 
 public class GameEndContrarellotge extends AppCompatActivity {
 
+    TextView tvContadorFinal2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_end_contrarellotge);
 
-        TextView tvContadorFinal;
 
-        tvContadorFinal = (TextView) findViewById(R.id.tvContadorFinal);
+        tvContadorFinal2 = (TextView) findViewById(R.id.tvContadorFinal);
 
-        tvContadorFinal.setText(String.valueOf(PreferencesProvider.providePreferences().getInt("resoltesContra",0)));
+        tvContadorFinal2.setText(String.valueOf(PreferencesProvider.providePreferences().getInt("resoltesContra",0)));
+
+        Log.d("respostes end page", String.valueOf(PreferencesProvider.providePreferences().getInt("resoltesContra",0)));
     }
 
     public void obrirMenuPrincipal(View view){
