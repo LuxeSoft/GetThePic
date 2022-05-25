@@ -567,6 +567,8 @@ public class GameViewModel extends ViewModel {
 
                     int currentxp = Integer.parseInt(this.xp.getValue()) + 100;
 
+                    PreferencesProvider.providePreferences().edit().putBoolean("tempsAcabat", true).commit();
+
                     PreferencesProvider.providePreferences().edit().putInt("resoltesContra", resoltes).commit();
 
                     PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();

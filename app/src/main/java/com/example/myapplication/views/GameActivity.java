@@ -118,7 +118,13 @@ public class GameActivity extends AppCompatActivity {
                 missatgeResposta("No has encertat :(");
                 viewModel.resetLevel();
             }
-        } else clockEnd();
+        } else {
+
+            if(solved){
+                startActivity(new Intent(GameActivity.this, GameActivity.class));
+                finish();
+            } else clockEnd();
+        }
         });
 
     }
