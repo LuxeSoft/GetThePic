@@ -47,8 +47,9 @@ public class MainActivity extends AppCompatActivity {
     public void obrir2nModo(View view){
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
         PreferencesProvider.providePreferences().edit().putString("mode", "contrarellotge").commit();
-        startActivity(intent);
         PreferencesProvider.providePreferences().edit().putString("temporitzadorContrarrelotge", "30").commit();
+
+        startActivity(intent);
 
     }
 

@@ -71,9 +71,13 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<CardEnum> lletra7;
     public MutableLiveData<CardEnum> lletra8;
 
+
     public MutableLiveData<String> tempsContrarellotge;
 
     int numNivell;
+
+    int resoltes;
+
 
     public MutableLiveData<String> currentWordMutableLiveData;
     public MutableLiveData<Boolean> isLevelSolved;
@@ -97,6 +101,7 @@ public class GameViewModel extends ViewModel {
 
     // Constructor
     public GameViewModel() {
+
         // Init all mutable data
         this.levelImageMutable = new MutableLiveData<>();
         this.lletra1 = new MutableLiveData<>();
@@ -111,6 +116,7 @@ public class GameViewModel extends ViewModel {
         this.currentWordMutableLiveData = new MutableLiveData<>();
         this.isLevelSolved = new MutableLiveData<>();
 
+        this.resoltes = 0;
 
         this.mode = 0;
 
@@ -201,8 +207,10 @@ public class GameViewModel extends ViewModel {
                 break;
         }
 
+    }
 
-
+    public int getMode(){
+        return this.mode;
     }
     public MutableLiveData<String> getContador() {
         return contador;
@@ -230,7 +238,8 @@ public class GameViewModel extends ViewModel {
 
             case 2:
                 //TODO @Didac us he posat num per a poder testejar que realment funcion el contador, pero tingueu en compte aixo. aqui no passeu el numero, per tant es random. Pero la resta de comprovacions, com la paraula, etc... ho feu a partir del nivell.
-                Level level2 = this.levelRepository.getLevel(num); //TODO @Didac Entenc que no voleu agafar per nivell pero la resta de comprovacions les feu per nivell per aixo us surt diferent. A tot arreu heu tenir en compte si es contrarrellotge o explorar
+                //TODO @Didac Entenc que no voleu agafar per nivell pero la resta de comprovacions les feu per nivell per aixo us surt diferent. A tot arreu heu tenir en compte si es contrarrellotge o explorar
+                Level level2 = this.levelRepository.getLevel();
                 this.levelMutableLiveData.setValue(level2);
                 break;
         }
@@ -250,8 +259,6 @@ public class GameViewModel extends ViewModel {
 
     public void temporitzadorContrarellotge(){
 
-        //Log.d("temps", PreferencesProvider.providePreferences().getInt("tempsContrarellotge",30000));
-
         String temporitzadorContra = PreferencesProvider.providePreferences().getString("temporitzadorContrarrelotge", "");
         long tempo = Long.parseLong(temporitzadorContra) * 1000;
 
@@ -264,7 +271,10 @@ public class GameViewModel extends ViewModel {
             public void onFinish() {
                 Log.d("temps", "acabat!!!");
                 //TODO @Didac que ha de fer quan acabi el temps. Guardar punts, finalitzar activity? Preguntar qque vol fer l'usuari.
+                //TODO PASSAR QUANTES PARAULES HA RESOLT
+                isLevelSolved.setValue(true);
             }
+
         }.start();
 
     }
@@ -287,8 +297,6 @@ public class GameViewModel extends ViewModel {
         String currentUser = this.username.getValue();
 
         Log.d("currentUser",currentUser);
-
-
 
     }
 
@@ -319,8 +327,6 @@ public class GameViewModel extends ViewModel {
             @Override
             public void run() {
                 amagarCartes(false);
-
-
             }
         }, 4000);
         //this.contador.setValue();
@@ -361,6 +367,7 @@ public class GameViewModel extends ViewModel {
 
         Level level = this.levelMutableLiveData.getValue();
         String word = this.game.getParaulaUsuari();
+
 
         String expectedWord = level.getSolution();
 
@@ -497,51 +504,63 @@ public class GameViewModel extends ViewModel {
 
         MockLevelRepository mockLevelRepository = new MockLevelRepository();
 
-        if(game.getParaulaUsuari().length() == mockLevelRepository.getMockLevelSolutions(numNivell).length()) {
-            if(comprovarParaula()){
+        if(this.mode == 1) {
 
-                int currentxp = Integer.parseInt(this.xp.getValue())+100;
+            if (game.getParaulaUsuari().length() == mockLevelRepository.getMockLevelSolutions(numNivell).length()) {
 
-                Log.d("xp", String.valueOf(currentxp));
+                if (comprovarParaula()) {
 
-                PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
+                    int currentxp = Integer.parseInt(this.xp.getValue()) + 100;
 
-                PreferencesProvider.providePreferences().edit().putString("temporitzadorContrarrelotge", tempsContrarellotge.getValue()).commit();
+                    if (mode == 2) resoltes = resoltes + 1;
+                    PreferencesProvider.providePreferences().edit().putInt("resoltesContra", resoltes).commit();
 
-                PreferencesProvider.providePreferences().edit().putInt("nivell", numNivell+1).commit();
+                    Log.d("xp", String.valueOf(currentxp));
 
-                Log.d("nivell", String.valueOf(this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell))));
+                    PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
 
-            }  else {
+                    PreferencesProvider.providePreferences().edit().putString("temporitzadorContrarrelotge", tempsContrarellotge.getValue()).commit();
 
-                game.setParaulaUsuari("");
-                this.currentWordMutableLiveData.setValue("");
+                    PreferencesProvider.providePreferences().edit().putInt("nivell", numNivell + 1).commit();
 
-                faceUpCardLletra1.setValue(false);
-                faceUpCardLletra2.setValue(false);
-                faceUpCardLletra3.setValue(false);
-                faceUpCardLletra4.setValue(false);
-                faceUpCardLletra5.setValue(false);
-                faceUpCardLletra6.setValue(false);
-                faceUpCardLletra7.setValue(false);
-                faceUpCardLletra8.setValue(false);
+                    Log.d("nivell", String.valueOf(this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell))));
 
-                temporitzadorObrir();
+                } else {
 
+                    game.setParaulaUsuari("");
+                    this.currentWordMutableLiveData.setValue("");
+
+                    faceUpCardLletra1.setValue(false);
+                    faceUpCardLletra2.setValue(false);
+                    faceUpCardLletra3.setValue(false);
+                    faceUpCardLletra4.setValue(false);
+                    faceUpCardLletra5.setValue(false);
+                    faceUpCardLletra6.setValue(false);
+                    faceUpCardLletra7.setValue(false);
+                    faceUpCardLletra8.setValue(false);
+
+                    temporitzadorObrir();
+
+                }
+
+            } else {
+
+                if (id == 1) faceUpCardLletra1.setValue(true);
+                else if (id == 2) faceUpCardLletra2.setValue(true);
+                else if (id == 3) faceUpCardLletra3.setValue(true);
+                else if (id == 4) faceUpCardLletra4.setValue(true);
+                else if (id == 5) faceUpCardLletra5.setValue(true);
+                else if (id == 6) faceUpCardLletra6.setValue(true);
+                else if (id == 7) faceUpCardLletra7.setValue(true);
+                else if (id == 8) faceUpCardLletra8.setValue(true);
+
+                faceUpCard.setValue(true);
             }
 
         } else {
-
-            if (id == 1) faceUpCardLletra1.setValue(true);
-            else if (id == 2) faceUpCardLletra2.setValue(true);
-            else if (id == 3) faceUpCardLletra3.setValue(true);
-            else if (id == 4) faceUpCardLletra4.setValue(true);
-            else if (id == 5) faceUpCardLletra5.setValue(true);
-            else if (id == 6) faceUpCardLletra6.setValue(true);
-            else if (id == 7) faceUpCardLletra7.setValue(true);
-            else if (id == 8) faceUpCardLletra8.setValue(true);
-
-            faceUpCard.setValue(true);
+            //MODO CONTRARELOJ.
+            //TODO CAL CAPUTRAR EL RANDOM ELEGIT PEL NIVELL
+            Log.d("random", String.valueOf(mockLevelRepository.getLevelPosition()));
         }
     }
 

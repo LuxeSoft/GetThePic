@@ -34,6 +34,8 @@ import java.util.Random;
 //@TODO: Implementar aquesta interficies per obtenir el nivell de l'API
 public class MockLevelRepository implements LevelRepository{
 
+    Random rand=new Random();
+    int levelPosition = 0;
 
 
     // @Jordi Simulem que tenim una base de dades de nivells
@@ -76,17 +78,21 @@ public class MockLevelRepository implements LevelRepository{
         return mockLevelSolutions[num];
     }
 
+
+    public int getLevelPosition(){
+        return this.levelPosition;
+    }
+
+
     @Override
     public Level getLevel() {
-
-        // Generem un nombre aleatori per seleccionar el nivell
-        Random rand=new Random();
-        int levelPosition = rand.nextInt(mockLevelImages.length);
-
 
 
         // Instanciem el nivell a partir de les dades simulades
         Level selectedLevel = new Level();
+
+        this.levelPosition = rand.nextInt(mockLevelImages.length);
+
         selectedLevel.setLetters( Arrays.asList(mockLevelLetters[levelPosition]));
         selectedLevel.setSolution(mockLevelSolutions[levelPosition]);
         selectedLevel.setImageUrl(mockLevelImages[levelPosition]);
@@ -94,6 +100,7 @@ public class MockLevelRepository implements LevelRepository{
         // Retornem la instancia del nivell generat
         return selectedLevel;
     }
+
 
     @Override
     public Level getLevel(int levelPosition) {

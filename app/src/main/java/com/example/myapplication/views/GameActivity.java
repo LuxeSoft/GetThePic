@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplication.GameEnd;
+import com.example.myapplication.GameEndContrarellotge;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.databinding.ActivityLevelsBinding;
 import com.example.myapplication.models.Game;
@@ -90,13 +91,15 @@ public class GameActivity extends AppCompatActivity {
 
         //@Didac: Aqui tens un mutable que s'observa quan comproves la paraula. Per tant, aqui pots activar la funció de mostrar TOAST.
         viewModel.isLevelSolved.observe(this, solved -> {
+
+        if(viewModel.getMode() == 1) {
             Log.d(TAG, "data() -> is level solved? -> " + solved.toString());
-            if (solved){
+            if (solved) {
                 // Mostrareu el dialog i carregarem un nou nivell
                 Log.d(TAG, "Encertat");
                 missatgeResposta("Resposta correcta! :)");
 
-                if(viewModel.hiHaMesNivells()){
+                if (viewModel.hiHaMesNivells()) {
 
                     Log.d("hihames nivells", "hi ha mes nivells");
 
@@ -104,7 +107,7 @@ public class GameActivity extends AppCompatActivity {
 
                     finish();
 
-                } else{
+                } else {
                     Log.d("no nivells", "no nivellss nivells");
 
                     showEndPage();
@@ -115,6 +118,7 @@ public class GameActivity extends AppCompatActivity {
                 missatgeResposta("No has encertat :(");
                 viewModel.resetLevel();
             }
+        } else clockEnd();
         });
 
     }
@@ -154,7 +158,6 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
         dialog.show();
 
-
     }
 
     public void missatgeResposta(String msj){
@@ -177,9 +180,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void showEndPage(){
-        //TODO PASSAR XP A GAMEEND CLASSE
-
         Intent intent = new Intent(this, GameEnd.class);
+        startActivity(intent);
+    }
+
+    public void clockEnd(){
+        Intent intent = new Intent(this, GameEndContrarellotge.class);
         startActivity(intent);
     }
 
@@ -188,7 +194,6 @@ public class GameActivity extends AppCompatActivity {
      goTo();
      finish();
     }
-
 
 
 

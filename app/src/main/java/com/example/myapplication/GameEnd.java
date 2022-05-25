@@ -23,7 +23,7 @@ public class GameEnd extends AppCompatActivity {
 
         tvxp = (TextView) findViewById(R.id.tvXpfinal);
 
-        tvxp.setText(String.valueOf(PreferencesProvider.providePreferences().getInt("xp",0)));
+        tvxp.setText(String.valueOf(PreferencesProvider.providePreferences().getInt("resoltesContra",0)));
     }
 
 
