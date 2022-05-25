@@ -191,8 +191,6 @@ public class GameViewModel extends ViewModel {
     }
 
     public void setMode(String mode){
-
-
         switch (mode) {
             case "explorar":
                    this.eleccioNivell = 1;
@@ -231,7 +229,8 @@ public class GameViewModel extends ViewModel {
                 break;
 
             case 2:
-                Level level2 = this.levelRepository.getLevel();
+                //TODO @Didac us he posat num per a poder testejar que realment funcion el contador, pero tingueu en compte aixo. aqui no passeu el numero, per tant es random. Pero la resta de comprovacions, com la paraula, etc... ho feu a partir del nivell.
+                Level level2 = this.levelRepository.getLevel(num); //TODO @Didac Entenc que no voleu agafar per nivell pero la resta de comprovacions les feu per nivell per aixo us surt diferent. A tot arreu heu tenir en compte si es contrarrellotge o explorar
                 this.levelMutableLiveData.setValue(level2);
                 break;
         }
@@ -253,9 +252,10 @@ public class GameViewModel extends ViewModel {
 
         //Log.d("temps", PreferencesProvider.providePreferences().getInt("tempsContrarellotge",30000));
 
-        //Integer.parseInt(tempsContrarellotge.getValue()
+        String temporitzadorContra = PreferencesProvider.providePreferences().getString("temporitzadorContrarrelotge", "");
+        long tempo = Long.parseLong(temporitzadorContra) * 1000;
 
-        CountDownTimer timer = new CountDownTimer(30000, 1000) {
+        CountDownTimer timer = new CountDownTimer(tempo, 1000) {
             public void onTick(long millisUntilFinished) {
                 tempsContrarellotge.setValue(String.valueOf(millisUntilFinished/1000));
             }
@@ -263,6 +263,7 @@ public class GameViewModel extends ViewModel {
             @Override
             public void onFinish() {
                 Log.d("temps", "acabat!!!");
+                //TODO @Didac que ha de fer quan acabi el temps. Guardar punts, finalitzar activity? Preguntar qque vol fer l'usuari.
             }
         }.start();
 
@@ -309,8 +310,7 @@ public class GameViewModel extends ViewModel {
         faceUpCardLletra7.setValue(controlador);
         faceUpCardLletra8.setValue(controlador);
     }
-    //TODO: POSAR TEMPORITZADOR 3 SEGONS. QUAN ACABA = GIRAR LLETRES
-    //TODO: @Didac, podeu aprofitar el pause que teniu en el splashScreen
+
     public void temporitzador(){
 
         temporitzadorMostrarSegons();
@@ -356,6 +356,8 @@ public class GameViewModel extends ViewModel {
     }
 
     public boolean comprovarParaula(){
+
+        //TODO @Didac Tingueu en compte si es mode contrarrellotge o explorar.
 
         Level level = this.levelMutableLiveData.getValue();
         String word = this.game.getParaulaUsuari();
@@ -496,7 +498,6 @@ public class GameViewModel extends ViewModel {
         MockLevelRepository mockLevelRepository = new MockLevelRepository();
 
         if(game.getParaulaUsuari().length() == mockLevelRepository.getMockLevelSolutions(numNivell).length()) {
-
             if(comprovarParaula()){
 
                 int currentxp = Integer.parseInt(this.xp.getValue())+100;
@@ -505,7 +506,7 @@ public class GameViewModel extends ViewModel {
 
                 PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
 
-                //PreferencesProvider.providePreferences().edit().putInt("tempsContrarellotge", Integer.parseInt(tempsContrarellotge.getValue())).commit();
+                PreferencesProvider.providePreferences().edit().putString("temporitzadorContrarrelotge", tempsContrarellotge.getValue()).commit();
 
                 PreferencesProvider.providePreferences().edit().putInt("nivell", numNivell+1).commit();
 

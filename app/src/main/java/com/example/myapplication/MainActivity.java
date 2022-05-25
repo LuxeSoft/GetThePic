@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public void obrir1rModo(View view){
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
         PreferencesProvider.providePreferences().edit().putString("mode", "explorar").commit();
+        PreferencesProvider.providePreferences().edit().putString("temporitzadorContrarrelotge", "30").commit();
 
         startActivity(intent);
     }
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
         PreferencesProvider.providePreferences().edit().putString("mode", "contrarellotge").commit();
         startActivity(intent);
+        PreferencesProvider.providePreferences().edit().putString("temporitzadorContrarrelotge", "30").commit();
+
     }
 
 
