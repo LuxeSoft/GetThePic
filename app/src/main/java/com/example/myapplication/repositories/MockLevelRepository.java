@@ -93,6 +93,7 @@ public class MockLevelRepository implements LevelRepository{
 
         this.levelPosition = rand.nextInt(mockLevelImages.length);
 
+
         selectedLevel.setLetters( Arrays.asList(mockLevelLetters[levelPosition]));
         selectedLevel.setSolution(mockLevelSolutions[levelPosition]);
         selectedLevel.setImageUrl(mockLevelImages[levelPosition]);

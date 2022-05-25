@@ -44,6 +44,7 @@ public class GameViewModel extends ViewModel {
 
 
     public MutableLiveData<Level> levelMutableLiveData;
+    public int nivellElegit = 0;
 
     // @Jordi: El ViewModel mai ha de tenir una dependència de la vista.
     // private FirstLevelView view;
