@@ -27,6 +27,7 @@ import static com.example.myapplication.models.CardEnum.x;
 
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Level;
+import com.example.myapplication.utils.PreferencesProvider;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -92,6 +93,8 @@ public class MockLevelRepository implements LevelRepository{
         Level selectedLevel = new Level();
 
         this.levelPosition = rand.nextInt(mockLevelImages.length);
+
+        PreferencesProvider.providePreferences().edit().putInt("randomNum", levelPosition).commit();
 
 
         selectedLevel.setLetters( Arrays.asList(mockLevelLetters[levelPosition]));

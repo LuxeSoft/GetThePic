@@ -559,9 +559,51 @@ public class GameViewModel extends ViewModel {
             }
 
         } else {
-            //MODO CONTRARELOJ.
-            //TODO CAL CAPUTRAR EL RANDOM ELEGIT PEL NIVELL
-            Log.d("random", String.valueOf(mockLevelRepository.getLevelPosition()));
+            if (game.getParaulaUsuari().length() == mockLevelRepository.getMockLevelSolutions(PreferencesProvider.providePreferences().getInt("randomNum",0)).length()) {
+
+                if (comprovarParaula()) {
+
+                    resoltes = resoltes + 1;
+
+                    int currentxp = Integer.parseInt(this.xp.getValue()) + 100;
+
+                    PreferencesProvider.providePreferences().edit().putInt("resoltesContra", resoltes).commit();
+
+                    PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
+
+                    PreferencesProvider.providePreferences().edit().putString("temporitzadorContrarrelotge", tempsContrarellotge.getValue()).commit();
+
+                } else {
+
+                    game.setParaulaUsuari("");
+                    this.currentWordMutableLiveData.setValue("");
+
+                    faceUpCardLletra1.setValue(false);
+                    faceUpCardLletra2.setValue(false);
+                    faceUpCardLletra3.setValue(false);
+                    faceUpCardLletra4.setValue(false);
+                    faceUpCardLletra5.setValue(false);
+                    faceUpCardLletra6.setValue(false);
+                    faceUpCardLletra7.setValue(false);
+                    faceUpCardLletra8.setValue(false);
+
+                    temporitzadorObrir();
+
+                }
+
+            } else {
+
+                if (id == 1) faceUpCardLletra1.setValue(true);
+                else if (id == 2) faceUpCardLletra2.setValue(true);
+                else if (id == 3) faceUpCardLletra3.setValue(true);
+                else if (id == 4) faceUpCardLletra4.setValue(true);
+                else if (id == 5) faceUpCardLletra5.setValue(true);
+                else if (id == 6) faceUpCardLletra6.setValue(true);
+                else if (id == 7) faceUpCardLletra7.setValue(true);
+                else if (id == 8) faceUpCardLletra8.setValue(true);
+
+                faceUpCard.setValue(true);
+            }
         }
     }
 
