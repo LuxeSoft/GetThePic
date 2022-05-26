@@ -1,9 +1,5 @@
 package com.example.myapplication.viewModel;
 
-import android.app.AlertDialog;
-import static java.util.concurrent.TimeUnit.SECONDS;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
@@ -14,7 +10,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.myapplication.MainActivity;
 import com.example.myapplication.views.GameActivity;
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Game;
@@ -23,16 +18,9 @@ import com.example.myapplication.repositories.CardRepo;
 import com.example.myapplication.repositories.LevelRepository;
 import com.example.myapplication.repositories.MockLevelRepository;
 import com.example.myapplication.utils.PreferencesProvider;
-import com.example.myapplication.views.GameActivity;
-import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
 
 import java.util.Locale;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class GameViewModel extends ViewModel {
 
@@ -45,6 +33,8 @@ public class GameViewModel extends ViewModel {
 
     public MutableLiveData<Level> levelMutableLiveData;
     public int nivellElegit = 0;
+
+    public MutableLiveData<Boolean> isEndCr;
 
     // @Jordi: El ViewModel mai ha de tenir una dependència de la vista.
     // private FirstLevelView view;
@@ -77,7 +67,9 @@ public class GameViewModel extends ViewModel {
 
     int numNivell;
 
-    int resoltes;
+    public int resoltes;
+    public MutableLiveData<Integer> resoltesMutable;
+
 
 
     public MutableLiveData<String> currentWordMutableLiveData;
@@ -102,6 +94,10 @@ public class GameViewModel extends ViewModel {
 
     // Constructor
     public GameViewModel() {
+
+        this.resoltesMutable = new MutableLiveData<>(0);
+
+        this.isEndCr = new MutableLiveData<>(false);
 
         // Init all mutable data
         this.levelImageMutable = new MutableLiveData<>();
@@ -197,6 +193,15 @@ public class GameViewModel extends ViewModel {
         this.levelRepository = new MockLevelRepository();
     }
 
+
+    public int getResoltes() {
+        return resoltes;
+    }
+
+    public void setResoltes(int resoltes) {
+        this.resoltes = resoltes;
+    }
+
     public void setMode(String mode){
         switch (mode) {
             case "explorar":
@@ -273,8 +278,8 @@ public class GameViewModel extends ViewModel {
                 Log.d("temps", "acabat!!!");
                 //TODO @Didac que ha de fer quan acabi el temps. Guardar punts, finalitzar activity? Preguntar qque vol fer l'usuari.
                 //TODO PASSAR QUANTES PARAULES HA RESOLT
-                PreferencesProvider.providePreferences().edit().putBoolean("tempsAcabat", true).commit();
-                isLevelSolved.setValue(true);
+                isEndCr.setValue(true);
+                //isLevelSolved.setValue(true);
             }
 
         }.start();
@@ -514,9 +519,6 @@ public class GameViewModel extends ViewModel {
 
                     int currentxp = Integer.parseInt(this.xp.getValue()) + 100;
 
-                    if (mode == 2) resoltes = resoltes + 1;
-                    PreferencesProvider.providePreferences().edit().putInt("resoltesContra", resoltes).commit();
-
                     Log.d("xp", String.valueOf(currentxp));
 
                     PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
@@ -564,11 +566,13 @@ public class GameViewModel extends ViewModel {
 
                 if (comprovarParaula()) {
 
-                    resoltes = resoltes + 1;
+                    int resoltesNum = PreferencesProvider.providePreferences().getInt("resoltes", 0);
+
+                    PreferencesProvider.providePreferences().edit().putInt("resoltes", resoltesNum+1).commit();
+
+                    Log.d("resoltes", String.valueOf(this.resoltesMutable.getValue()));
 
                     int currentxp = Integer.parseInt(this.xp.getValue()) + 100;
-
-                    PreferencesProvider.providePreferences().edit().putInt("resoltesContra", resoltes).commit();
 
                     PreferencesProvider.providePreferences().edit().putInt("xp", currentxp).commit();
 
@@ -620,6 +624,8 @@ public class GameViewModel extends ViewModel {
         return !levelNew.getLetters().isEmpty();
 
     }
+
+
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {

@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.myapplication.utils.PreferencesProvider;
+import com.example.myapplication.viewModel.GameViewModel;
 
 public class GameEndContrarellotge extends AppCompatActivity {
 
@@ -22,9 +23,9 @@ public class GameEndContrarellotge extends AppCompatActivity {
 
         tvContadorFinal2 = (TextView) findViewById(R.id.tvContadorFinal);
 
-        tvContadorFinal2.setText(String.valueOf(PreferencesProvider.providePreferences().getInt("resoltesContra",0)));
 
-        Log.d("respostes end page", String.valueOf(PreferencesProvider.providePreferences().getInt("resoltesContra",0)));
+        tvContadorFinal2.setText(String.valueOf(PreferencesProvider.providePreferences().getInt("resoltes",0)));
+
     }
 
     public void obrirMenuPrincipal(View view){

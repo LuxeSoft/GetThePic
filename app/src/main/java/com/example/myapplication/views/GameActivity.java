@@ -77,6 +77,17 @@ public class GameActivity extends AppCompatActivity {
         int levelShared = PreferencesProvider.providePreferences().getInt("nivell",0);
         viewModel.getLevel(levelShared);
 
+        viewModel.isEndCr.observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+
+                if(viewModel.isEndCr.getValue()){
+                    Log.d("valor", String.valueOf(viewModel.isEndCr));
+                    clockEnd();
+                }
+            }
+        });
+
         // @Jordi: Observem quan el nivell ha estat carregat
         viewModel.isLevelLoaded().observe(this, level -> {
             Log.d(TAG, "data() -> level is loaded -> " + level.toString());
@@ -129,15 +140,13 @@ public class GameActivity extends AppCompatActivity {
                 missatgeResposta("No has encertat :(");
 
                 viewModel.resetLevel();
-
-                if(PreferencesProvider.providePreferences().getBoolean("tempsAcabat",false) == true){
-                    clockEnd();
-                }
             }
         }
         });
 
     }
+
+
 
     public void pause(View view){
 

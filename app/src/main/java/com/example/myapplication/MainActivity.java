@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        PreferencesProvider.providePreferences().edit().putInt("resoltes", 0).commit();
     }
 
 
