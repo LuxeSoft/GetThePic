@@ -21,9 +21,12 @@ import static com.example.myapplication.models.CardEnum.q;
 import static com.example.myapplication.models.CardEnum.r;
 import static com.example.myapplication.models.CardEnum.s;
 import static com.example.myapplication.models.CardEnum.t;
+import static com.example.myapplication.models.CardEnum.u;
 import static com.example.myapplication.models.CardEnum.v;
 import static com.example.myapplication.models.CardEnum.w;
 import static com.example.myapplication.models.CardEnum.x;
+import static com.example.myapplication.models.CardEnum.y;
+import static com.example.myapplication.models.CardEnum.z;
 
 import com.example.myapplication.models.CardEnum;
 import com.example.myapplication.models.Level;
@@ -45,8 +48,11 @@ public class MockLevelRepository implements LevelRepository{
     final String[] mockLevelImages = {
             "https://cdn.pixabay.com/photo/2014/12/22/00/05/bread-576777_960_720.png",
             "https://cdn.pixabay.com/photo/2014/03/14/20/07/painting-287403_960_720.jpg",
+            "https://cdn.pixabay.com/photo/2017/01/29/11/01/the-sun-2017530_1280.png",
             "https://cdn.pixabay.com/photo/2014/04/03/09/59/airplane-309503_960_720.png",
+            "https://cdn.pixabay.com/photo/2014/08/19/12/14/flowers-421415_1280.png",
             "https://image.shutterstock.com/image-illustration/treejpg-eps-vector-version-id-260nw-122687560.jpg",
+            "https://cdn.pixabay.com/photo/2018/07/30/04/43/ice-cream-3571774_1280.png",
             "https://cdn.pixabay.com/photo/2019/10/13/20/07/house-4547140_1280.jpg",
             "https://dictionary.cambridge.org/es/images/thumb/lion_noun_002_21358.jpg?version=5.0.239",
             "https://img.freepik.com/vector-gratis/icono-coche-rojo-vista-lateral-auto-dibujos-animados-lindo-aislado-sobre-fondo-blanco_176411-3164.jpg",
@@ -60,8 +66,11 @@ public class MockLevelRepository implements LevelRepository{
     final CardEnum[][] mockLevelLetters = {
             {n,e,a,b,p,r,d,c},
             {r,p,s,h,j,g,r,o},
+            {j,l,w,s,a,u,o,z},
             {i,n,l,a,o,k,v,q},
+            {q,o,r,e,l,w,t,f},
             {a,x,e,b,r,m,n,r},
+            {a,j,l,i,t,g,h,e},
             {a,c,e,b,r,s,n,a},
             {a,l,e,b,r,l,n,o},
             {c,e,o,t,r,x,w,e},
@@ -72,7 +81,7 @@ public class MockLevelRepository implements LevelRepository{
             {t,i,a,s,e,m,c,a}
     };
     // Solució esperada de cada nivell
-    final String[] mockLevelSolutions ={"pa","gos","avio","arbre","casa","lleo","cotxe","lloro","pilota","telefon","pressec","camiseta"};
+    final String[] mockLevelSolutions ={"pa","gos","sol","avio","flor","arbre","gelat","casa","lleo","cotxe","lloro","pilota","telefon","pressec","camiseta"};
 
 
     public String getMockLevelSolutions(int num) {
