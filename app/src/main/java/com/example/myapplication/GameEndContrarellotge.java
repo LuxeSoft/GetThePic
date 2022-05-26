@@ -23,7 +23,6 @@ public class GameEndContrarellotge extends AppCompatActivity {
 
         tvContadorFinal2 = (TextView) findViewById(R.id.tvContadorFinal);
 
-
         tvContadorFinal2.setText(String.valueOf(PreferencesProvider.providePreferences().getInt("resoltes",0)));
 
     }

@@ -17,7 +17,7 @@
             android:name=".GameEndContrarellotge"
             android:exported="false" />
         <activity
-            android:name=".GameEnd"
+            android:name=".GameEndExplorar"
             android:exported="false" />
         <activity
             android:name=".views.GameActivity"

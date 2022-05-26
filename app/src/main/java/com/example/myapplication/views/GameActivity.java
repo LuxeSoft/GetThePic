@@ -13,12 +13,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.myapplication.GameEnd;
+import com.example.myapplication.GameEndExplorar;
 import com.example.myapplication.GameEndContrarellotge;
 import com.example.myapplication.MainActivity;
 import com.example.myapplication.databinding.ActivityLevelsBinding;
 import com.example.myapplication.models.Game;
-import com.example.myapplication.models.Level;
 import com.example.myapplication.utils.PreferencesProvider;
 import com.example.myapplication.viewModel.GameViewModel;
 
@@ -205,7 +204,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void showEndPage(){
-        Intent intent = new Intent(this, GameEnd.class);
+        Intent intent = new Intent(this, GameEndExplorar.class);
         startActivity(intent);
     }
 

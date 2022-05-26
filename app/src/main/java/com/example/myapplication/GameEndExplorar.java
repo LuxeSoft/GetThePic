@@ -8,16 +8,15 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.myapplication.utils.PreferencesProvider;
-import com.example.myapplication.views.GameActivity;
 
-public class GameEnd extends AppCompatActivity {
+public class GameEndExplorar extends AppCompatActivity {
 
     TextView tvxp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game_end);
+        setContentView(R.layout.activity_game_end_explorar);
 
         //TODO POSAR XP FINAL
 
@@ -28,7 +27,7 @@ public class GameEnd extends AppCompatActivity {
 
 
     public void obrirMenuPrincipal(View view){
-        startActivity(new Intent(GameEnd.this, MainActivity.class));
+        startActivity(new Intent(GameEndExplorar.this, MainActivity.class));
     }
 
 
