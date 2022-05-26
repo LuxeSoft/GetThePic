@@ -20,9 +20,6 @@ public class GameEndExplorar extends AppCompatActivity {
 
         //TODO POSAR XP FINAL
 
-        tvxp = (TextView) findViewById(R.id.tvXpfinal);
-
-        tvxp.setText(String.valueOf(PreferencesProvider.providePreferences().getInt("resoltesContra",0)));
     }
 
 

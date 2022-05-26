@@ -89,12 +89,18 @@ public class GameActivity extends AppCompatActivity {
 
         // @Jordi: Observem quan el nivell ha estat carregat
         viewModel.isLevelLoaded().observe(this, level -> {
-            Log.d(TAG, "data() -> level is loaded -> " + level.toString());
 
-            if(viewModel.hiHaMesNivells()){
-                viewModel.updateLevel(level);
+            if (viewModel.getMode() == 1) {
+
+                Log.d(TAG, "data() -> level is loaded -> " + level.toString());
+
+                if (viewModel.hiHaMesNivells()) {
+                    viewModel.updateLevel(level);
+                } else {
+                    showEndPage();
+                }
             } else {
-                showEndPage();
+                viewModel.updateLevel(level);
             }
         });
 
