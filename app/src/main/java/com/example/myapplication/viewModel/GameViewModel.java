@@ -26,30 +26,15 @@ public class GameViewModel extends ViewModel {
 
     private static final String TAG = "GameViewModel";
 
-    // @Jordi: Game hauria de tenir un attribut que representes el nivell.
     private Game game;
-    private GameActivity gameActivity;
-
 
     public MutableLiveData<Level> levelMutableLiveData;
-    public int nivellElegit = 0;
 
     public MutableLiveData<Boolean> isEndCr;
 
-    // @Jordi: El ViewModel mai ha de tenir una dependència de la vista.
-    // private FirstLevelView view;
-
     private CardRepo cardRepo;
     private LevelRepository levelRepository;
-    private int mode;
-    //private GameRepo gameRepo;
-    //private Nivell nivell;
-    //public MutableLiveData<Nivell> nivell;
-    private boolean modeJoc;
 
-    // Control UX and UI
-    //[levelImageMutable] -> urlImg
-    //[lletra1]...[lletra8] -> cardEnums
     public MutableLiveData<String> levelImageMutable;
 
     //@TODO: Refactor this to use a MutableLiveData<List<CardEnum>>>
@@ -65,12 +50,10 @@ public class GameViewModel extends ViewModel {
 
     public MutableLiveData<String> tempsContrarellotge;
 
-    int numNivell;
+    public int numNivell;
 
     public int resoltes;
     public MutableLiveData<Integer> resoltesMutable;
-
-
 
     public MutableLiveData<String> currentWordMutableLiveData;
     public MutableLiveData<Boolean> isLevelSolved;
@@ -79,7 +62,7 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<String> xp;
 
     public MutableLiveData<String> contador;
-    public int eleccioNivell = 0;
+    public int eleccioNivell;
 
     public MutableLiveData<Boolean> faceUpCard;
     public MutableLiveData<Boolean> faceUpCardLletra1;
@@ -94,6 +77,8 @@ public class GameViewModel extends ViewModel {
 
     // Constructor
     public GameViewModel() {
+
+        this.eleccioNivell = 0;
 
         this.resoltesMutable = new MutableLiveData<>(0);
 
@@ -115,22 +100,17 @@ public class GameViewModel extends ViewModel {
 
         this.resoltes = 0;
 
-        this.mode = 0;
-
         this.numNivell = 0;
 
         this.tempsContrarellotge = new MutableLiveData<>();
         this.tempsContrarellotge.setValue("");
 
-
         this.contador = new MutableLiveData<>();
-
-
-        gameActivity = new GameActivity();
 
         this.contador.setValue("5");
 
-        this.faceUpCard = new MutableLiveData<>(); //TODO: @Didac Tal com teniu ara, aquest Mutable us els controla tots, per tal de que nomes es giri la carta que apreteu, en necessiteu un per cada carta.
+        //TODO: @Didac Tal com teniu ara, aquest Mutable us els controla tots, per tal de que nomes es giri la carta que apreteu, en necessiteu un per cada carta.
+        this.faceUpCard = new MutableLiveData<>();
         this.faceUpCard.setValue(true);
 
         //TODO: Testing @Didac Comentem la proposta dijous
@@ -167,9 +147,7 @@ public class GameViewModel extends ViewModel {
 
         this.xp.setValue(String.valueOf(0));
 
-
         int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
-
 
         //TODO: @Didac en la part de login he guardat el nom que l'usuari entra per fer el login en el sharedpreferences. Aqui puc recuperar aquest nom.
         //TODO: @Didac amb la següent linia podreu obtenir aquest nom des d'on vulgueu.
@@ -194,14 +172,6 @@ public class GameViewModel extends ViewModel {
     }
 
 
-    public int getResoltes() {
-        return resoltes;
-    }
-
-    public void setResoltes(int resoltes) {
-        this.resoltes = resoltes;
-    }
-
     public void setMode(String mode){
         switch (mode) {
             case "explorar":
@@ -222,12 +192,6 @@ public class GameViewModel extends ViewModel {
         return contador;
     }
 
-    public void setContador(String contador) {
-        this.contador.setValue(contador);
-    }
-
-    //TODO SETTER VARIABLE MODEJOC
-
     // Methods
 
     public void getLevel(int num){
@@ -236,7 +200,6 @@ public class GameViewModel extends ViewModel {
         switch (eleccioNivell){
 
             case 1:
-
                 Level level = this.levelRepository.getLevel(num);
                 this.levelMutableLiveData.setValue(level);
 
@@ -249,7 +212,6 @@ public class GameViewModel extends ViewModel {
                 this.levelMutableLiveData.setValue(level2);
                 break;
         }
-
 
     }
 
@@ -276,10 +238,7 @@ public class GameViewModel extends ViewModel {
             @Override
             public void onFinish() {
                 Log.d("temps", "acabat!!!");
-                //TODO @Didac que ha de fer quan acabi el temps. Guardar punts, finalitzar activity? Preguntar qque vol fer l'usuari.
-                //TODO PASSAR QUANTES PARAULES HA RESOLT
                 isEndCr.setValue(true);
-                //isLevelSolved.setValue(true);
             }
 
         }.start();
@@ -306,7 +265,6 @@ public class GameViewModel extends ViewModel {
         Log.d("currentUser",currentUser);
 
     }
-
 
 
     public void setGame(Game game){
@@ -375,7 +333,6 @@ public class GameViewModel extends ViewModel {
         Level level = this.levelMutableLiveData.getValue();
         String word = this.game.getParaulaUsuari();
 
-
         String expectedWord = level.getSolution();
 
         Log.d(TAG, "comprovarParaula -> userWord:" + word);
@@ -397,8 +354,10 @@ public class GameViewModel extends ViewModel {
     public void onClickedAt(CardEnum c){
         Log.d(TAG, c.name());
         Log.d(TAG, "onClickedAt ->" + CardEnum.getMessageResource(c));
+
         // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
         String word = game.concatenarLletres(c.toString());
+
         // @Jordi: Actualitzem el mutable per actualitzar la vista
         this.currentWordMutableLiveData.setValue(word);
     }
@@ -409,8 +368,10 @@ public class GameViewModel extends ViewModel {
 
             Log.d(TAG, "onClickedAtCard ->" + CardEnum.getMessageResource(c));
             Log.d(TAG, "onClickedAtCard ->" + String.valueOf(id));
+
             // @Jordi: Això hauria de ser un setter i obtenir word amb un getter a la classe
             String word = game.concatenarLletres(c.toString());
+
             // @Jordi: Actualitzem el mutable per actualitzar la vista
             this.currentWordMutableLiveData.setValue(word);
 
@@ -616,11 +577,6 @@ public class GameViewModel extends ViewModel {
     public boolean hiHaMesNivells(){
 
         Level levelNew = this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell));
-
-        Log.d("LEVELS", String.valueOf(levelNew));
-
-        Log.d("mes nivells", String.valueOf(!levelNew.getLetters().isEmpty()));
-
         return !levelNew.getLetters().isEmpty();
 
     }
@@ -629,7 +585,6 @@ public class GameViewModel extends ViewModel {
 
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
-        // Picasso.with(view.getContext()).setLoggingEnabled(true);
         Picasso.with(view.getContext()).load(imageUrl).into(view);
     }
 

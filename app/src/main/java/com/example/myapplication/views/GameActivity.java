@@ -31,8 +31,6 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //TODO COMPROVAR MODE JOC
-
         super.onCreate(savedInstanceState);
 
         // @Jordi: Bind the xml with the activity (ActivityLevelsBinding is auto generated).
@@ -43,7 +41,6 @@ public class GameActivity extends AppCompatActivity {
 
         // Set the viewModel
         viewModel = new ViewModelProvider(this).get(GameViewModel.class);
-
 
         setup();
         data();
@@ -224,7 +221,5 @@ public class GameActivity extends AppCompatActivity {
      goTo();
      finish();
     }
-
-
 
 }

@@ -20,22 +20,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        String urlGif = "https://domain.com/myanimatedgif.gif";
-        //Agregar implementacion Glide dentro de archivo build.gradle.
-        ImageView imageView = (ImageView)findViewById(R.id.imageView3);
-
-
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                //This method will be executed once the timer is over
-                // Start your app main activity
-                /*Intent i = new Intent(SplashScreenActivity.this, MainActivity.class);
-                startActivity(i);
-                // close this activity
-                finish();*/
-
                 setup();
                 data();
             }

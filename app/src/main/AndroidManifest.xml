@@ -26,9 +26,6 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".TermsConditionsPage"
-            android:exported="false" />
-        <activity
             android:name=".SingInActivity"
             android:exported="false"
             android:parentActivityName=".LoginActivity" />
