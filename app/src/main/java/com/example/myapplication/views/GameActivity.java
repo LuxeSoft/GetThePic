@@ -47,7 +47,7 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-    // Private methods
+    // Private methods------------------------------------------------------------------------------
 
     private void setup(){
         binding.setGameViewModel(viewModel);
@@ -73,6 +73,9 @@ public class GameActivity extends AppCompatActivity {
         int levelShared = PreferencesProvider.providePreferences().getInt("nivell",0);
         viewModel.getLevel(levelShared);
 
+
+        //Fem un observer per quan acabi el mode contrarellotge
+        //si acaba el temps del contrarellotge salta al metode clockEnd
         viewModel.isEndCr.observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -87,15 +90,19 @@ public class GameActivity extends AppCompatActivity {
         // @Jordi: Observem quan el nivell ha estat carregat
         viewModel.isLevelLoaded().observe(this, level -> {
 
+            //si el mode es explorar
             if (viewModel.getMode() == 1) {
 
                 Log.d(TAG, "data() -> level is loaded -> " + level.toString());
 
+                //si hi han més nivells salta al seguent nivell
                 if (viewModel.hiHaMesNivells()) {
                     viewModel.updateLevel(level);
+                //si no hi han més nivells mostra la pantalla final
                 } else {
                     showEndPage();
                 }
+            //si el mode es contrarellotge canvia de nivell
             } else {
                 viewModel.updateLevel(level);
             }
@@ -105,13 +112,16 @@ public class GameActivity extends AppCompatActivity {
         //@Didac: Aqui tens un mutable que s'observa quan comproves la paraula. Per tant, aqui pots activar la funció de mostrar TOAST.
         viewModel.isLevelSolved.observe(this, solved -> {
 
+        //si el mode es explorar
         if(viewModel.getMode() == 1) {
             Log.d(TAG, "data() -> is level solved? -> " + solved.toString());
+            //si ha encertat la paraula
             if (solved) {
                 // Mostrareu el dialog i carregarem un nou nivell
                 Log.d(TAG, "Encertat");
                 missatgeResposta("Resposta correcta! :)");
 
+                //si hi han més nivells refresca l'activitat, refresca la pantalla per a que surti una altra paraula
                 if (viewModel.hiHaMesNivells()) {
 
                     Log.d("hihames nivells", "hi ha mes nivells");
@@ -119,24 +129,27 @@ public class GameActivity extends AppCompatActivity {
                     startActivity(new Intent(GameActivity.this, GameActivity.class));
 
                     finish();
-
+                //si no hi ha més nivells salta a la pantalla final
                 } else {
                     showEndPage();
                 }
+            //si no ha encertat la paraula
             } else {
                 // Mostrareu el dialog i si l'usuari vol continuar jugant reset el nivell
                 Log.d(TAG, "No encertat");
                 missatgeResposta("No has encertat :(");
                 viewModel.resetLevel();
             }
+        //si el mode es contrarellotge
         } else {
-
+            //si ha encertat la paraula refresca l'activitat, refresca la pantalla per a que surti una altra paraula
             if(solved){
                 Log.d(TAG, "Encertat");
                 missatgeResposta("Resposta correcta! :)");
 
                 startActivity(new Intent(GameActivity.this, GameActivity.class));
                 finish();
+            //si no ha encertat la paraula si el usuari vol continuar jugant reset el nivell
             } else {
                 Log.d(TAG, "No encertat");
                 missatgeResposta("No has encertat :(");
@@ -148,12 +161,10 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
-
-
+    //si clica al boto de pausar mostra diferents opcions
     public void pause(View view){
 
         Log.d("test","TEST");
-
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -186,6 +197,8 @@ public class GameActivity extends AppCompatActivity {
         dialog.show();
 
     }
+
+    // Public methods-------------------------------------------------------------------------------
 
     public void missatgeResposta(String msj){
 

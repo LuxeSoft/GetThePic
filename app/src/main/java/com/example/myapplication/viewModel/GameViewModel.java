@@ -37,7 +37,6 @@ public class GameViewModel extends ViewModel {
 
     public MutableLiveData<String> levelImageMutable;
 
-    //@TODO: Refactor this to use a MutableLiveData<List<CardEnum>>>
     public MutableLiveData<CardEnum> lletra1;
     public MutableLiveData<CardEnum> lletra2;
     public MutableLiveData<CardEnum> lletra3;
@@ -46,7 +45,6 @@ public class GameViewModel extends ViewModel {
     public MutableLiveData<CardEnum> lletra6;
     public MutableLiveData<CardEnum> lletra7;
     public MutableLiveData<CardEnum> lletra8;
-
 
     public MutableLiveData<String> tempsContrarellotge;
 
@@ -109,15 +107,13 @@ public class GameViewModel extends ViewModel {
 
         this.contador.setValue("5");
 
-        //TODO: @Didac Tal com teniu ara, aquest Mutable us els controla tots, per tal de que nomes es giri la carta que apreteu, en necessiteu un per cada carta.
+        //Aquests Mutables controlen tots, per tal de que nomes es giri la carta que s'apreti.
         this.faceUpCard = new MutableLiveData<>();
         this.faceUpCard.setValue(true);
 
-        //TODO: Testing @Didac Comentem la proposta dijous
         this.faceUpCardLletra1 = new MutableLiveData<>();
         this.faceUpCardLletra1.setValue(true);
 
-        //TODO: Testing @Didac Comentem la proposta dijous. En el XML també us he afegit canvis en la carta 1 i 2 per a que es mostrin quan es cliqui.
         this.faceUpCardLletra2 = new MutableLiveData<>();
         this.faceUpCardLletra2.setValue(true);
 
@@ -140,7 +136,6 @@ public class GameViewModel extends ViewModel {
         this.faceUpCardLletra8 = new MutableLiveData<>();
         this.faceUpCardLletra8.setValue(true);
 
-        //TODO: Fins aqui @Didac
 
         this.username = new MutableLiveData<>();
         this.xp = new MutableLiveData<>();
@@ -149,8 +144,8 @@ public class GameViewModel extends ViewModel {
 
         int xp = PreferencesProvider.providePreferences().getInt("xp", 0);
 
-        //TODO: @Didac en la part de login he guardat el nom que l'usuari entra per fer el login en el sharedpreferences. Aqui puc recuperar aquest nom.
-        //TODO: @Didac amb la següent linia podreu obtenir aquest nom des d'on vulgueu.
+        //en la part de login se guarda el nom que l'usuari entra per fer el login en el sharedpreferences. Aqui se pot recuperar aquest nom.
+        //en la següent linia se pot obtenir aquest nom des d'on es vulgui.
         String currentUsername = PreferencesProvider.providePreferences().getString("username", "");
         username.setValue(currentUsername.toUpperCase(Locale.ROOT));
 
@@ -188,23 +183,25 @@ public class GameViewModel extends ViewModel {
     public int getMode(){
         return this.eleccioNivell;
     }
+
     public MutableLiveData<String> getContador() {
         return contador;
     }
 
-    // Methods
+    // Methods--------------------------------------------------------------------------------------
 
     public void getLevel(int num){
         // Get the level from the repo
 
         switch (eleccioNivell){
-
+            //si entra al mode explorar li pasem el numero del nivell al levelMutableLiveData
             case 1:
                 Level level = this.levelRepository.getLevel(num);
                 this.levelMutableLiveData.setValue(level);
 
                 break;
 
+            //si entra al mode contrarellotge no li pasem cap numero al levelMutableLiveData ja que els nivells son random
             case 2:
                 //TODO @Didac us he posat num per a poder testejar que realment funcion el contador, pero tingueu en compte aixo. aqui no passeu el numero, per tant es random. Pero la resta de comprovacions, com la paraula, etc... ho feu a partir del nivell.
                 //TODO @Didac Entenc que no voleu agafar per nivell pero la resta de comprovacions les feu per nivell per aixo us surt diferent. A tot arreu heu tenir en compte si es contrarrellotge o explorar
@@ -215,8 +212,9 @@ public class GameViewModel extends ViewModel {
 
     }
 
-    public LiveData<Level> isLevelLoaded(){
 
+    public LiveData<Level> isLevelLoaded(){
+        //si entra al mode contrarellotge activa el temporitzador del contrarellotge
         if(this.eleccioNivell == 2){
             temporitzadorContrarellotge();
         }
@@ -230,11 +228,13 @@ public class GameViewModel extends ViewModel {
         String temporitzadorContra = PreferencesProvider.providePreferences().getString("temporitzadorContrarrelotge", "");
         long tempo = Long.parseLong(temporitzadorContra) * 1000;
 
+        //fa el compte enrera
         CountDownTimer timer = new CountDownTimer(tempo, 1000) {
             public void onTick(long millisUntilFinished) {
                 tempsContrarellotge.setValue(String.valueOf(millisUntilFinished/1000));
             }
 
+            //quan acaba el compte enrera posa com a true el metode isEndCr per a aclarar que s'ha acabat.
             @Override
             public void onFinish() {
                 Log.d("temps", "acabat!!!");
@@ -249,8 +249,10 @@ public class GameViewModel extends ViewModel {
 
         Log.d(TAG, "updatingLevel... setting values to mutables.");
 
+        //posa la imatge del nivell per la seva Url
         this.levelImageMutable.setValue(level.getImageUrl());
 
+        //posa el valor de cada lletra a la posició que li pertoca
         this.lletra1.setValue(level.getLetters().get(0));
         this.lletra2.setValue(level.getLetters().get(1));
         this.lletra3.setValue(level.getLetters().get(2));
@@ -271,7 +273,9 @@ public class GameViewModel extends ViewModel {
         this.game = game;
     }
 
-
+    //metode per girar les cartes, a través d'un controlador,
+    //si el controlador es true s'aixeca la carta
+    //si el controlador es false s'amaga la carta
     public void amagarCartes(boolean controlador){
         faceUpCard.setValue(controlador);
         faceUpCardLletra1.setValue(controlador);
@@ -284,10 +288,12 @@ public class GameViewModel extends ViewModel {
         faceUpCardLletra8.setValue(controlador);
     }
 
+    //temporitzador per indicar quant de temps queda per a que les cartes s'amagin
     public void temporitzador(){
 
         temporitzadorMostrarSegons();
 
+        //despres de 4 segons s'amagen les cartes
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -297,7 +303,7 @@ public class GameViewModel extends ViewModel {
         //this.contador.setValue();
     }
 
-
+    //conte enrera del temps que queda per amagar les cartes
     public void temporitzadorMostrarSegons(){
         CountDownTimer timer = new CountDownTimer(5000, 1000) {
             public void onTick(long millisUntilFinished) {
@@ -312,7 +318,7 @@ public class GameViewModel extends ViewModel {
     }
 
 
-
+    //temporitzador per mostrar les cartes (durant 4 segons se mostren les cartes)
     public void temporitzadorObrir(){
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -326,9 +332,8 @@ public class GameViewModel extends ViewModel {
 
     }
 
+    //metode per comprovar si la paraula que ha escrit l'usuari es la correcta
     public boolean comprovarParaula(){
-
-        //TODO @Didac Tingueu en compte si es mode contrarrellotge o explorar.
 
         Level level = this.levelMutableLiveData.getValue();
         String word = this.game.getParaulaUsuari();
@@ -338,18 +343,20 @@ public class GameViewModel extends ViewModel {
         Log.d(TAG, "comprovarParaula -> userWord:" + word);
         Log.d(TAG, "comprovarParaula -> expectedSolution:" + expectedWord);
 
+        //si solved es true vol dir que la paraula del usuari es correcta
+        //si solved es false vol dir que la paraula del usuari es incorrecta
         boolean solved = word.equalsIgnoreCase(expectedWord);
         this.isLevelSolved.setValue(solved);
 
         return  solved;
     }
 
-
-
+    //per a reiniciar la pantalla del nivell hem de buidar els valors de la paraula de l'usuari
     public void resetLevel(){
         this.currentWordMutableLiveData.setValue("");
         this.game.setParaulaUsuari("");
     }
+
 
     public void onClickedAt(CardEnum c){
         Log.d(TAG, c.name());
@@ -362,8 +369,9 @@ public class GameViewModel extends ViewModel {
         this.currentWordMutableLiveData.setValue(word);
     }
 
+    //al clicar una carta
     public void onClickedAtCard(CardEnum c, int id){
-
+        //nomes se pot polsar una carta si esta tancada
         if(!estaOberta(id)){
 
             Log.d(TAG, "onClickedAtCard ->" + CardEnum.getMessageResource(c));
@@ -381,6 +389,7 @@ public class GameViewModel extends ViewModel {
 
     }
 
+    //metode per comprobar si la carta esta oberta o tancada
     private boolean estaOberta(int id){
 
         boolean controlador = false;
@@ -464,18 +473,23 @@ public class GameViewModel extends ViewModel {
 
         }
 
+        //si el controlador dona true vol dir que la carta esta oberta
+        //si el controlador dona false vol dir que la carta esta tancada
         return controlador;
 
     }
 
+    //metode per mostrar les cartes
     private void showCard(int id) {
 
         MockLevelRepository mockLevelRepository = new MockLevelRepository();
 
+        //si el mode es explorar
         if(this.eleccioNivell == 1) {
 
+            //si les llargades de les paraules (usuari i solucio) son iguals
             if (game.getParaulaUsuari().length() == mockLevelRepository.getMockLevelSolutions(numNivell).length()) {
-
+                //si la comprovacio de la paraula es correcta se suma xp, suma el nivell
                 if (comprovarParaula()) {
 
                     int currentxp = Integer.parseInt(this.xp.getValue()) + 100;
@@ -490,11 +504,13 @@ public class GameViewModel extends ViewModel {
 
                     Log.d("nivell", String.valueOf(this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell))));
 
+                //si la comprovacio de la paraula es incorrecta
                 } else {
-
+                    //se buida la paraula del usuari
                     game.setParaulaUsuari("");
                     this.currentWordMutableLiveData.setValue("");
 
+                    //s'amaguen totes les cartes
                     faceUpCardLletra1.setValue(false);
                     faceUpCardLletra2.setValue(false);
                     faceUpCardLletra3.setValue(false);
@@ -504,10 +520,11 @@ public class GameViewModel extends ViewModel {
                     faceUpCardLletra7.setValue(false);
                     faceUpCardLletra8.setValue(false);
 
+                    //i se tornen a obrir 4 segons de nou (tornar a començar)
                     temporitzadorObrir();
-
                 }
 
+            //si les llargades de les paraules (usuari i solucio) son diferents
             } else {
 
                 if (id == 1) faceUpCardLletra1.setValue(true);
@@ -522,9 +539,11 @@ public class GameViewModel extends ViewModel {
                 faceUpCard.setValue(true);
             }
 
+        //si el mode es contrarellotge
         } else {
+            //si les llargades de les paraules (usuari i solucio) son iguals
             if (game.getParaulaUsuari().length() == mockLevelRepository.getMockLevelSolutions(PreferencesProvider.providePreferences().getInt("randomNum",0)).length()) {
-
+                //si la comprovacio de la paraula es correcta se compta les paraules que porta resoltes
                 if (comprovarParaula()) {
 
                     int resoltesNum = PreferencesProvider.providePreferences().getInt("resoltes", 0);
@@ -539,11 +558,13 @@ public class GameViewModel extends ViewModel {
 
                     PreferencesProvider.providePreferences().edit().putString("temporitzadorContrarrelotge", tempsContrarellotge.getValue()).commit();
 
+                //si la comprovacio de la paraula es incorrecta
                 } else {
-
+                    //se buida la paraula del usuari
                     game.setParaulaUsuari("");
                     this.currentWordMutableLiveData.setValue("");
 
+                    //s'amaguen totes les cartes
                     faceUpCardLletra1.setValue(false);
                     faceUpCardLletra2.setValue(false);
                     faceUpCardLletra3.setValue(false);
@@ -553,10 +574,13 @@ public class GameViewModel extends ViewModel {
                     faceUpCardLletra7.setValue(false);
                     faceUpCardLletra8.setValue(false);
 
+                    //i se tornen a obrir 4 segons de nou (tornar a començar)
                     temporitzadorObrir();
 
                 }
 
+            //si les llargades de les paraules (usuari i solucio) son diferents permet
+            // que les cartes se puguin obrir fins arribar a la llargada adecuada de la paraula
             } else {
 
                 if (id == 1) faceUpCardLletra1.setValue(true);
@@ -573,7 +597,7 @@ public class GameViewModel extends ViewModel {
         }
     }
 
-
+    //metode per comprovar si hi han mes nivells
     public boolean hiHaMesNivells(){
 
         Level levelNew = this.levelRepository.getLevel(PreferencesProvider.providePreferences().getInt("nivell", numNivell));
@@ -582,7 +606,7 @@ public class GameViewModel extends ViewModel {
     }
 
 
-
+    //metode per carregar les imatges
     @BindingAdapter({"bind:imageUrl"})
     public static void loadImage(ImageView view, String imageUrl) {
         Picasso.with(view.getContext()).load(imageUrl).into(view);
